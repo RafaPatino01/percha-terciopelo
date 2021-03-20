@@ -46,7 +46,8 @@ let connection = mysql.createConnection({
 // check connection
 connection.connect(error =>{
 	if(error){
-		throw error;
+		//throw error;
+		console.log("DATABSE CONNECTION ERROR");
 	}
 	else {
 		console.log("Database server running...");
