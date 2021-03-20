@@ -1,5 +1,5 @@
 {
-  "name": "HorizontalSmoothScrollLayout",
+  "name": "perchaterciopelo",
   "version": "1.0.0",
   "description": "*How to use this template:*",
   "main": "src/js/index.js",
@@ -14,7 +14,7 @@
     "url": "git://github.com/codrops/%5BNAME%5D.git"
   },
   "keywords": [],
-  "author": "Codrops",
+  "author": "RafaPatino01",
   "license": "MIT",
   "homepage": "http://[HOMEPAGE]",
   "bugs": {
