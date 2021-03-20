@@ -20,12 +20,28 @@ app.use(upload.array());
 
 // MYSQL  ----------------------------------------------------------------------------
 
+/* LOCAL DEVELOPMENT
+
 let connection = mysql.createConnection({
 	host:"localhost",
 	user:"root",
 	password: "",
 	database:"perchaterciopelo"
 }); 
+
+*/
+
+// Heroku DB
+// mysql://b375ab530b6efd:cf4ade3a@us-cdbr-east-03.cleardb.com/heroku_a16f974a985f837?reconnect=true
+
+let connection = mysql.createConnection({
+	host:"us-cdbr-east-03.cleardb.com",
+	user:"b375ab530b6efd",
+	password: "cf4ade3a",
+	database:"heroku_a16f974a985f837"
+}); 
+
+
 
 // check connection
 connection.connect(error =>{
