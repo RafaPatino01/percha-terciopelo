@@ -1,5 +1,3 @@
-# Horizontal Smooth Scroll Layouts
-
 ## Installation
 
 Install dependencies:
