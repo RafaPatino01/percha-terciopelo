@@ -23,4 +23,4 @@ npm run build
 ## License
 [MIT](LICENSE)
 
-Made with :blue_heart: by [Codrops](http://www.codrops.com)
+:blue_heart: Melius Development
