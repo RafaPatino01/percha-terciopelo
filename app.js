@@ -34,30 +34,68 @@ let connection = mysql.createConnection({
 // Heroku DB
 // mysql://b375ab530b6efd:cf4ade3a@us-cdbr-east-03.cleardb.com/heroku_a16f974a985f837?reconnect=true
 
-
+/*
 let connection = mysql.createConnection({
 	host:"us-cdbr-east-03.cleardb.com",
 	user:"b375ab530b6efd",
 	password: "cf4ade3a",
 	database:"heroku_a16f974a985f837"
 });
-
+*/
 
 // check connection
+/*
 connection.connect(error =>{
 	if(error){
-		//throw error;
-		console.log("DATABSE CONNECTION ERROR");
+		throw error;
 	}
 	else {
 		console.log("Database server running...");
 	}
 });
+*/
+
+var db_config = {
+	host:"us-cdbr-east-03.cleardb.com",
+	user:"b375ab530b6efd",
+	password: "cf4ade3a",
+	database:"heroku_a16f974a985f837"
+};
+
+var connection;
+
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config); // Recreate the connection, since
+                                                  // the old one cannot be reused.
+
+  connection.connect(function(err) {              // The server is either down
+    if(err) {                                     // or restarting (takes a while sometimes).
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+    }
+    else {
+    	console.log("Database server running...");
+    }                                     // to avoid a hot loop, and to allow our node script to
+  });                                     // process asynchronous requests in the meantime.
+                                          // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+      handleDisconnect();                         // lost due to either server restart, or a
+    } else {                                      // connnection idle timeout (the wait_timeout
+      throw err;                                  // server variable configures this)
+    }
+  });
+}
+
+handleDisconnect();
+
 
 // ENDPOINTS --------------------------------------------------------------------
 
 // get all posts
 app.get('/get_allposts', function(req, res) {
+
 
     const sql = 'SELECT * FROM posts WHERE status=1';
 
@@ -72,6 +110,7 @@ app.get('/get_allposts', function(req, res) {
     		res.send("no hubo resultado");
     	}
     });
+
  
 });
 
