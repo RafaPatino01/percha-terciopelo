@@ -9,7 +9,6 @@ const mysql = require('mysql');
 const app = express();
 const port = process.env.PORT || 9000;
 
-
 var upload = multer();
 
 // Parse json data
@@ -20,38 +19,44 @@ app.use(upload.array());
 
 // MYSQL  ----------------------------------------------------------------------------
 
-/* LOCAL DEVELOPMENT
-
-let connection = mysql.createConnection({
-	host:"localhost",
-	user:"root",
-	password: "",
-	database:"perchaterciopelo"
-}); 
-
-*/
-
 // Heroku DB
 // mysql://b375ab530b6efd:cf4ade3a@us-cdbr-east-03.cleardb.com/heroku_a16f974a985f837?reconnect=true
 
-let connection = mysql.createConnection({
+var db_config = {
 	host:"us-cdbr-east-03.cleardb.com",
 	user:"b375ab530b6efd",
 	password: "cf4ade3a",
 	database:"heroku_a16f974a985f837"
-}); 
+};
 
+var connection;
 
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config); // Recreate the connection, since
+                                                  // the old one cannot be reused.
 
-// check connection
-connection.connect(error =>{
-	if(error){
-		throw error;
-	}
-	else {
-		console.log("Database server running...");
-	}
-});
+  connection.connect(function(err) {              // The server is either down
+    if(err) {                                     // or restarting (takes a while sometimes).
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+    }
+    else {
+    	console.log("Database server running...");
+    }                                     // to avoid a hot loop, and to allow our node script to
+  });                                     // process asynchronous requests in the meantime.
+                                          // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+      handleDisconnect();                         // lost due to either server restart, or a
+    } else {                                      // connnection idle timeout (the wait_timeout
+      throw err;                                  // server variable configures this)
+    }
+  });
+}
+
+handleDisconnect();
+
 
 // ENDPOINTS --------------------------------------------------------------------
 
@@ -71,7 +76,7 @@ app.get('/get_allposts', function(req, res) {
     		res.send("no hubo resultado");
     	}
     });
- 
+
 });
 
 // get post by ID
@@ -92,6 +97,28 @@ app.get('/get_post/:id', function(req, res) {
     	}
     });
 });
+
+// get image URL by post ID
+app.get('/get_im_url/:id', function(req, res) {
+
+	const id = req.params["id"];
+
+    const sql = 'SELECT * FROM posts_images WHERE post_id='+id;
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send("no hubo resultado");
+    	}
+    });
+
+});
+
 
 // add post
 app.post('/add_post', function (req, res) {
@@ -146,7 +173,7 @@ app.post('/add_post', function (req, res) {
 
 // edit post
 app.put('/edit_post/:id', function (req, res) {
-    const id = string(req.params["id"]);
+    const id = req.params["id"];
     const title = string(req.body.title);
     const descr = string(req.body.descr);
 
@@ -212,7 +239,16 @@ app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
 });
 
+//Test images
+app.get('/images', function(req, res) {
+    res.sendFile(path.join(__dirname + '/admin/images.html'));
+});
+// Send image file
+app.get('/uploads/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
 
+});
 
 // PARCEL BUNDLER ----------------------------------------------------------------------
 

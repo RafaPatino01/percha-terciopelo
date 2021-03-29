@@ -49,12 +49,24 @@ async function loadPosts(p_page) {
 	}
 }
 
+// Delete post by id
 async function deletePost(p_id) {
 	const url = "/delete_post/"+p_id;
 	const response = await fetch(url, { method: 'PUT' });
 }
 
+// load image by Id
+async function loadImages(p_id) {
 
+	var images = await getData("/get_im_url/"+p_id);
+
+	console.log(images);
+
+	for(var i = 0; i < images.length; i++)
+	{
+		document.getElementById("output_images").innerHTML += "<img src='/uploads/" + images[i].url + ".png'><br><br>";
+	}
+}
 
 
 
