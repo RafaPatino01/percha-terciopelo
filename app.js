@@ -266,6 +266,10 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/src/index3.html'));
 });
 
+app.get('/loading', function(req, res){
+	res.sendFile(path.join(__dirname + '/loading/load.html'))
+})
+
 
 
 // SERVER PORT --------------------------------------------------------------------------
