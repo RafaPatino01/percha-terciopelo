@@ -1,0 +1,105 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap');
+
+html, body{
+    margin: 0;
+    padding: 0;
+    width:100%;
+    height: 100vh;
+    background: #000;
+    color:#fff;
+}
+
+.center{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+
+.data{
+    font-family: 'Open Sans';
+    color:#fff;
+    font-size: 20px;
+    letter-spacing: 8px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    position:absolute;
+    top:63%;
+    left:55%;
+    transform:translate(-63%,-55%);
+}
+
+.Face{
+    position:absolute;
+    top:95%;
+    left:48%;
+    transform:translate(-95%,-48%);
+}
+
+.Insta{
+    position:absolute;
+    top:95%;
+    left:52%;
+    transform:translate(-95%,-52%);
+}
+
+.line{
+    width:16em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden; transform: translateY(-50%);
+    font-family: 'Montserrat';
+}
+
+.anim-typewriter{
+    animation: typewriter 4s steps(40) 1s 1 normal both,
+    blinkTextCursor 500ms steps(40) infinite normal;
+}
+
+@keyframes typewriter {
+    from{
+        width: 0;
+    }
+    to{
+        width: 16em;
+    }
+}
+@keyframes blinkTextCursos {
+    from {
+        border-right-color: rgba(255, 255, 255, 0.75);
+    }
+    to{
+        border-right-color: transparent;
+    }
+}
+
+section{
+    /*position:relative;
+    display: flex;*/
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background:#101010;
+}
+
+section .text{
+    position:relative;
+    text-align: center;
+    color: #fff;
+
+}
+
+section .text span{
+    position:relative;
+    display: inline-block;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Percha Magasin</title>
+		<meta name="description" content="A horizontal smooth scroll layout powered by Locomotive Scroll" />
+		<meta name="keywords" content="locomotive scroll, smooth scroll, horizontal, layout, web design, javascript, css" />
+		<meta name="author" content="Percha Terciopelo" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="../src/css/load_style.css">
+        <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <img src="https://dummyimage.com/900x200/000000/ffffff&text=Percha+Magasin" class="center">
+        </div>
+        <div class="container">
+            <div class="data"> Ya casi, aguántanos tantito...</div>
+        </div>
+        <!--<section>
+            <p class="text"> Aguántanos, ya casi llegamos</p>
+        </section>
+        <div>
+            <p class="line anim-typewriter">Ya casi, aguántanos tantito...</p>
+        </div>-->
+        
+        <!--</█ ▒▒<▒░ ▒░/█< /█░ ▓▒▓<> /▒░▒ ▒▓> ▒█▒/ ▒░>▒-->
+        <script type="text/javascript">
+        const text = baffle(".data");
+        text.set({
+            characters: '_',
+            speed: 120
+        })
+        text.start();
+        text.reveal(4000);
+        </script>
+        <script src="anime.min.js"></script>
+        <!--<script type="text/javascript">
+            const text = document.querySelector('.text');
+            text.innerHTML = text.textContent.replace(/\S/g,"<span>$&</span>")
+
+            const animation = anime.timeline({
+                targets : '.text span',
+                easing : 'easeInOutExpo',
+                loop : true,
+            });
+            animation
+             .add({
+                 rotate : function(){
+                     return anime.random(-360,360)
+                 },
+                 translateX : function(){
+                     return anime.random(-500,500)
+                 },
+                 translateY : function(){
+                     return anime.random(-500,500)
+                 },
+                 duration : 5000,
+                 delay : anime.stagger(12),
+             })
+
+             .add({
+                 rotate : 0,
+                 translateX : 0,
+                 translateY : 0,
+                 duration : 4000,
+                 delay : anime.stagger(10),
+            })
+        </script>-->
+        <footer>
+            <img src="facebook32px.png" class="Face">
+            <img src="instagram.png" class="Insta">
+        </footer>
+    </body>
+</html>
