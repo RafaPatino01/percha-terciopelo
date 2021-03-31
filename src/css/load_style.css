@@ -10,6 +10,8 @@ html, body{
     color:#fff;
 }
 
+
+
 .center{
     display:block;
     margin-left: auto;
@@ -42,11 +44,25 @@ html, body{
     transform:translate(-95%,-48%);
 }
 
+.FaceMob{
+    position:absolute;
+    top:95%;
+    left:48%;
+    transform:translate(-95%,-48%);
+}
+
 .Insta{
     position:absolute;
     top:95%;
     left:52%;
     transform:translate(-95%,-52%);
+}
+
+.InstaMob{
+    position:absolute;
+    top:95%;
+    left:60%;
+    transform:translate(-95%,-60%);
 }
 
 .line{
@@ -82,24 +98,9 @@ html, body{
     }
 }
 
-section{
-    /*position:relative;
-    display: flex;*/
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-    background:#101010;
-}
+#content-mobile{display:none;}
 
-section .text{
-    position:relative;
-    text-align: center;
-    color: #fff;
-
-}
-
-section .text span{
-    position:relative;
-    display: inline-block;
+@media (max-width: 62em){
+    #content-mobile{display:block;}
+    #content-desktop{display:none;}
 }
