@@ -116,7 +116,6 @@ app.get('/get_im_url/:id', function(req, res) {
     		res.send("no hubo resultado");
     	}
     });
-
 });
 
 
@@ -131,6 +130,9 @@ app.post('/add_post', function (req, res) {
 	const postObject = {
 		title: req.body.title,
 		descr: req.body.descr,
+		date: req.body.date,
+		main_text: req.body.main_text,
+		secondary_text: req.body.secondary_text,
 		status: 1
 	}
 
@@ -174,10 +176,14 @@ app.post('/add_post', function (req, res) {
 // edit post
 app.put('/edit_post/:id', function (req, res) {
     const id = req.params["id"];
-    const title = string(req.body.title);
-    const descr = string(req.body.descr);
+    const title = req.body.title;
+    const descr = req.body.descr;
 
-    const sql = 'UPDATE posts SET title='+title+', descr='+descr+' WHERE id='+id;
+    const date = req.body.date;
+    const main_text = req.body.main_text;
+    const secondary_text = req.body.secondary_text;
+
+    const sql = 'UPDATE posts SET title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+', secondary_text='+'"'+secondary_text+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {
@@ -235,8 +241,16 @@ app.get('/admin_new', function(req, res) {
 app.get('/admin_delete', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/delete.html'));
 });
+app.get('/admin_edit/:id', function(req, res) {
+	const id = req.params["id"];
+    res.sendFile(path.join(__dirname + '/admin/edit.html'));
+});
+
 app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
+});
+app.get('/edit_js', function(req, res) {
+    res.sendFile(path.join(__dirname + '/admin/js/edit.js'));
 });
 
 //Test images
