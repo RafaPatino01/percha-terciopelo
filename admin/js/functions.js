@@ -17,7 +17,26 @@ async function loadPosts(p_page) {
 		case "all":
 			for(var i = 0; i < posts.length; i++)
 			{
-				document.getElementById("output_posts").innerHTML += '<div class="row border" id="FadeIn"><div class="col-md-3 bg-orange"><h3>'+ posts[i].title +'</h3></div><div class="col-md-9 bg-lighter"><p class="lead">'+ posts[i].descr +'</p></div></div><br>';
+				document.getElementById("output_posts").innerHTML += `
+				<div class="row border" id="FadeIn">
+					<div class="col-md-3 bg-orange p-3">
+					<h3>`+ posts[i].title +`</h3>
+					<p>`+ posts[i].date.substring(0, 7) +`</p>
+					</div>
+					<div class="col-md-8 bg-lighter">
+						<div class="row p-3">
+						<p class="lead">`+ posts[i].descr +`</p>
+						</div>
+						
+						<div class="row border-top p-3">
+						<p>`+ posts[i].main_text +`</p>
+						</div>
+					</div>
+					<div class="col-md-1 bg-lighter border-left pt-5">
+						<h5><a href="/admin_edit/`+posts[i].id+`"><i>EDIT</i></a></h5>
+					</div>
+				</div><br>
+				`;
 			}
 			break;
 
@@ -67,8 +86,6 @@ async function loadImages(p_id) {
 		document.getElementById("output_images").innerHTML += "<img src='/uploads/" + images[i].url + ".png'><br><br>";
 	}
 }
-
-
 
 
 
