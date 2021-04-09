@@ -86,7 +86,7 @@ html, body{
         width: 0;
     }
     to{
-        width: 16em;
+        width: 25em;
     }
 }
 @keyframes blinkTextCursos {

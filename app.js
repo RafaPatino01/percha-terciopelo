@@ -263,6 +263,16 @@ app.get('/uploads/:filename', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
 
 });
+//Loading
+app.get('/loading', function(req, res){
+	res.sendFile(path.join(__dirname + '/src/loading/load.html'))
+})
+// Send loading files
+app.get('/loading/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/loading/'+filename));
+
+});
 
 // PARCEL BUNDLER ----------------------------------------------------------------------
 
@@ -279,12 +289,6 @@ app.use(bundler.middleware());
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/src/index3.html'));
 });
-
-app.get('/loading', function(req, res){
-	res.sendFile(path.join(__dirname + '/loading/load.html'))
-})
-
-
 
 // SERVER PORT --------------------------------------------------------------------------
 app.listen(port, () => {
