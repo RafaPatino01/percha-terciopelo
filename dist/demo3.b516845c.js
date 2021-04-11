@@ -10275,7 +10275,7 @@ function _loadPosts() {
             posts = _context2.sent;
 
             for (i = 0; i < posts.length; i++) {
-              document.getElementById("output").innerHTML += "\n            <figure class=\"gallery__item\" onclick=\"location.href = 'admin';\">\n                <div class=\"gallery__item-img\"><div class=\"gallery__item-imginner\" style=\"background-image: url(/img/1.jpg)\" data-scroll data-scroll-speed=\"-0.8\"></div></div>\n                <figcaption class=\"gallery__item-caption\">\n                    <h2 class=\"gallery__item-title\" data-scroll data-scroll-speed=\"1\">Title</h2>\n                    <span class=\"gallery__item-number\" data-scroll data-scroll-speed=\"1.5\" style=\"font-size: 3em;\">" + posts[i].title + "</span>\n                </figcaption>\n            </figure>\n        ";
+              document.getElementById("output").innerHTML += "\n            <figure class=\"gallery__item\" onclick=\"location.href = 'post/" + posts[i].id + "';\">\n                <div class=\"gallery__item-img\"><div class=\"gallery__item-imginner\" style=\"background-image: url(/img/1.jpg)\" data-scroll data-scroll-speed=\"-0.8\"></div></div>\n                <figcaption class=\"gallery__item-caption\">\n                    <h2 class=\"gallery__item-title\" data-scroll data-scroll-speed=\"1\">Title</h2>\n                    <span class=\"gallery__item-number\" data-scroll data-scroll-speed=\"1.5\" style=\"font-size: 3em;\">" + posts[i].title + "</span>\n                </figcaption>\n            </figure>\n        ";
             }
 
             document.getElementById("output").innerHTML += '<div class="gallery__text"><span class="gallery__text-inner" data-scroll data-scroll-speed="1">Maga</span><span data-scroll data-scroll-speed="3" class="gallery__text-inner">sin</span></div>';
@@ -10318,7 +10318,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62750" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53769" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

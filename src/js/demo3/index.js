@@ -56,7 +56,7 @@ async function loadPosts() {
     for(var i = 0; i < posts.length; i++)
     {
         document.getElementById("output").innerHTML += `
-            <figure class="gallery__item" onclick="location.href = 'admin';">
+            <figure class="gallery__item" onclick="location.href = 'post/`+posts[i].id+`';">
                 <div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(/img/1.jpg)" data-scroll data-scroll-speed="-0.8"></div></div>
                 <figcaption class="gallery__item-caption">
                     <h2 class="gallery__item-title" data-scroll data-scroll-speed="1">Title</h2>

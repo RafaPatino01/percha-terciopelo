@@ -230,7 +230,6 @@ app.get('/functions_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/functions.js'));
 });
 
-
 //admin menu
 app.get('/admin_all', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/all.html'));
@@ -245,7 +244,6 @@ app.get('/admin_edit/:id', function(req, res) {
 	const id = req.params["id"];
     res.sendFile(path.join(__dirname + '/admin/edit.html'));
 });
-
 app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
 });
@@ -253,17 +251,15 @@ app.get('/edit_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/edit.js'));
 });
 
-//Test images
-app.get('/images', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/images.html'));
-});
-// Send image file
+
+// Public Routing ----------------------------------------------------------------------
+
+// Send image file from uploaded images
 app.get('/uploads/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
 });
-
-//Send image ----- (JUST TESTING) ---------
+//Send image ----- (Demo Images) ---------
 app.get('/img/:filename', function(req, res) {
     const filename = req.params["filename"];
     res.sendFile(path.join(__dirname + '/src/img/demo3/'+filename));
@@ -278,6 +274,19 @@ app.get('/loading', function(req, res){
 app.get('/loading/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/loading/'+filename));
+});
+
+app.get('/post/:id', function(req, res) {
+    const id = req.params["id"];
+    res.sendFile(path.join(__dirname + '/src/post.html'));
+});
+app.get('/js/:filename', function(req, res) {
+    const filename = req.params["filename"];
+    res.sendFile(path.join(__dirname + '/src/js/functions/'+filename));
+});
+app.get('/css/:filename', function(req, res) {
+    const filename = req.params["filename"];
+    res.sendFile(path.join(__dirname + '/src/css/'+filename));
 });
 
 // PARCEL BUNDLER ----------------------------------------------------------------------

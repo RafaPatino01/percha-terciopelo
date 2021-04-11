@@ -1,0 +1,14 @@
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative
+}
+
+.bg-main {
+	background-color: #DEDEDE;
+}
+
+.big-text{
+	font-size: 5em;
+}
