@@ -261,8 +261,15 @@ app.get('/images', function(req, res) {
 app.get('/uploads/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
-
 });
+
+//Send image ----- (JUST TESTING) ---------
+app.get('/img/:filename', function(req, res) {
+    const filename = req.params["filename"];
+    res.sendFile(path.join(__dirname + '/src/img/demo3/'+filename));
+});
+
+
 //Loading
 app.get('/loading', function(req, res){
 	res.sendFile(path.join(__dirname + '/src/loading/load.html'))
@@ -271,7 +278,6 @@ app.get('/loading', function(req, res){
 app.get('/loading/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/loading/'+filename));
-
 });
 
 // PARCEL BUNDLER ----------------------------------------------------------------------
