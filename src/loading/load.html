@@ -11,12 +11,18 @@
         <link rel="stylesheet" href="/loading/load_style.css">
         <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
     </head>
-    <body>
-        <div>
+    <body style="margin: 0; height: 100%; overflow: hidden;">
+        <div id="content-desktop">
             <img src="/loading/PERCHAmagasin_Logo-blanco.png" class="center"><!--900x200 px-->
         </div>
-        <div class="container">
+        <div id="content-mobile">
+            <img src="/loading/2.png" class="center">
+        </div>
+        <div class="container" id="content-desktop">
             <div class="data"> Ya casi, aguántanos tantito...</div>
+        </div>
+        <div class="container" id="content-mobile">
+            <div class="dataMob"> Ya casi, aguántanos tantito...</div>
         </div>
         <!--<section>
             <p class="text"> Aguántanos, ya casi llegamos</p>
@@ -80,10 +86,29 @@
             })
         </script>-->
         <footer>
-            <img src="/loading/facebook32px.png" class="Face" id="content-desktop">
-            <img src="/loading/facebook32px.png" class="FaceMob" id="content-mobile">
-            <img src="/loading/instagram.png" class="Insta" id="content-desktop">
-            <img src="/loading/instagram.png" class="InstaMob" id="content-mobile">
+            <a href="https://youtube.com/channel/UCXekL9evoKAUaBkA4gWOeaw" target="_blank">
+                <img src="/loading/youtube.png" class="Face" id="content-desktop" >
+            </a>
+            <a href="https://youtube.com/channel/UCXekL9evoKAUaBkA4gWOeaw">
+                <img src="/loading/youtube.png" class="FaceMob" id="content-mobile">
+            </a>
+            
+            <a href="https://instagram.com/perchamagasin?igshid=n2a7n26mhhpq" target="_blank">
+                <img src="/loading/instagram.png" class="Insta" id="content-desktop">
+            </a>
+            
+            <a href="https://instagram.com/perchamagasin?igshid=n2a7n26mhhpq">
+                <img src="/loading/instagram.png" class="InstaMob" id="content-mobile">
+            </a>
+            
+            <a href="https://open.spotify.com/show/0dgFrjECv01d5P8Lw1dawI?si=CDiyCaS6RGW9b0ywx4abbQ" target="_blank">
+                <img src="/loading/spotify32px.png" class="Spotify" id="content-desktop">
+            </a>
+            
+            <a href="https://open.spotify.com/show/0dgFrjECv01d5P8Lw1dawI?si=CDiyCaS6RGW9b0ywx4abbQ">
+                <img src="/loading/spotify32px.png" class="SpotifyMob" id="content-mobile">
+            </a>
+            
         </footer>
     </body>
 </html>
