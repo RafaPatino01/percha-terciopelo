@@ -36,20 +36,6 @@ html, body{
     transform:translate(-63%,-55%);
 }
 
-.dataMob{
-    font-family: 'Open Sans';
-    color:#fff;
-    font-size: 15px;
-    letter-spacing: 6px;
-    font-weight: 600;
-    text-align: center;
-    padding: 10px;
-    position:absolute;
-    top:63%;
-    left:55%;
-    transform:translate(-63%,-55%);
-}
-
 .Face{
     position:absolute;
     top:95.5%;
