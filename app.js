@@ -116,7 +116,6 @@ app.get('/get_im_url/:id', function(req, res) {
     		res.send("no hubo resultado");
     	}
     });
-
 });
 
 
@@ -131,6 +130,9 @@ app.post('/add_post', function (req, res) {
 	const postObject = {
 		title: req.body.title,
 		descr: req.body.descr,
+		date: req.body.date,
+		main_text: req.body.main_text,
+		secondary_text: req.body.secondary_text,
 		status: 1
 	}
 
@@ -174,10 +176,14 @@ app.post('/add_post', function (req, res) {
 // edit post
 app.put('/edit_post/:id', function (req, res) {
     const id = req.params["id"];
-    const title = string(req.body.title);
-    const descr = string(req.body.descr);
+    const title = req.body.title;
+    const descr = req.body.descr;
 
-    const sql = 'UPDATE posts SET title='+title+', descr='+descr+' WHERE id='+id;
+    const date = req.body.date;
+    const main_text = req.body.main_text;
+    const secondary_text = req.body.secondary_text;
+
+    const sql = 'UPDATE posts SET title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+', secondary_text='+'"'+secondary_text+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {
@@ -224,7 +230,6 @@ app.get('/functions_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/functions.js'));
 });
 
-
 //admin menu
 app.get('/admin_all', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/all.html'));
@@ -235,19 +240,64 @@ app.get('/admin_new', function(req, res) {
 app.get('/admin_delete', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/delete.html'));
 });
+app.get('/admin_edit/:id', function(req, res) {
+	const id = req.params["id"];
+    res.sendFile(path.join(__dirname + '/admin/edit.html'));
+});
 app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
 });
-
-//Test images
-app.get('/images', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/images.html'));
+app.get('/edit_js', function(req, res) {
+    res.sendFile(path.join(__dirname + '/admin/js/edit.js'));
 });
-// Send image file
+
+
+// Public Routing ----------------------------------------------------------------------
+
+// Send image file from uploaded images
 app.get('/uploads/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
+});
+//Send image ----- (Demo Images) ---------
+app.get('/img/:filename', function(req, res) {
+    const filename = req.params["filename"];
+    res.sendFile(path.join(__dirname + '/src/img/demo3/'+filename));
+});
 
+
+//Home
+app.get('/Home', function(req, res){
+	res.sendFile(path.join(__dirname + '/src/Home/Home.html'))
+})
+// Send Home files
+app.get('/Home/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/Home/'+filename));
+});
+
+//Loading
+app.get('/loading', function(req, res){
+	res.sendFile(path.join(__dirname + '/src/loading/load.html'))
+})
+
+// Send loading files
+app.get('/loading/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/loading/'+filename));
+});
+
+app.get('/post/:id', function(req, res) {
+    const id = req.params["id"];
+    res.sendFile(path.join(__dirname + '/src/post.html'));
+});
+app.get('/js/:filename', function(req, res) {
+    const filename = req.params["filename"];
+    res.sendFile(path.join(__dirname + '/src/js/functions/'+filename));
+});
+app.get('/css/:filename', function(req, res) {
+    const filename = req.params["filename"];
+    res.sendFile(path.join(__dirname + '/src/css/'+filename));
 });
 
 // PARCEL BUNDLER ----------------------------------------------------------------------
@@ -265,12 +315,6 @@ app.use(bundler.middleware());
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/src/index3.html'));
 });
-
-app.get('/loading', function(req, res){
-	res.sendFile(path.join(__dirname + '/loading/load.html'))
-})
-
-
 
 // SERVER PORT --------------------------------------------------------------------------
 app.listen(port, () => {
