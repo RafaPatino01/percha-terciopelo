@@ -266,10 +266,21 @@ app.get('/img/:filename', function(req, res) {
 });
 
 
+//Home
+app.get('/Home', function(req, res){
+	res.sendFile(path.join(__dirname + '/src/Home/Home.html'))
+})
+// Send Home files
+app.get('/Home/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/Home/'+filename));
+});
+
 //Loading
 app.get('/loading', function(req, res){
 	res.sendFile(path.join(__dirname + '/src/loading/load.html'))
 })
+
 // Send loading files
 app.get('/loading/:filename', function(req, res) {
 	const filename = req.params["filename"];
