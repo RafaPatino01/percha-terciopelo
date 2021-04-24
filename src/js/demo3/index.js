@@ -55,6 +55,10 @@ async function loadPosts() {
 
     for(var i = 0; i < posts.length; i++)
     {
+        var imgURL = await getData("/get_im_url/"+posts[i].id);
+        imgURL = imgURL[0]["url"]+".png";
+        console.log(imgURL);
+        
         document.getElementById("output").innerHTML += `
             <figure class="gallery__item" onclick="location.href = 'post/`+posts[i].id+`';">
                 <div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(/img/1.jpg)" data-scroll data-scroll-speed="-0.8"></div></div>

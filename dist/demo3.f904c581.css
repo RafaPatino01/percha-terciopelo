@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&display=swap');
+
 body {
 	--color-text: #000;
 	--color-bg: #dedede;
@@ -24,7 +26,7 @@ body {
 }
 
 .frame__header-title {
-	font-family: moret, serif;
+	font-family: 'Open Sans' !important;
 	font-weight: 700;
 	font-size: 6rem;
 	font-size: clamp(2rem,8vw,7rem);
@@ -95,8 +97,8 @@ body {
 	color: transparent;
 	-webkit-text-stroke: 1px #645c5b;
 	text-stroke: 1px #645c5b;
-	-webkit-text-fill-color: transparent;
-	text-fill-color: transparent;
+	-webkit-text-fill-color: #645c5b;
+	text-fill-color: #645c5b;
 }
 
 .gallery__item-title {
@@ -111,7 +113,7 @@ body {
 .gallery__item-number,
 .gallery__item-title,
 .gallery__text {
-	font-family: moret, serif;
+	font-family: 'Open Sans' !important;
 	font-weight: 700;
 	align-self: center;
 }

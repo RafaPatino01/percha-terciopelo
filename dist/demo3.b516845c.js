@@ -10296,7 +10296,7 @@ function loadPosts() {
 
 function _loadPosts() {
   _loadPosts = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    var posts, i;
+    var posts, i, imgURL;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -10306,15 +10306,33 @@ function _loadPosts() {
 
           case 2:
             posts = _context2.sent;
+            i = 0;
 
-            for (i = 0; i < posts.length; i++) {
-              document.getElementById("output").innerHTML += "\n            <figure class=\"gallery__item\" onclick=\"location.href = 'post/" + posts[i].id + "';\">\n                <div class=\"gallery__item-img\"><div class=\"gallery__item-imginner\" style=\"background-image: url(/img/1.jpg)\" data-scroll data-scroll-speed=\"-0.8\"></div></div>\n                <figcaption class=\"gallery__item-caption\">\n                    <h2 class=\"gallery__item-title\" data-scroll data-scroll-speed=\"1\">Title</h2>\n                    <span class=\"gallery__item-number\" data-scroll data-scroll-speed=\"1.5\" style=\"font-size: 3em;\">" + posts[i].title + "</span>\n                </figcaption>\n            </figure>\n        ";
+          case 4:
+            if (!(i < posts.length)) {
+              _context2.next = 14;
+              break;
             }
 
+            _context2.next = 7;
+            return getData("/get_im_url/" + posts[i].id);
+
+          case 7:
+            imgURL = _context2.sent;
+            imgURL = imgURL[0]["url"] + ".png";
+            console.log(imgURL);
+            document.getElementById("output").innerHTML += "\n            <figure class=\"gallery__item\" onclick=\"location.href = 'post/" + posts[i].id + "';\">\n                <div class=\"gallery__item-img\"><div class=\"gallery__item-imginner\" style=\"background-image: url(/img/1.jpg)\" data-scroll data-scroll-speed=\"-0.8\"></div></div>\n                <figcaption class=\"gallery__item-caption\">\n                    <h2 class=\"gallery__item-title\" data-scroll data-scroll-speed=\"1\">Title</h2>\n                    <span class=\"gallery__item-number\" data-scroll data-scroll-speed=\"1.5\" style=\"font-size: 3em;\">" + posts[i].title + "</span>\n                </figcaption>\n            </figure>\n        ";
+
+          case 11:
+            i++;
+            _context2.next = 4;
+            break;
+
+          case 14:
             document.getElementById("output").innerHTML += '<div class="gallery__text"><span class="gallery__text-inner" data-scroll data-scroll-speed="1">Maga</span><span data-scroll data-scroll-speed="3" class="gallery__text-inner">sin</span></div>';
             lscroll.update(); //Update locomotive scroll  ?IDK why
 
-          case 6:
+          case 16:
           case "end":
             return _context2.stop();
         }
@@ -10351,7 +10369,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58068" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62630" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

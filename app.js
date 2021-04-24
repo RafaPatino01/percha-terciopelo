@@ -278,6 +278,10 @@ app.get('/home/:filename', function(req, res) {
 // Nosotros
 app.get('/nosotros', function(req, res){
 	res.sendFile(path.join(__dirname + '/src/nosotros.html'))
+});
+//Archivo
+app.get('/archivo', function(req, res){
+	res.sendFile(path.join(__dirname + '/src/archivo.html'))
 })
 
 //Loading
