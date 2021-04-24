@@ -267,14 +267,18 @@ app.get('/img/:filename', function(req, res) {
 
 
 //Home
-app.get('/Home', function(req, res){
+app.get('/home', function(req, res){
 	res.sendFile(path.join(__dirname + '/src/Home/Home.html'))
 })
 // Send Home files
-app.get('/Home/:filename', function(req, res) {
+app.get('/home/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/Home/'+filename));
 });
+// Nosotros
+app.get('/nosotros', function(req, res){
+	res.sendFile(path.join(__dirname + '/src/nosotros.html'))
+})
 
 //Loading
 app.get('/loading', function(req, res){

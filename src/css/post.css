@@ -1,14 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&display=swap');
+
 html, body {
   overflow-x: hidden;
+  font-family: 'Open Sans' !important;
 }
 body {
   position: relative
 }
 
 .bg-main {
-	background-color: #DEDEDE;
+	background-color: rgb(252, 252, 252);
 }
 
 .big-text{
 	font-size: 5em;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.hr {
+  height: 2px;
+  border: 2px solid black;
 }
