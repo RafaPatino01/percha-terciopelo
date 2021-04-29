@@ -138,6 +138,44 @@ app.get('/get_post/:id', function(req, res) {
     });
 });
 
+// get all cols
+app.get('/get_allcols', function(req, res) {
+
+    const sql = 'SELECT * FROM cols WHERE status=1';
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send("no hubo resultado");
+    	}
+    });
+
+});
+
+// get col by ID
+app.get('/get_col/:id', function(req, res) {
+    
+    const {id } = req.params
+    const sql = `SELECT * FROM cols WHERE id=${id} AND status=1`;
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send("no hubo resultado");
+    	}
+    });
+});
+
 // get image URL by post ID
 app.get('/get_im_url/:id', function(req, res) {
 
@@ -213,6 +251,59 @@ app.post('/add_post', function (req, res) {
 
 })
 
+// add post
+app.post('/add_col', function (req, res) {
+
+	console.log('Recieved: ' + typeof(req.body.title)) //ACCESS DATA FROM FORM
+	console.log('Recieved: ' + typeof(req.body.im0))
+
+	const sql = 'INSERT INTO cols SET ?';
+
+	const postObject = {
+		title: req.body.title,
+		descr: req.body.descr,
+		date: req.body.date,
+		main_text: req.body.main_text,
+		status: 1
+	}
+
+	connection.query(sql, postObject, (err, result)=> {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Added col");
+
+			console.log("LAST INSERTED ID: " + result.insertId);
+
+			const sql2 = 'INSERT INTO cols_images SET ?';
+			let base64Data = req.body.im;
+
+			for (var i = 0; i < req.body.n; i++) { // For each image
+
+				let postObject2 = {
+					url: req.body.title+i,
+					post_id: result.insertId
+				}
+
+				connection.query(sql2, postObject2, (err, result)=> { // Write to database
+					if(err) { 
+						throw err;
+					}
+				});
+
+				// Write image to folder
+				require("fs").writeFile("src/uploads/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+		  		console.log(err);
+				});
+
+				console.log("Added image: " + req.body.title+ i + ".png")
+			}
+		}
+	});
+})
+
+
 // edit post
 app.put('/edit_post/:id', function (req, res) {
     const id = req.params["id"];
@@ -231,6 +322,27 @@ app.put('/edit_post/:id', function (req, res) {
 		}
 		else {
 			res.send("Post updated");
+		}
+	});
+
+})
+// edit col
+app.put('/edit_col/:id', function (req, res) {
+    const id = req.params["id"];
+    const title = req.body.title;
+    const descr = req.body.descr;
+
+    const date = req.body.date;
+    const main_text = req.body.main_text;
+
+    const sql = 'UPDATE cols SET title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
+
+    connection.query(sql, err => {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Cols updated");
 		}
 	});
 
@@ -287,6 +399,22 @@ app.get('/admin_new', function(req, res) {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
+app.get('/admin_new_col', function(req, res) {
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/new_columna.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
+app.get('/admin_new_what', function(req, res) {
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/new_what.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
 app.get('/admin_delete', function(req, res) {
 	if(req.session.flag == 1){ // Admin has logged in
 		res.sendFile(path.join(__dirname + '/admin/delete.html'));
@@ -305,8 +433,21 @@ app.get('/admin_edit/:id', function(req, res) {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
+app.get('/admin_edit_col/:id', function(req, res) {
+	const id = req.params["id"];
+
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/edit_col.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
 app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
+});
+app.get('/uploadfile_js2', function(req, res) {
+    res.sendFile(path.join(__dirname + '/admin/js/uploadfile2.js'));
 });
 app.get('/edit_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/edit.js'));

@@ -15,6 +15,16 @@ body {
     background-color: #FEF5E7;
 }
 
+
+.bg-purple {
+  background-color: #ffc5db;
+}
+
+.bg-lighter2 {
+  background-color: #FFF2F7;
+}
+
+
 /*FADE IN ANIMATIONS*/
 #FadeIn {
     font-size: 15px;

@@ -11,6 +11,7 @@ async function getData(p_endpoint) {
 // Cargar todos los posts al html
 async function loadPosts(p_page) {
 	var posts = await getData("/get_allposts");
+	var cols = await getData("/get_allcols");
 
 	switch(p_page)
 	{
@@ -34,6 +35,30 @@ async function loadPosts(p_page) {
 					</div>
 					<div class="col-md-1 bg-lighter border-left pt-5">
 						<h5><a href="/admin_edit/`+posts[i].id+`"><i>EDIT</i></a></h5>
+					</div>
+				</div><br>
+				`;
+			}
+
+			for(var i = 0; i < cols.length; i++)
+			{
+				document.getElementById("output_cols").innerHTML += `
+				<div class="row border" id="FadeIn">
+					<div class="col-md-3 bg-purple p-3">
+					<h3>`+ cols[i].title +`</h3>
+					<p>`+ cols[i].date.substring(0, 7) +`</p>
+					</div>
+					<div class="col-md-8 bg-lighter2">
+						<div class="row p-3">
+						<p class="lead">`+ cols[i].descr +`</p>
+						</div>
+						
+						<div class="row border-top p-3">
+						<p>`+ cols[i].main_text +`</p>
+						</div>
+					</div>
+					<div class="col-md-1 bg-lighter2 border-left pt-5">
+						<h5><a href="/admin_edit_col/`+cols[i].id+`"><i>EDIT</i></a></h5>
 					</div>
 				</div><br>
 				`;
