@@ -17,6 +17,46 @@ app.use(bodyParser.json());
 // For multi form data
 app.use(upload.array());
 
+//Secure SHA256
+let crypto;
+try {
+  crypto = require('crypto');
+} catch (err) {
+  console.log('crypto support is disabled!');
+}
+
+// Admin Login -----------------------------------------------------------------
+var session = require('express-session')
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'secret_perchamagasin',
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.get('/check_login/:pass', function(req, res) {
+
+	const {pass } = req.params; //sin hash
+
+	var hashed_input = crypto.createHmac('sha256', pass)
+				   .digest('hex');
+
+	if(hashed_input=="614ede61f712224a8a7e3e1fb4a84ad0f65fc4bab1ccde94262ae6d136ee9118")
+	{
+		req.session.flag = 1;
+		res.send("1"); // OUI correcto paswordo
+	}
+	else 
+	{
+		req.session.flag = 0;
+		res.send("0"); // Not so correctou
+	}
+});
+
+
+
+
+
 // MYSQL  ----------------------------------------------------------------------------
 
 // Heroku DB
@@ -232,17 +272,38 @@ app.get('/functions_js', function(req, res) {
 
 //admin menu
 app.get('/admin_all', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/all.html'));
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/all.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
 });
 app.get('/admin_new', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/new.html'));
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/new.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
 });
 app.get('/admin_delete', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/delete.html'));
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/delete.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
 });
 app.get('/admin_edit/:id', function(req, res) {
 	const id = req.params["id"];
-    res.sendFile(path.join(__dirname + '/admin/edit.html'));
+
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/edit.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
 });
 app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));

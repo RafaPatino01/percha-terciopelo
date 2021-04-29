@@ -22,9 +22,12 @@
     "url": "https://github.com/codrops/[NAME]/issues"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.0.0",
     "cursor": "^0.1.5",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "gsap": "^3.5.1",
     "imagesloaded": "^4.1.4",
     "locomotive-scroll": "^4.1.0",
