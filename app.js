@@ -485,6 +485,10 @@ app.get('/nosotros', function(req, res){
 app.get('/archivo', function(req, res){
 	res.sendFile(path.join(__dirname + '/src/archivo.html'))
 })
+//Contacto
+app.get('/contacto', function(req, res){
+	res.sendFile(path.join(__dirname + '/src/Contacto.html'))
+})
 
 //Loading
 app.get('/loading', function(req, res){
