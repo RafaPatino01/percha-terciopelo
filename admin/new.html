@@ -31,6 +31,19 @@
 
           <div class="row bg-lighter p-3" id="FadeIn">
             <div class="col-4 text-right pt-3">
+            </div>
+            <div class="col-8 p-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="destacado" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                  <p class="lead">Destacado</p>
+                </label>
+              </div>
+            </div>            
+          </div>
+
+          <div class="row bg-lighter p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
               <h3>DATE</h3>
             </div>
             <div class="col-8 p-3">
@@ -94,5 +107,11 @@
       
 
       </div>
+
+      <script>
+        const cb = document.getElementById('destacado');
+        console.log(cb.checked);
+
+      </script>
     </body>
 </html>

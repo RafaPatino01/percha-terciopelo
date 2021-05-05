@@ -41,7 +41,7 @@ app.get('/check_login/:pass', function(req, res) {
 	var hashed_input = crypto.createHmac('sha256', pass)
 				   .digest('hex');
 
-	if(hashed_input=="614ede61f712224a8a7e3e1fb4a84ad0f65fc4bab1ccde94262ae6d136ee9118")
+	if(hashed_input=="6d6cd63284be4a47ba7aec4a3458939a95dcbdd5cd0438f23d7457099b4b917c")
 	{
 		req.session.flag = 1;
 		res.send("1"); // OUI correcto paswordo
@@ -103,7 +103,7 @@ handleDisconnect();
 // get all posts
 app.get('/get_allposts', function(req, res) {
 
-    const sql = 'SELECT * FROM posts WHERE status=1';
+    const sql = 'SELECT * FROM posts WHERE status>0';
 
     connection.query(sql,(err,result)=>{
     	if(err){
@@ -116,14 +116,31 @@ app.get('/get_allposts', function(req, res) {
     		res.send('{"error":"no_result"}');
     	}
     });
+});
 
+// get DESTACADOS posts
+app.get('/get_destacados', function(req, res) {
+
+    const sql = 'SELECT * FROM posts WHERE status=2';
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
 });
 
 // get post by ID
 app.get('/get_post/:id', function(req, res) {
     
     const {id } = req.params
-    const sql = `SELECT * FROM posts WHERE id=${id} AND status=1`;
+    const sql = `SELECT * FROM posts WHERE id=${id} AND status>0`;
 
     connection.query(sql,(err,result)=>{
     	if(err){
@@ -141,7 +158,7 @@ app.get('/get_post/:id', function(req, res) {
 // get all cols
 app.get('/get_allcols', function(req, res) {
 
-    const sql = 'SELECT * FROM cols WHERE status=1';
+    const sql = 'SELECT * FROM cols WHERE status>0';
 
     connection.query(sql,(err,result)=>{
     	if(err){
@@ -162,7 +179,7 @@ app.get('/get_allcols', function(req, res) {
 app.get('/get_col/:id', function(req, res) {
     
     const {id } = req.params
-    const sql = `SELECT * FROM cols WHERE id=${id} AND status=1`;
+    const sql = `SELECT * FROM cols WHERE id=${id} AND status>0`;
 
     connection.query(sql,(err,result)=>{
     	if(err){
@@ -212,7 +229,7 @@ app.post('/add_post', function (req, res) {
 		date: req.body.date,
 		main_text: req.body.main_text,
 		secondary_text: req.body.secondary_text,
-		status: 1
+		status: req.body.status
 	}
 
 	connection.query(sql, postObject, (err, result)=> {
@@ -314,8 +331,9 @@ app.put('/edit_post/:id', function (req, res) {
     const date = req.body.date;
     const main_text = req.body.main_text;
     const secondary_text = req.body.secondary_text;
+	const status = req.body.status;
 
-    const sql = 'UPDATE posts SET title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+', secondary_text='+'"'+secondary_text+'"'+' WHERE id='+id;
+    const sql = 'UPDATE posts SET status='+'"'+status+'"'+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+', secondary_text='+'"'+secondary_text+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {

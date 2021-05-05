@@ -275,6 +275,14 @@ function send_data(p_data) {
 
       data.append('im', aux);
 
+      let destacado = document.getElementById('destacado');
+      if(destacado.checked == true){
+        data.append('status', "2"); 
+      } 
+      else {
+        data.append('status', "1"); 
+      }
+
       $.ajax({
         url :  "/add_post",
         type: 'POST',

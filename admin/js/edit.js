@@ -13,6 +13,14 @@ async function placeinfo() {
 	var fecha = info.date.substring(0, info.date.lastIndexOf('T')); //fix date-time
 
 	document.getElementById("title").value = info.title;
+
+	if(info.status == 1){
+		document.getElementById("output_checkbox").innerHTML += '<input class="form-check-input" type="checkbox" id="destacado">';
+	}
+	else {
+		document.getElementById("output_checkbox").innerHTML += '<input class="form-check-input" type="checkbox" id="destacado" checked>';
+	}
+
 	document.getElementById("date").value = fecha;
 	document.getElementById("descr").value = info.descr;
 	document.getElementById("main_text").value = info.main_text;
@@ -49,6 +57,14 @@ function send_data(p_title,p_date,p_descr,p_main_text,p_secondary_text) {
 	data.append('main_text', p_main_text);
 	data.append('secondary_text', p_secondary_text);
 
+	let destacado = document.getElementById('destacado');
+	if(destacado.checked == true){
+		data.append('status', "2"); 
+	} 
+	else {
+		data.append('status', "1"); 
+	}
+
 	$.ajax({
 	url :  "/edit_post/"+id,
 	type: 'PUT',
@@ -67,7 +83,9 @@ function send_data(p_title,p_date,p_descr,p_main_text,p_secondary_text) {
 }
 
 
-// --- COLUMNAS DE MODA ---
+
+
+// -------- COLUMNAS DE MODA --------
 
 
 // Set current info to inputs
