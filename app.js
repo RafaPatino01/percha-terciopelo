@@ -113,7 +113,7 @@ app.get('/get_allposts', function(req, res) {
     		res.json(result);
     	}
     	else {
-    		res.send("no hubo resultado");
+    		res.send('{"error":"no_result"}');
     	}
     });
 
@@ -133,7 +133,7 @@ app.get('/get_post/:id', function(req, res) {
     		res.json(result);
     	}
     	else {
-    		res.send("no hubo resultado");
+    		res.send('{"error":"no_result"}');
     	}
     });
 });
@@ -148,10 +148,11 @@ app.get('/get_allcols', function(req, res) {
     		throw err;
     	}
     	if(result.length > 0) {
+			
     		res.json(result);
     	}
     	else {
-    		res.send("no hubo resultado");
+    		res.send('{"error":"no_result"}');
     	}
     });
 
@@ -171,7 +172,7 @@ app.get('/get_col/:id', function(req, res) {
     		res.json(result);
     	}
     	else {
-    		res.send("no hubo resultado");
+    		res.send('{"error":"no_result"}');
     	}
     });
 });
@@ -191,7 +192,7 @@ app.get('/get_im_url/:id', function(req, res) {
     		res.json(result);
     	}
     	else {
-    		res.send("no hubo resultado");
+    		res.send('{"error":"no_result"}');
     	}
     });
 });
@@ -360,6 +361,22 @@ app.put('/delete_post/:id', function (req, res) {
 		}
 		else {
 			res.send("Post status set to 0");
+		}
+	});
+})
+
+// delete col (status 0)
+app.put('/delete_col/:id', function (req, res) {
+    const id = req.params["id"];
+
+    const sql = 'UPDATE cols SET status=0 WHERE id='+id;
+
+    connection.query(sql, err => {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Col status set to 0");
 		}
 	});
 })
