@@ -10321,7 +10321,11 @@ function _loadPosts() {
             imgURL = _context2.sent;
             imgURL = imgURL[0]["url"] + ".png";
             console.log(imgURL);
-            document.getElementById("output").innerHTML += "\n            <figure class=\"gallery__item\" onclick=\"location.href = 'post/" + posts[i].id + "';\">\n                <div class=\"gallery__item-img\"><div class=\"gallery__item-imginner\" style=\"background-image: url(/img/1.jpg)\" data-scroll data-scroll-speed=\"-0.8\"></div></div>\n                <figcaption class=\"gallery__item-caption\">\n                    <h2 class=\"gallery__item-title\" data-scroll data-scroll-speed=\"1\">Title</h2>\n                    <span class=\"gallery__item-number\" data-scroll data-scroll-speed=\"1.5\" style=\"font-size: 3em;\">" + posts[i].title + "</span>\n                </figcaption>\n            </figure>\n        ";
+
+            if (posts[i].status == 2) {
+              //Si el post es destacado
+              document.getElementById("output").innerHTML += "\n            <figure class=\"gallery__item\" onclick=\"location.href = 'post/" + posts[i].id + "';\">\n                <div class=\"gallery__item-img\"><div class=\"gallery__item-imginner\" style=\"background-image: url(/uploads/" + imgURL + ")\" data-scroll data-scroll-speed=\"-0.8\"></div></div>\n                <figcaption class=\"gallery__item-caption\">\n                    <h2 class=\"gallery__item-title\" data-scroll data-scroll-speed=\"1\">Title</h2>\n                    <span class=\"gallery__item-number\" data-scroll data-scroll-speed=\"1.5\" style=\"font-size: 3em;\">" + posts[i].title + "</span>\n                </figcaption>\n            </figure>\n            ";
+            }
 
           case 11:
             i++;
@@ -10369,7 +10373,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58187" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58439" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
