@@ -172,7 +172,6 @@ app.get('/get_allcols', function(req, res) {
     		res.send('{"error":"no_result"}');
     	}
     });
-
 });
 
 // get col by ID
