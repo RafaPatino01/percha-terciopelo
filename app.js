@@ -213,6 +213,26 @@ app.get('/get_im_url/:id', function(req, res) {
     });
 });
 
+// get image URL by col ID
+app.get('/get_im_col/:id', function(req, res) {
+
+	const id = req.params["id"];
+
+    const sql = 'SELECT * FROM cols_images WHERE post_id='+id;
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
+});
+
 
 // add post
 app.post('/add_post', function (req, res) {
@@ -500,8 +520,6 @@ app.get('/img/:filename', function(req, res) {
     const filename = req.params["filename"];
     res.sendFile(path.join(__dirname + '/src/img/demo3/'+filename));
 });
-
-
 //Home
 app.get('/home', function(req, res){
 	res.sendFile(path.join(__dirname + '/src/Home/Home.html'))
@@ -558,11 +576,6 @@ const bundler = new Bundler(file, options);
 
 // Let express use the bundler middleware, this will let Parcel handle every request over your express server
 app.use(bundler.middleware());
-
-// PAGE ROUTING ----------------------------------------------------------------------
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/src/index3.html'));
-});
 
 // SERVER PORT --------------------------------------------------------------------------
 app.listen(port, () => {

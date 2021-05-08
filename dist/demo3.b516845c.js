@@ -651,9 +651,21 @@ var randomNumber = function randomNumber(min, max) {
 exports.randomNumber = randomNumber;
 
 var getMousePos = function getMousePos(e) {
+  var posx = 0;
+  var posy = 0;
+  if (!e) e = window.event;
+
+  if (e.pageX || e.pageY) {
+    posx = e.pageX;
+    posy = e.pageY;
+  } else if (e.clientX || e.clientY) {
+    posx = e.clientX + body.scrollLeft + document.documentElement.scrollLeft;
+    posy = e.clientY + body.scrollTop + document.documentElement.scrollTop;
+  }
+
   return {
-    x: e.clientX,
-    y: e.clientY
+    x: posx,
+    y: posy
   };
 }; // Preload images
 
@@ -690,7 +702,7 @@ exports.preloadFonts = preloadFonts;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports._colorExp = exports._getCache = exports._getSetter = exports._missingPlugin = exports._round = exports._roundModifier = exports._config = exports._ticker = exports._plugins = exports._checkPlugin = exports._replaceRandom = exports._colorStringFilter = exports._sortPropTweensByPriority = exports._forEachName = exports._removeLinkedListItem = exports._setDefaults = exports._relExp = exports._renderComplexString = exports._isUndefined = exports._isString = exports._numWithUnitExp = exports._numExp = exports._getProperty = exports.shuffle = exports.interpolate = exports.unitize = exports.pipe = exports.mapRange = exports.toArray = exports.splitColor = exports.clamp = exports.getUnit = exports.normalize = exports.snap = exports.random = exports.distribute = exports.wrapYoyo = exports.wrap = exports.Circ = exports.Expo = exports.Sine = exports.Bounce = exports.SteppedEase = exports.Back = exports.Elastic = exports.Strong = exports.Quint = exports.Quart = exports.Cubic = exports.Quad = exports.Linear = exports.Power4 = exports.Power3 = exports.Power2 = exports.Power1 = exports.Power0 = exports.default = exports.gsap = exports.PropTween = exports.TweenLite = exports.TweenMax = exports.Tween = exports.TimelineLite = exports.TimelineMax = exports.Timeline = exports.Animation = exports.GSCache = void 0;
+exports._getCache = exports._getSetter = exports._missingPlugin = exports._round = exports._roundModifier = exports._config = exports._ticker = exports._plugins = exports._checkPlugin = exports._replaceRandom = exports._colorStringFilter = exports._sortPropTweensByPriority = exports._forEachName = exports._removeLinkedListItem = exports._setDefaults = exports._relExp = exports._renderComplexString = exports._isUndefined = exports._isString = exports._numWithUnitExp = exports._numExp = exports._getProperty = exports.shuffle = exports.interpolate = exports.unitize = exports.pipe = exports.mapRange = exports.toArray = exports.splitColor = exports.clamp = exports.getUnit = exports.normalize = exports.snap = exports.random = exports.distribute = exports.wrapYoyo = exports.wrap = exports.Circ = exports.Expo = exports.Sine = exports.Bounce = exports.SteppedEase = exports.Back = exports.Elastic = exports.Strong = exports.Quint = exports.Quart = exports.Cubic = exports.Quad = exports.Linear = exports.Power4 = exports.Power3 = exports.Power2 = exports.Power1 = exports.Power0 = exports.default = exports.gsap = exports.PropTween = exports.TweenLite = exports.TweenMax = exports.Tween = exports.TimelineLite = exports.TimelineMax = exports.Timeline = exports.Animation = exports.GSCache = void 0;
 
 function _assertThisInitialized(self) {
   if (self === void 0) {
@@ -706,7 +718,7 @@ function _inheritsLoose(subClass, superClass) {
   subClass.__proto__ = superClass;
 }
 /*!
- * GSAP 3.6.1
+ * GSAP 3.6.0
  * https://greensock.com
  *
  * @license Copyright 2008-2021, GreenSock. All rights reserved.
@@ -1195,6 +1207,7 @@ _renderZeroDurationTween = function _renderZeroDurationTween(tween, totalTime, s
     tween._from && (ratio = 1 - ratio);
     tween._time = 0;
     tween._tTime = tTime;
+    suppressEvents || _callback(tween, "onStart");
     pt = tween._pt;
 
     while (pt) {
@@ -1645,7 +1658,6 @@ distribute = function distribute(v) {
     _interrupt = function _interrupt(animation) {
   _removeFromParent(animation);
 
-  animation.scrollTrigger && animation.scrollTrigger.kill(false);
   animation.progress() < 1 && _callback(animation, "onInterrupt");
   return animation;
 },
@@ -2185,7 +2197,6 @@ _propagateYoyoEase = function _propagateYoyoEase(timeline, isYoyo) {
 
 exports._ticker = _ticker;
 exports._colorStringFilter = _colorStringFilter;
-exports._colorExp = _colorExp;
 exports.splitColor = splitColor;
 exports.interpolate = interpolate;
 exports.mapRange = mapRange;
@@ -2816,8 +2827,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
           !suppressEvents && this.parent && _callback(this, "onRepeat");
           this.vars.repeatRefresh && !isYoyo && (this.invalidate()._lock = 1);
 
-          if (prevTime && prevTime !== this._time || prevPaused !== !this._ts || this.vars.onRepeat && !this.parent && !this._act) {
-            // if prevTime is 0 and we render at the very end, _time will be the end, thus won't match. So in this edge case, prevTime won't match _time but that's okay. If it gets killed in the onRepeat, eject as well.
+          if (prevTime !== this._time || prevPaused !== !this._ts) {
             return this;
           }
 
@@ -2829,6 +2839,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
             this._lock = 2;
             prevTime = rewinding ? dur : -0.0001;
             this.render(prevTime, true);
+            this.vars.repeatRefresh && !isYoyo && this.invalidate();
           }
 
           this._lock = 0;
@@ -2861,7 +2872,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         prevTime = 0; // upon init, the playhead should always go forward; someone could invalidate() a completed timeline and then if they restart(), that would make child tweens render in reverse order which could lock in the wrong starting values if they build on each other, like tl.to(obj, {x: 100}).to(obj, {x: 0}).
       }
 
-      !prevTime && time && !suppressEvents && _callback(this, "onStart");
+      !prevTime && (time || !dur && totalTime >= 0) && !suppressEvents && _callback(this, "onStart");
 
       if (time >= prevTime && totalTime >= 0) {
         child = this._first;
@@ -3137,7 +3148,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         onStartParams = _vars.onStartParams,
         immediateRender = _vars.immediateRender,
         tween = Tween.to(tl, _setDefaults({
-      ease: vars.ease || "none",
+      ease: "none",
       lazy: false,
       immediateRender: false,
       time: endTime,
@@ -3547,8 +3558,6 @@ _initTween = function _initTween(tween, time) {
           time && (tween._zTime = time);
           return; //we skip initialization here so that overwriting doesn't occur until the tween actually begins. Otherwise, if you create several immediateRender:true tweens of the same target/properties to drop into a Timeline, the last one created would overwrite the first ones because they didn't get placed into the timeline yet before the first render occurs and kicks in overwriting.
         }
-      } else if (autoRevert === false) {
-        tween._startAt = 0;
       }
     } else if (runBackwards && dur) {
       //from() tweens must be handled uniquely: their beginning values must be rendered but we don't want overwriting to occur yet (when time is still 0). Wait until the tween actually begins before doing all the routines like overwriting. At that time, we should render at the END of the tween to ensure that things initialize correctly (remember, from() tweens go backwards)
@@ -4563,7 +4572,7 @@ var gsap = _gsap.registerPlugin({
 
 
 exports.default = exports.gsap = gsap;
-Tween.version = Timeline.version = gsap.version = "3.6.1";
+Tween.version = Timeline.version = gsap.version = "3.6.0";
 _coreReady = 1;
 
 if (_windowExists()) {
@@ -4617,7 +4626,7 @@ exports.checkPrefix = exports._createElement = exports._getBBox = exports.defaul
 var _gsapCore = require("./gsap-core.js");
 
 /*!
- * CSSPlugin 3.6.1
+ * CSSPlugin 3.6.0
  * https://greensock.com
  *
  * Copyright 2008-2021, GreenSock. All rights reserved.
@@ -5353,7 +5362,7 @@ _identity2DMatrix = [1, 0, 0, 1, 0, 0],
   matrix = _getMatrix(target, cache.svg);
 
   if (cache.svg) {
-    t1 = !cache.uncache && !uncache && target.getAttribute("data-svg-origin");
+    t1 = !cache.uncache && target.getAttribute("data-svg-origin");
 
     _applySVGOrigin(target, t1 || origin, !!t1 || cache.originIsAbsolute, cache.smooth !== false, matrix);
   }
@@ -5379,7 +5388,7 @@ _identity2DMatrix = [1, 0, 0, 1, 0, 0],
       rotation = a || b ? _atan2(b, a) * _RAD2DEG : 0; //note: if scaleX is 0, we cannot accurately measure rotation. Same for skewX with a scaleY of 0. Therefore, we default to the previously recorded value (or zero if that doesn't exist).
 
       skewX = c || d ? _atan2(c, d) * _RAD2DEG + rotation : 0;
-      skewX && (scaleY *= Math.abs(Math.cos(skewX * _DEG2RAD)));
+      skewX && (scaleY *= Math.cos(skewX * _DEG2RAD));
 
       if (cache.svg) {
         x -= xOrigin - (xOrigin * a + yOrigin * c);
@@ -5711,19 +5720,11 @@ _addPxTranslate = function _addPxTranslate(target, start, value) {
 
   return pt;
 },
-    _assign = function _assign(target, source) {
-  // Internet Explorer doesn't have Object.assign(), so we recreate it here.
-  for (var p in source) {
-    target[p] = source[p];
-  }
-
-  return target;
-},
     _addRawTransformPTs = function _addRawTransformPTs(plugin, transforms, target) {
   //for handling cases where someone passes in a whole transform string, like transform: "scale(2, 3) rotate(20deg) translateY(30em)"
-  var startCache = _assign({}, target._gsap),
+  var style = _tempDivStyler.style,
+      startCache = target._gsap,
       exclude = "perspective,force3D,transformOrigin,svgOrigin",
-      style = target.style,
       endCache,
       p,
       startValue,
@@ -5732,22 +5733,13 @@ _addPxTranslate = function _addPxTranslate(target, start, value) {
       endNum,
       startUnit,
       endUnit;
+  style.cssText = getComputedStyle(target).cssText + ";position:absolute;display:block;"; //%-based translations will fail unless we set the width/height to match the original target (and padding/borders can affect it)
 
-  if (startCache.svg) {
-    startValue = target.getAttribute("transform");
-    target.setAttribute("transform", "");
-    style[_transformProp] = transforms;
-    endCache = _parseTransform(target, 1);
+  style[_transformProp] = transforms;
 
-    _removeProperty(target, _transformProp);
+  _doc.body.appendChild(_tempDivStyler);
 
-    target.setAttribute("transform", startValue);
-  } else {
-    startValue = getComputedStyle(target)[_transformProp];
-    style[_transformProp] = transforms;
-    endCache = _parseTransform(target, 1);
-    style[_transformProp] = startValue;
-  }
+  endCache = _parseTransform(_tempDivStyler, 1);
 
   for (p in _transformProps) {
     startValue = startCache[p];
@@ -5759,14 +5751,14 @@ _addPxTranslate = function _addPxTranslate(target, start, value) {
       endUnit = (0, _gsapCore.getUnit)(endValue);
       startNum = startUnit !== endUnit ? _convertToUnit(target, p, startValue, endUnit) : parseFloat(startValue);
       endNum = parseFloat(endValue);
-      plugin._pt = new _gsapCore.PropTween(plugin._pt, endCache, p, startNum, endNum - startNum, _renderCSSProp);
+      plugin._pt = new _gsapCore.PropTween(plugin._pt, startCache, p, startNum, endNum - startNum, _renderCSSProp);
       plugin._pt.u = endUnit || 0;
 
       plugin._props.push(p);
     }
   }
 
-  _assign(endCache, startCache);
+  _doc.body.removeChild(_tempDivStyler);
 }; // handle splitting apart padding, margin, borderWidth, and borderRadius into their 4 components. Firefox, for example, won't report borderRadius correctly - it will only do borderTopLeftRadius and the other corners. We also want to handle paddingTop, marginLeft, borderRightWidth, etc.
 
 
@@ -5859,14 +5851,8 @@ var CSSPlugin = {
         //CSS variable
         startValue = (getComputedStyle(target).getPropertyValue(p) + "").trim();
         endValue += "";
-        _gsapCore._colorExp.lastIndex = 0;
-
-        if (!_gsapCore._colorExp.test(startValue)) {
-          // colors don't have units
-          startUnit = (0, _gsapCore.getUnit)(startValue);
-          endUnit = (0, _gsapCore.getUnit)(endValue);
-        }
-
+        startUnit = (0, _gsapCore.getUnit)(startValue);
+        endUnit = (0, _gsapCore.getUnit)(endValue);
         endUnit ? startUnit !== endUnit && (startValue = _convertToUnit(target, p, startValue, endUnit) + endUnit) : startUnit && (endValue += startUnit);
         this.add(style, "setProperty", startValue, endValue, index, targets, 0, 0, p);
       } else if (type !== "undefined") {
@@ -6294,7 +6280,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Smooth = exports.Native = exports.default = void 0;
 
-/* locomotive-scroll v4.1.1 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+/* locomotive-scroll v4.1.0 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -6621,7 +6607,7 @@ var _default = /*#__PURE__*/function () {
         y: 0
       },
       limit: {
-        x: this.html.offsetWidth,
+        x: this.html.offsetHeight,
         y: this.html.offsetHeight
       },
       currentElements: this.currentElements
@@ -7527,24 +7513,17 @@ var _default$1 = /*#__PURE__*/function (_Core) {
         offset = target + offset;
       }
 
-      var isTargetReached = function isTargetReached() {
-        return parseInt(window.pageYOffset) === parseInt(offset);
-      };
-
       if (callback) {
-        if (isTargetReached()) {
-          callback();
-          return;
-        } else {
-          var onScroll = function onScroll() {
-            if (isTargetReached()) {
-              window.removeEventListener('scroll', onScroll);
-              callback();
-            }
-          };
+        offset = offset.toFixed();
 
-          window.addEventListener('scroll', onScroll);
-        }
+        var onScroll = function onScroll() {
+          if (window.pageYOffset.toFixed() === offset) {
+            window.removeEventListener('scroll', onScroll);
+            callback();
+          }
+        };
+
+        window.addEventListener('scroll', onScroll);
       }
 
       window.scrollTo({
@@ -10373,7 +10352,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62858" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63761" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
