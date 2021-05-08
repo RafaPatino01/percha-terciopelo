@@ -24,9 +24,10 @@ wrapperFunc().then(cols => {
     var no_result = '{"error":"no_result"}';
     if (JSON.stringify(cols) != no_result){
         for(var i = 0; i < cols.length; i++){
+            var mydate = cols[i].date; //Fix date last characters
             var ejemplo=`<a class="menu__item">
                             <span class="menu__item-text"><span class="menu__item-textinner">`+cols[i].title+ `</span></span>
-                            <span class="menu__item-sub">`+cols[i].date+`</span>
+                            <span class="menu__item-sub">`+mydate.substring(0, mydate.length - 17)+`</span>
                         </a>`;
             document.getElementById("output_ejemplo").innerHTML+=ejemplo;
         }

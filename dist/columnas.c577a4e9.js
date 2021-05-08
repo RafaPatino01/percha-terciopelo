@@ -10315,7 +10315,7 @@ function _loadCols() {
 
           case 11:
             image = _context2.sent;
-            l_arr = [i.toString(), "/uploads/" + image[0].url + ".png"];
+            l_arr = [i.toString(), "'/uploads/" + image[0].url + ".png'"];
             arr.push(l_arr);
 
           case 14:
@@ -10818,7 +10818,9 @@ wrapperFunc().then(function (cols) {
 
   if (JSON.stringify(cols) != no_result) {
     for (var i = 0; i < cols.length; i++) {
-      var ejemplo = "<a class=\"menu__item\">\n                            <span class=\"menu__item-text\"><span class=\"menu__item-textinner\">" + cols[i].title + "</span></span>\n                            <span class=\"menu__item-sub\">" + cols[i].date + "</span>\n                        </a>";
+      var mydate = cols[i].date; //Fix date last characters
+
+      var ejemplo = "<a class=\"menu__item\">\n                            <span class=\"menu__item-text\"><span class=\"menu__item-textinner\">" + cols[i].title + "</span></span>\n                            <span class=\"menu__item-sub\">" + mydate.substring(0, mydate.length - 17) + "</span>\n                        </a>";
       document.getElementById("output_ejemplo").innerHTML += ejemplo;
     }
 
@@ -10873,7 +10875,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63761" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64860" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -20,7 +20,7 @@ async function loadCols() {
         for(var i = 0; i < cols.length; i++){
             var id = cols[i].id;
             var image = await getData("/get_im_col/"+id);
-            var l_arr = [i.toString(),"/uploads/"+image[0].url+".png"];
+            var l_arr = [i.toString(),"'/uploads/"+image[0].url+".png'"];
             arr.push(l_arr);
         }
     }
