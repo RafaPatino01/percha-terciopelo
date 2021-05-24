@@ -42,7 +42,7 @@ async function loadPosts(p_page) {
 							</div>
 							
 							<div class="row border-top p-3">
-							<p>`+ posts[i].main_text +`</p>
+							<p>`+ posts[i].main_text.substring(0, 150) +`...</p>
 							</div>
 						</div>
 						<div class="col-md-1 bg-lighter border-left pt-5">
@@ -71,7 +71,7 @@ async function loadPosts(p_page) {
 							</div>
 							
 							<div class="row border-top p-3">
-							<p>`+ cols[i].main_text +`</p>
+							<p>`+ cols[i].main_text.substring(0, 150) +`...</p>
 							</div>
 						</div>
 						<div class="col-md-1 bg-lighter2 border-left pt-5">

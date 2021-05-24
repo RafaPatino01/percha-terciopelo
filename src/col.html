@@ -1,11 +1,14 @@
+<script src="/js/col.js"></script>
 <script type="module">
     import LocomotiveScroll from "https://cdn.skypack.dev/locomotive-scroll";
 
     const scroller = new LocomotiveScroll({
-    el: document.querySelector("[data-scroll-container]"),
-    smooth: true
+		el: document.querySelector("[data-scroll-container]"),
+		smooth: true
     });
+	scroller.update();
 </script>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +21,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Melius Studio">
 
-	<link rel="stylesheet" type="text/css" href="/css/post.css" />
+	<link rel="stylesheet" type="text/css" href="/css/col.css" />
 	<link rel="stylesheet" type="text/css" href="/css/menu.css"/>
 
 	<!-- Bootstrap -->
@@ -39,33 +42,33 @@
 </head>
 <!-- NAV -->
 <header>
-	<!-- Desktop version -->
 	<div id="content-desktop">
 		<button class="header__button nav-btn-js" type="button"> <i class="fas fa-bars" id="navi"></i> </button>
 		<nav class="header__nav nav-js" data-active="false">
-		<ul class="header__menu"><br>
-			<li class="header__menu-item mt-4" style="font-size: 35px;"><a href="/nosotros">¡CONÓCENOS!</a></li>
-			<li class="header__menu-item"><a href="/">¡EXTRA! ¡EXTRA!</a></li>
-			<li class="header__menu-item" style="font-size: 30px;"><a href="/archivo">ARCHIVO</a></li><br>
-			<li class="header__menu-item" style="font-size: 35px;"><a href="../columnas.html">COLUMNAS DE MODA</a></li><br>
-			<li class="header__menu-item" style="font-size: 25px;"><a href="/contacto">¿NOS BUSCAS?...<br>NOS ENCUENTRAS</a></li><br>
-		</ul>
+			<ul class="header__menu"><br>
+				<li class="header__menu-item mt-4" style="font-size: 35px;"><a href="/nosotros">¡CONÓCENOS!</a></li>
+				<li class="header__menu-item"><a href="/">¡EXTRA! ¡EXTRA!</a></li>
+				<li class="header__menu-item" style="font-size: 30px;"><a href="/archivo">ARCHIVO</a></li><br>
+				<li class="header__menu-item" style="font-size: 35px;"><a href="../columnas.html">COLUMNAS DE MODA</a></li><br>
+				<li class="header__menu-item" style="font-size: 25px;"><a href="/contacto">¿NOS BUSCAS?...<br>NOS ENCUENTRAS</a></li><br>
+			</ul>
 		</nav>
 	</div>
 	<!-- Mobile version -->
 	<div id="content-mobile"> 
 		<button class="header__button_mob nav-btn-js_mob" type="button"><i class="fas fa-bars" id="navi"></i></button>
 		<nav class="header__nav_mob nav-js_mob" data-active="false">
-		<ul class="header__menu_mob">
-			<li class="header__menu-item_mob" style="font-size: 30px;"><a href="/">¡EXTRA! ¡EXTRA!</a></li>
-			<li class="header__menu-item_mob" style="font-size: 20px;"><a href="/archivo">ㅤㅤARCHIVO</a></li><br>
-			<li class="header__menu-item_mob" style="font-size: 30px;"><a href="/contacto">¡NOS BUSCAS, NOS ENCUENTRAS!</a></li><br>
-			<li class="header__menu-item_mob" style="font-size: 30px;"><a href="../columnas.html">COLUMNAS DE MODA</a></li><br>
-			<li class="header__menu-item_mob" style="font-size: 30px;"><a href="/nosotros">¡CONÓCENOS!</a></li>
-		</ul>
+			<ul class="header__menu_mob">
+				<li class="header__menu-item_mob" style="font-size: 30px;"><a href="/">¡EXTRA! ¡EXTRA!</a></li>
+				<li class="header__menu-item_mob" style="font-size: 20px;"><a href="/archivo">ㅤㅤARCHIVO</a></li><br>
+				<li class="header__menu-item_mob" style="font-size: 30px;"><a href="/contacto">¡NOS BUSCAS, NOS ENCUENTRAS!</a></li><br>
+				<li class="header__menu-item_mob" style="font-size: 30px;"><a href="../columnas.html">COLUMNAS DE MODA</a></li><br>
+				<li class="header__menu-item_mob" style="font-size: 30px;"><a href="/nosotros">¡CONÓCENOS!</a></li>
+			</ul>
 		</nav>
 	</div>
 </header>
+<!-- END OF NAV -->
 
 <body data-scroll-container class="bg-main">
 	<div class="row mb-3 p-5">
@@ -77,7 +80,7 @@
 	</div>
 	<div data-scroll-section>
 		<div data-scroll data-scroll-direction="vertical" data-scroll-speed="-1" class="row justify-content-center">
-			<div class="col-sm-6 p-5 text-end">
+			<div class="col-sm-6 p-5 text-start">
 				<p class="small m-0" id="date"></p>
 				<h1 id="title" class="big-text"></h1>
 				<p id="descr"></p>
@@ -91,33 +94,13 @@
 
 		<div class="container">
 			<div class="row justify-content-left">
-				<div class="col-sm-6 p-3 pt-0">
-					<p class="text-end lead p-5" id="text1">
+				<div class="col-sm-12 p-3 pt-0">
+					<p class="text-center lead p-5" id="text1" style="white-space: pre-line">
 
 					</p>
-				</div>
-				<div class="col-sm-6 p-3 pt-0">
-					<h5 class="text-end p-5">
-					<b id="subtitle"></b>
-					</h5>
-				</div>
-			</div>
-
-			<div data-scroll data-scroll-direction="vertical" data-scroll-speed="2" class="row justify-content-center mb-5">
-				<div class="col-sm-12 p-0" id="output_img2">
-					
 				</div>
 			</div>
 			
-
-			<div class="row justify-content-end">
-				<div class="col-sm-6 p-3 pt-0">
-					<p class="text-start lead p-5" id="text2">
-
-					</p>
-				</div>
-			</div>
-
 			<hr class="hr mt-5">
 
 			<div class="row mb-5">
@@ -139,10 +122,5 @@
 		</div>
 	</div>
 	
-	
-	
-
-		    
-<script src="/js/post.js"></script>
 </body>
 </html>

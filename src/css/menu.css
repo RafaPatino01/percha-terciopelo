@@ -1,6 +1,15 @@
-
+/*Background*/
+.bg-main {
+	background-color: rgb(255, 252, 249);
+}
 
 /* ---------- MENU ---------- */
+#content-mobile{display:none;}
+
+@media (max-width: 62em){
+    #content-mobile{display:block;}
+    #content-desktop{display:none;}
+}
 
 /* Nav menu */
 header {
@@ -10,7 +19,7 @@ justify-content: space-between;
 }
 
 .header__button {
-z-index: 2;
+z-index: 99 !important;
 width: 50px;
 height: 50px;
 border-radius: 50%;
@@ -49,7 +58,7 @@ transition: background-color 800ms linear;
 background-color: rgba(0, 0, 0, 0.945);
 position: fixed;
 overflow: hidden;
-z-index: 1;
+z-index: 98 !important;
 top: 0;
 left: 45%;
 width: 55%;
@@ -115,7 +124,7 @@ margin-bottom: 15px;
 
 /* Mobile nav bar */
 .header__button_mob {
-z-index: 2;
+z-index: 99 !important;
 width: 50px;
 height: 50px;
 border-radius: 50%;
@@ -153,7 +162,7 @@ to {
 background-color: black;
 position: fixed;
 overflow: hidden;
-z-index: 1;
+z-index: 98 !important;
 top: 0;
 left: 0;
 width: 100%;

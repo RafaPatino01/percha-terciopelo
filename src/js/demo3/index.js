@@ -52,6 +52,7 @@ async function getData(p_endpoint) {
 // Cargar todos los posts al html
 async function loadPosts() {
     var posts = await getData("/get_allposts");
+    var j = 1;
 
     for(var i = 0; i < posts.length; i++)
     {
@@ -60,15 +61,23 @@ async function loadPosts() {
         console.log(imgURL);
         
         if(posts[i].status == 2){ //Si el post es destacado
+            if(j<10){
+                var num = "0"+j.toString();
+            }
+            else {
+                var num = j;
+            }
             document.getElementById("output").innerHTML += `
             <figure class="gallery__item" onclick="location.href = 'post/`+posts[i].id+`';">
                 <div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url('/uploads/`+imgURL+`')" data-scroll data-scroll-speed="-0.8"></div></div>
                 <figcaption class="gallery__item-caption">
                     <h2 class="gallery__item-title" data-scroll data-scroll-speed="1">Title</h2>
-                    <span class="gallery__item-number" data-scroll data-scroll-speed="1.5" style="font-size: 3em;">`+posts[i].title+`</span>
+                    <span class="gallery__item-number" data-scroll data-scroll-speed="1.5" style="font-size: 3em;">`+num+`</span>
                 </figcaption>
             </figure>
             `;
+
+            j++; // Output number
         }
     }
 

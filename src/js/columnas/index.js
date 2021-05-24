@@ -4,7 +4,6 @@ import LocomotiveScroll from 'locomotive-scroll';
 import Menu from './menu';
 import 'regenerator-runtime/runtime';
 
-
 async function getData(p_endpoint) {
     const response = await fetch(p_endpoint);
     const data = await response.json(); 
@@ -25,7 +24,7 @@ wrapperFunc().then(cols => {
     if (JSON.stringify(cols) != no_result){
         for(var i = 0; i < cols.length; i++){
             var mydate = cols[i].date; //Fix date last characters
-            var ejemplo=`<a class="menu__item">
+            var ejemplo=`<a class="menu__item" href="/col/`+cols[i].id+`">
                             <span class="menu__item-text"><span class="menu__item-textinner">`+cols[i].title+ `</span></span>
                             <span class="menu__item-sub">`+mydate.substring(0, mydate.length - 17)+`</span>
                         </a>`;
@@ -34,6 +33,7 @@ wrapperFunc().then(cols => {
         document.getElementById("output_ejemplo").innerHTML+="<br><br><br><br><br><br><br><br><br><br>";
     }
     // got final result
+
     // menu (<nav> element)
     const menuEl = document.querySelector('.menu');
 

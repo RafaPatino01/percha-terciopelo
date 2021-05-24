@@ -557,6 +557,12 @@ app.get('/post/:id', function(req, res) {
     const id = req.params["id"];
     res.sendFile(path.join(__dirname + '/src/post.html'));
 });
+
+app.get('/col/:id', function(req, res) {
+    const id = req.params["id"];
+    res.sendFile(path.join(__dirname + '/src/col.html'));
+});
+
 app.get('/js/:filename', function(req, res) {
     const filename = req.params["filename"];
     res.sendFile(path.join(__dirname + '/src/js/functions/'+filename));
