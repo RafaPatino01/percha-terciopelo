@@ -2,6 +2,9 @@
   "name": "perchaterciopelo",
   "version": "1.0.0",
   "description": "*How to use this template:*",
+  "engines": {
+    "node": "14.15.3"
+  },
   "main": "src/js/index.js",
   "scripts": {
     "start": "node app.js",
