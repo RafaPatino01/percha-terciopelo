@@ -69,7 +69,7 @@ wrapperFunc().then(res => {
                 //output sin título
                 document.getElementById("row-"+año_post).innerHTML += `
                 <div data-scroll data-scroll-direction="vertical" data-scroll-speed="2" class="col-sm-4 mb-4">
-                    <div class="hvr-rotate card bg-dark text-white">
+                    <div class="hvr-rotate card bg-dark text-white" onclick="location.href = 'post/`+sorted_posts[i].id+`';">
                         <img class="card-img" src="/uploads/`+imgURL[i]+`" alt="Card image">
                         <div class="card-img-overlay">
                             <h5 class="card-title">`+sorted_posts[i].title+`</h5>
