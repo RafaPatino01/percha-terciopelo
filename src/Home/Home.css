@@ -203,7 +203,7 @@
     background-color:white;
     border: 0;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     right: 10px;
     top: 10px;
     outline: none;

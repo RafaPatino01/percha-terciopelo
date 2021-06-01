@@ -3,6 +3,24 @@
 	background-color: rgb(255, 252, 249);
 }
 
+/*Media Queries*/
+
+.mobile-hide {
+    display: block;
+}
+.desktop-hide {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .mobile-hide {
+        display: none;
+    }
+    .desktop-hide {
+        display: block;
+    }
+}
+
 /* ---------- MENU ---------- */
 #content-mobile{display:none;}
 
@@ -131,7 +149,7 @@ border-radius: 50%;
 background-color:white;
 border: 0;
 cursor: pointer;
-position: absolute;
+position: fixed;
 right: 10px;
 top: 10px;
 outline: none;

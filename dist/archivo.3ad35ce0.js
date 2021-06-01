@@ -4143,18 +4143,18 @@ wrapperFunc().then(function (res) {
     var d = new Date();
     var current_año = d.getFullYear(); //Output titulo año actual
 
-    document.getElementById("output_titles").innerHTML += "\n        <h1 data-scroll data-scroll-direction=\"horizontal\" data-scroll-speed=\"-10\" class=\"super-large-text m-5\">" + current_año + "</h1>\n        <div class=\"row mb-large\" id=\"row-" + current_año + "\">\n        </div>\n        ";
+    document.getElementById("output_titles").innerHTML += "\n        <h1 data-scroll data-scroll-direction=\"horizontal\" data-scroll-speed=\"-10\" class=\"super-large-text m-5 mobile-hide\">" + current_año + "</h1>\n        <h1 class=\"display-1 m-5 desktop-hide\">" + current_año + "</h1>\n        <div class=\"row mb-large\" id=\"row-" + current_año + "\">\n        </div>\n        ";
 
     for (var i = 0; i < sorted_posts.length; i++) {
       var año_post = parseInt(sorted_posts[i].date.substring(0, 4));
 
       if (año_post == current_año) {
         //output sin título
-        document.getElementById("row-" + año_post).innerHTML += "\n                <div data-scroll data-scroll-direction=\"vertical\" data-scroll-speed=\"2\" class=\"col-sm-4\">\n                    <div class=\"hvr-rotate card bg-dark text-white\">\n                        <img class=\"card-img\" src=\"/uploads/" + imgURL[i] + "\" alt=\"Card image\">\n                        <div class=\"card-img-overlay\">\n                            <h5 class=\"card-title\">" + sorted_posts[i].title + "</h5>\n                        </div>\n                        </div>\n                </div>\n                ";
+        document.getElementById("row-" + año_post).innerHTML += "\n                <div data-scroll data-scroll-direction=\"vertical\" data-scroll-speed=\"2\" class=\"col-sm-4 mb-4\">\n                    <div class=\"hvr-rotate card bg-dark text-white\">\n                        <img class=\"card-img\" src=\"/uploads/" + imgURL[i] + "\" alt=\"Card image\">\n                        <div class=\"card-img-overlay\">\n                            <h5 class=\"card-title\">" + sorted_posts[i].title + "</h5>\n                        </div>\n                        </div>\n                </div>\n                ";
       } else {
         //Output titulo año diferente
-        document.getElementById("output_titles").innerHTML += "\n                <h1 data-scroll data-scroll-direction=\"horizontal\" data-scroll-speed=\"-10\" class=\"super-large-text m-5\">" + año_post + "</h1>\n                <div class=\"row mb-large\" id=\"row-" + año_post + "\">\n                </div>\n                ";
-        document.getElementById("row-" + año_post).innerHTML += "\n                <div data-scroll data-scroll-direction=\"vertical\" data-scroll-speed=\"2\" class=\"col-sm-4\">\n                    <div class=\"hvr-rotate card bg-dark text-white\">\n                        <img class=\"card-img\" src=\"/uploads/" + imgURL[i] + "\" alt=\"Card image\">\n                        <div class=\"card-img-overlay\">\n                            <h5 class=\"card-title\">" + sorted_posts[i].title + "</h5>\n                        </div>\n                        </div>\n                </div>\n                ";
+        document.getElementById("output_titles").innerHTML += "\n                <h1 data-scroll data-scroll-direction=\"horizontal\" data-scroll-speed=\"-10\" class=\"super-large-text m-5 mobile-hide\">" + año_post + "</h1>\n                <h1 class=\"display-1 m-5 desktop-hide\">" + año_post + "</h1>\n\n                <div class=\"row mb-large\" id=\"row-" + año_post + "\">\n                </div>\n                ";
+        document.getElementById("row-" + año_post).innerHTML += "\n                <div data-scroll data-scroll-direction=\"vertical\" data-scroll-speed=\"2\" class=\"col-sm-4 mb-4\">\n                    <div class=\"hvr-rotate card bg-dark text-white\">\n                        <img class=\"card-img\" src=\"/uploads/" + imgURL[i] + "\" alt=\"Card image\">\n                        <div class=\"card-img-overlay\">\n                            <h5 class=\"card-title\">" + sorted_posts[i].title + "</h5>\n                        </div>\n                        </div>\n                </div>\n                ";
       }
 
       current_año = año_post;
@@ -4217,7 +4217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55760" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54098" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

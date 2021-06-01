@@ -52,7 +52,8 @@ wrapperFunc().then(res => {
 
         //Output titulo año actual
         document.getElementById("output_titles").innerHTML += `
-        <h1 data-scroll data-scroll-direction="horizontal" data-scroll-speed="-10" class="super-large-text m-5">`+current_año+`</h1>
+        <h1 data-scroll data-scroll-direction="horizontal" data-scroll-speed="-10" class="super-large-text m-5 mobile-hide">`+current_año+`</h1>
+        <h1 class="display-1 m-5 desktop-hide">`+current_año+`</h1>
         <div class="row mb-large" id="row-`+current_año+`">
         </div>
         `;
@@ -67,7 +68,7 @@ wrapperFunc().then(res => {
             {
                 //output sin título
                 document.getElementById("row-"+año_post).innerHTML += `
-                <div data-scroll data-scroll-direction="vertical" data-scroll-speed="2" class="col-sm-4">
+                <div data-scroll data-scroll-direction="vertical" data-scroll-speed="2" class="col-sm-4 mb-4">
                     <div class="hvr-rotate card bg-dark text-white">
                         <img class="card-img" src="/uploads/`+imgURL[i]+`" alt="Card image">
                         <div class="card-img-overlay">
@@ -81,12 +82,14 @@ wrapperFunc().then(res => {
             {
                 //Output titulo año diferente
                 document.getElementById("output_titles").innerHTML += `
-                <h1 data-scroll data-scroll-direction="horizontal" data-scroll-speed="-10" class="super-large-text m-5">`+año_post+`</h1>
+                <h1 data-scroll data-scroll-direction="horizontal" data-scroll-speed="-10" class="super-large-text m-5 mobile-hide">`+año_post+`</h1>
+                <h1 class="display-1 m-5 desktop-hide">`+año_post+`</h1>
+
                 <div class="row mb-large" id="row-`+año_post+`">
                 </div>
                 `;
                 document.getElementById("row-"+año_post).innerHTML += `
-                <div data-scroll data-scroll-direction="vertical" data-scroll-speed="2" class="col-sm-4">
+                <div data-scroll data-scroll-direction="vertical" data-scroll-speed="2" class="col-sm-4 mb-4">
                     <div class="hvr-rotate card bg-dark text-white">
                         <img class="card-img" src="/uploads/`+imgURL[i]+`" alt="Card image">
                         <div class="card-img-overlay">

@@ -100,4 +100,21 @@ cursor: grab; }
 	transform: rotate(-4deg);
 }
 
+
+.mobile-hide {
+    display: block;
+}
+.desktop-hide {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .mobile-hide {
+        display: none;
+    }
+    .desktop-hide {
+        display: block;
+    }
+}
+
 /*# sourceMappingURL=/archivo.b05f947c.css.map */
