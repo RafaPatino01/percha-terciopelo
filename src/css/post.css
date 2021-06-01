@@ -89,3 +89,15 @@ cursor: grab; }
 html, body {
   font-family: 'Open Sans' !important;
 }
+
+@media (max-width: 62em){
+  .big-text{
+    font-size: 2.75em;
+  }
+  .w-30 {
+    top: 1%;
+    width: 50%;
+    position: fixed;
+    z-index: 900;
+  }
+}
