@@ -10853,7 +10853,7 @@ wrapperFunc().then(function (cols) {
     for (var i = 0; i < cols.length; i++) {
       var mydate = cols[i].date; //Fix date last characters
 
-      var ejemplo = "<a class=\"menu__item\" href=\"/col/" + cols[i].id + "\">\n                            <span class=\"menu__item-text\"><span class=\"menu__item-textinner\">" + cols[i].title + "</span></span>\n                            <span class=\"menu__item-sub\">" + mydate.substring(0, mydate.length - 17) + "</span>\n                        </a>";
+      var ejemplo = "<a class=\"menu__item\" href=\"/col/" + cols[i].id + "\">\n                            <span class=\"menu__item-text\"><span class=\"menu__item-textinner\"><i>" + cols[i].title + "<i></span></span>\n                            <span class=\"menu__item-sub\">" + mydate.substring(0, mydate.length - 17) + "</span>\n                        </a>";
       document.getElementById("output_ejemplo").innerHTML += ejemplo;
     }
 
@@ -10908,7 +10908,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65192" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51391" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

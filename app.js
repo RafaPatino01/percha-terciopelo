@@ -419,6 +419,32 @@ app.put('/delete_col/:id', function (req, res) {
 })
 
 
+// Mensajes de contacto
+
+// add msg
+app.post('/add_msg', function (req, res) {
+
+	console.log('Recieved: ' + typeof(req.body.email))
+	console.log('Recieved: ' + typeof(req.body.text))
+
+	const sql = 'INSERT INTO mensajes SET ?';
+
+	const postObject = {
+		email: req.body.email,
+		text: req.body.text
+	}
+
+	connection.query(sql, postObject, (err, result)=> {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Added mensaje");
+			console.log("LAST INSERTED ID: " + result.insertId);
+		}
+	});
+})
+
 // ADMIN ROUNTING --------------------------------------------------------------------
 
 app.get('/admin', function(req, res) {
@@ -497,6 +523,15 @@ app.get('/admin_edit_col/:id', function(req, res) {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
+app.get('/mensajes', function(req, res) {
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/mensajes.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
+
 app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
 });

@@ -25,7 +25,7 @@ wrapperFunc().then(cols => {
         for(var i = 0; i < cols.length; i++){
             var mydate = cols[i].date; //Fix date last characters
             var ejemplo=`<a class="menu__item" href="/col/`+cols[i].id+`">
-                            <span class="menu__item-text"><span class="menu__item-textinner">`+cols[i].title+ `</span></span>
+                            <span class="menu__item-text"><span class="menu__item-textinner"><i>`+cols[i].title+ `<i></span></span>
                             <span class="menu__item-sub">`+mydate.substring(0, mydate.length - 17)+`</span>
                         </a>`;
             document.getElementById("output_ejemplo").innerHTML+=ejemplo;
