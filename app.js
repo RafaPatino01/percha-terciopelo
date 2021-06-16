@@ -1,5 +1,4 @@
 // REQUIRED STUFF --------------------------------------------------------------------
-const Bundler = require('parcel-bundler');
 const bodyParser = require('body-parser');
 const express = require('express')
 const path = require('path');
@@ -8,6 +7,10 @@ const mysql = require('mysql');
 
 const app = express();
 const port = process.env.PORT || 9000;
+
+// Set Favicon
+var favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname, 'src/img/', 'icon.ico')));
 
 var upload = multer();
 
@@ -418,33 +421,6 @@ app.put('/delete_col/:id', function (req, res) {
 	});
 })
 
-
-// Mensajes de contacto
-
-// add msg
-app.post('/add_msg', function (req, res) {
-
-	console.log('Recieved: ' + typeof(req.body.email))
-	console.log('Recieved: ' + typeof(req.body.text))
-
-	const sql = 'INSERT INTO mensajes SET ?';
-
-	const postObject = {
-		email: req.body.email,
-		text: req.body.text
-	}
-
-	connection.query(sql, postObject, (err, result)=> {
-		if(err) {
-			throw err;
-		}
-		else {
-			res.send("Added mensaje");
-			console.log("LAST INSERTED ID: " + result.insertId);
-		}
-	});
-})
-
 // ADMIN ROUNTING --------------------------------------------------------------------
 
 app.get('/admin', function(req, res) {
@@ -545,9 +521,32 @@ app.get('/edit_js', function(req, res) {
 
 // Public Routing ----------------------------------------------------------------------
 
+// Send Uploads
+app.get('/uploads/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
+});
+
+// Send IMG
+app.get('/img/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/img/'+filename));
+});
+
+// Send CSS
+app.get('/css/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/css/'+filename));
+});
+
+// Send JS
+app.get('/js/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/js/'+filename));
+});
+
 // Send home
 app.get('/home', function(req, res) {
-	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/home.html'));
 });
 
