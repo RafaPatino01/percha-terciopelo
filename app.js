@@ -3,7 +3,7 @@ const Bundler = require('parcel-bundler');
 const bodyParser = require('body-parser');
 const express = require('express')
 const path = require('path');
-const multer = require( 'multer');
+const multer = require('multer');
 const mysql = require('mysql');
 
 const app = express();
@@ -510,78 +510,11 @@ app.get('/edit_js', function(req, res) {
 
 // Public Routing ----------------------------------------------------------------------
 
-// Send image file from uploaded images
-app.get('/uploads/:filename', function(req, res) {
+// Send home
+app.get('/home', function(req, res) {
 	const filename = req.params["filename"];
-	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
+	res.sendFile(path.join(__dirname + '/src/home.html'));
 });
-//Send image ----- (Demo Images) ---------
-app.get('/img/:filename', function(req, res) {
-    const filename = req.params["filename"];
-    res.sendFile(path.join(__dirname + '/src/img/demo3/'+filename));
-});
-//Home
-app.get('/home', function(req, res){
-	res.sendFile(path.join(__dirname + '/src/Home/Home.html'))
-})
-// Send Home files
-app.get('/home/:filename', function(req, res) {
-	const filename = req.params["filename"];
-	res.sendFile(path.join(__dirname + '/src/Home/'+filename));
-});
-// Nosotros
-app.get('/nosotros', function(req, res){
-	res.sendFile(path.join(__dirname + '/src/nosotros.html'))
-});
-//Archivo
-app.get('/archivo', function(req, res){
-	res.sendFile(path.join(__dirname + '/src/archivo.html'))
-})
-//Contacto
-app.get('/contacto', function(req, res){
-	res.sendFile(path.join(__dirname + '/src/Contacto.html'))
-})
-
-//Loading
-app.get('/loading', function(req, res){
-	res.sendFile(path.join(__dirname + '/src/loading/load.html'))
-})
-
-// Send loading files
-app.get('/loading/:filename', function(req, res) {
-	const filename = req.params["filename"];
-	res.sendFile(path.join(__dirname + '/src/loading/'+filename));
-});
-
-app.get('/post/:id', function(req, res) {
-    const id = req.params["id"];
-    res.sendFile(path.join(__dirname + '/src/post.html'));
-});
-
-app.get('/col/:id', function(req, res) {
-    const id = req.params["id"];
-    res.sendFile(path.join(__dirname + '/src/col.html'));
-});
-
-app.get('/js/:filename', function(req, res) {
-    const filename = req.params["filename"];
-    res.sendFile(path.join(__dirname + '/src/js/functions/'+filename));
-});
-app.get('/css/:filename', function(req, res) {
-    const filename = req.params["filename"];
-    res.sendFile(path.join(__dirname + '/src/css/'+filename));
-});
-
-// PARCEL BUNDLER ----------------------------------------------------------------------
-
-const file = 'src/index3.html'; // Pass an absolute path to the entrypoint here
-const options = {}; // See options section of api docs, for the possibilities
-
-// Initialize a new bundler using a file and options
-const bundler = new Bundler(file, options);
-
-// Let express use the bundler middleware, this will let Parcel handle every request over your express server
-app.use(bundler.middleware());
 
 // SERVER PORT --------------------------------------------------------------------------
 app.listen(port, () => {
