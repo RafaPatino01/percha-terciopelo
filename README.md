@@ -1,5 +1,5 @@
 # P E R C H A  
-:blue_heart: Melius Development
+Melius Development
 
 ## License
-[MIT](LICENSE)
+[MIT](LICENSE) :blue_heart:
