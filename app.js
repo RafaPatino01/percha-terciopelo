@@ -550,10 +550,6 @@ app.get('/home', function(req, res) {
 app.get('/feat', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/feat.html'));
 });
-// Send stories
-app.get('/stories', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/stories.html'));
-});
 // Send news
 app.get('/news', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/news.html'));
@@ -573,6 +569,11 @@ app.get('/contact', function(req, res) {
 // Send about
 app.get('/about', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/about.html'));
+});
+
+// Send temp
+app.get('/temp', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/template.html'));
 });
 
 // SERVER PORT --------------------------------------------------------------------------

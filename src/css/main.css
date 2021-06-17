@@ -27,7 +27,7 @@ input {
 }
 
 .open {
-    background-color: #3c3c3c;
+    background-color: #3c3c3c00;
     width: 24px;
     height: 4px;
     display: block;
@@ -45,7 +45,7 @@ input {
     display: block;
     border-radius: 2px;
     position: relative;
-    top: -8px;
+    top: -4px;
     transform: rotate(0deg);
     transition: all 0.3s ease;
 }
@@ -58,13 +58,13 @@ input {
     display: block;
     border-radius: 2px;
     position: relative;
-    top: 4px;
+    top: 0px;
     transform: rotate(0deg);
     transition: all 0.3s ease;
 }
 
 .open-white {
-    background-color: #ffffff !important;
+    background-color: #ffffff00 !important;
 }
 
 .open-white:before {
@@ -82,14 +82,6 @@ input {
     padding: 15px;
     cursor: pointer;
     float: right;
-}
-
-.menuOpen:hover .open:before {
-    top: -9px;
-}
-
-.menuOpen:hover .open:after {
-    top: 5px;
 }
 
 .menu {
@@ -197,4 +189,50 @@ input {
 
 #menuToggle:not(:checked) ~ .menuEffects ul {
     transform: translateY(-30%);
+}
+
+/* Rotating Text CSV */
+.brand {
+    position: absolute;
+}
+.brand .brand-label {
+    transition: all 0.2s ease-in-out;
+}
+.brand .brand-label svg {
+    position: absolute;
+    left: -200%;
+    top: -1450%; 
+    height: 120px;
+    width: 120px;
+    
+    pointer-events: none;
+    animation-name: rotate;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-play-state: running;
+}
+.brand .brand-label svg text {
+    font-family: "Inter", sans-serif;
+    font-size: 23.5px;
+    letter-spacing: 1px;
+    font-variation-settings: "wght" 650;
+    fill: #000000;
+}
+
+.brand .brand-label svg .white {
+    font-family: "Inter", sans-serif;
+    font-size: 23.5px;
+    letter-spacing: 1px;
+    font-variation-settings: "wght" 650;
+    fill: #ffffff !important;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
 }
