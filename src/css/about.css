@@ -20,15 +20,23 @@ html, body {
 }
 
 .mt-large {
-    margin-top: 16em;
+    margin-top: 14em;
+}
+
+.mt-medium {
+    margin-top: 9em;
 }
 
 .cuadro-img {
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 800px;
     object-fit: cover;
 }
 
 .bg-black {
     background-color: black;
+}
+
+.text-contact {
+    font-size: 1.3em;
 }
