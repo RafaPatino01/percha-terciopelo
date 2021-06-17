@@ -570,6 +570,10 @@ app.get('/articles', function(req, res) {
 app.get('/contact', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/contact.html'));
 });
+// Send about
+app.get('/about', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/about.html'));
+});
 
 // SERVER PORT --------------------------------------------------------------------------
 app.listen(port, () => {
