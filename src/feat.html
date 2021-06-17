@@ -9,12 +9,13 @@
     <meta name="author" content="Melius Studio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PERCHA | Home</title>
+    <title>PERCHA | Feat</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/feat.css">
     
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
@@ -23,8 +24,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
 </head>
+
 <!-- HUD -->
-<div class="w-100 fixed p-4">
+<div class="w-100 fixed p-4 text-white">
     <div class="row">
         <div class="col-4 pl-5">
             <h6><b>About us</b></h6>
@@ -36,7 +38,7 @@
     </div>
 </div>
 
-<div class="w-100 fixed align-bottom p-4">
+<div class="w-100 fixed align-bottom p-4 text-white">
     <div class="row">
         <div class="col-4 pl-5">
             <h6><b>Contact</b></h6>
@@ -56,7 +58,7 @@
     <input type="checkbox" id="menuToggle"></input>
     
     <label for="menuToggle" class="menuOpen">
-        <div class="open"></div>
+        <div class="open open-white"></div>
     </label>
     
     <div class="menu menuEffects">
@@ -67,13 +69,13 @@
                 </div>
                 <div class="col-6">
                     <ul>
-                        <li><a href="#">__home</a></li>
-                        <li><a href="#">__stories</a></li>
-                        <li><a href="#">__feat</a></li>
-                        <li><a href="#">__news</a></li>
-                        <li><a href="#">__interviews</a></li>
-                        <li><a href="#">__articles</a></li>
-                        <li><a href="#">__contact</a></li>
+                        <li><a href="/home">__home</a></li>
+                        <li><a href="/stories">__stories</a></li>
+                        <li><a href="/feat">__feat</a></li>
+                        <li><a href="/news">__news</a></li>
+                        <li><a href="/interviews">__interviews</a></li>
+                        <li><a href="/articles">__articles</a></li>
+                        <li><a href="/contact">__contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -81,19 +83,28 @@
     </div>
 </div>
 
-<body> <!-- Contenido -->    
-    <div>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
-        <h1 class="p-5">Lorem ipsum</h1>
+<body class="bg-black"> <!-- Contenido -->    
+    <div class="row m-5 title w-100 zindex-back">
+        <div class="col-lg-4 position-fixed text-white">
+            <h1 class="text-big mt-5">_STORIES</h1>
+
+            <p class="mt-large">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </div>
+        
+        <div class="col-lg-8 offset-lg-4 pl-5">
+            <a href="#">
+                <img class="cuadro-img mb-4 mr-5" src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg">
+            </a>
+            <a href="#">
+                <img class="cuadro-img mb-4 mr-5" src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg">
+            </a>
+            <a href="#">
+                <img class="cuadro-img mb-4 mr-5" src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg">
+            </a>
+            <a href="#">
+                <img class="cuadro-img mb-4 mr-5" src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg">
+            </a>
+        </div>
     </div>
 </body>
 </html>

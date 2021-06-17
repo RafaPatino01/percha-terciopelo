@@ -1,4 +1,3 @@
-/*Example Class*/
 .hello {
     color:black;
     font-size: 50px;
@@ -6,19 +5,28 @@
     letter-spacing: 6px;
 }
 
-  #Video {
+#Video {
     position: fixed;
     right: 0;
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-  }
+}
 
-  input {
+/* Menu */
+.fixed {
+    position: fixed;
+}
+
+.align-bottom {
+    bottom: 0;
+}
+
+input {
     display: none;
-  }
-  
-  .open {
+}
+
+.open {
     background-color: #3c3c3c;
     width: 24px;
     height: 4px;
@@ -27,9 +35,9 @@
     cursor: pointer;
     position: relative;
     top: 8px;
-  }
-  
-  .open:before {
+}
+
+.open:before {
     content: "";
     background-color: #3c3c3c;
     width: 24px;
@@ -40,9 +48,9 @@
     top: -8px;
     transform: rotate(0deg);
     transition: all 0.3s ease;
-  }
-  
-  .open:after {
+}
+
+.open:after {
     content: "";
     background-color: #3c3c3c;
     width: 24px;
@@ -53,26 +61,38 @@
     top: 4px;
     transform: rotate(0deg);
     transition: all 0.3s ease;
-  }
-  
-  .menuOpen {
+}
+
+.open-white {
+    background-color: #ffffff !important;
+}
+
+.open-white:before {
+    background-color: #ffffff !important;
+}
+
+.open-white:after {
+    background-color: #ffffff !important;
+}
+
+.menuOpen {
     width: 24px;
     height: 20px;
     display: block;
     padding: 15px;
     cursor: pointer;
     float: right;
-  }
-  
-  .menuOpen:hover .open:before {
+}
+
+.menuOpen:hover .open:before {
     top: -9px;
-  }
-  
-  .menuOpen:hover .open:after {
+}
+
+.menuOpen:hover .open:after {
     top: 5px;
-  }
-  
-  .menu {
+}
+
+.menu {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -82,9 +102,9 @@
     background-size:cover;
     background-repeat: no-repeat;
     box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.411);
-  }
-  
-  .menu label {
+}
+
+.menu label {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -92,69 +112,70 @@
     top: 20px;
     background-size: 100%;
     cursor: pointer;
-  }
-  
-  .menu .menuContent {
+}
+
+.menu .menuContent {
     position: relative;
     top: 50%;
     font-size: 15px;
     text-align: center;
     padding-bottom: 20px;
     margin-top: -230px;
-  }
-  
-  .menu ul {
+}
+
+.menu ul {
     list-style: none;
     padding: 0;
     margin: 0 auto;
-  }
-  
-  .menu ul li a {
+}
+
+.menu ul li a {
     display: block;
     color: white;
     text-decoration: none;
     transition: color 0.2s;
-    font-family: Trebuchet MS;
+    /*font-family: Trebuchet MS; Helvetica*/
     padding: 25px 0;
-  }
-  
-  .menu ul li a:hover {
+}
+
+.menu ul li a:hover {
     color:black;
     font-weight: bold;
-  }
-  
-  .menuEffects {
+}
+
+.menuEffects {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s, visibility 0.5s;
-  }
-  
-  .menuEffects ul {
+}
+
+.menuEffects ul {
     transform: translateY(0%);
     transition: all 0.5s;
-  }
-  
-  #menuArea{
+}
+
+#menuArea{
+    z-index: 99;
     position:fixed;
     right:2%;
     top:2%;
-  }
+}
 
-  #menuToggle:checked ~ .menuEffects {
+#menuToggle:checked ~ .menuEffects {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.5s;
-  }
-  
-  #menuToggle:checked ~ .menuEffects ul {
+}
+
+#menuToggle:checked ~ .menuEffects ul {
     opacity: 1;
-  }
-  
-  #menuToggle:checked ~ .menuOpen .open {
+}
+
+#menuToggle:checked ~ .menuOpen .open {
     background-color: transparent;
-  }
-  
-  #menuToggle:checked ~ .menuOpen .open:before {
+}
+
+#menuToggle:checked ~ .menuOpen .open:before {
     content: "";
     background-color: white;
     transform: rotate(45deg);
@@ -162,9 +183,9 @@
     top: 0;
     right: 0;
     z-index: 1;
-  }
-  
-  #menuToggle:checked ~ .menuOpen .open:after {
+}
+
+#menuToggle:checked ~ .menuOpen .open:after {
     content: "";
     background-color: white;
     transform: rotate(-45deg);
@@ -172,8 +193,8 @@
     top: 0;
     right: 0;
     z-index: 1;
-  }
-  
-  #menuToggle:not(:checked) ~ .menuEffects ul {
+}
+
+#menuToggle:not(:checked) ~ .menuEffects ul {
     transform: translateY(-30%);
-  }
+}

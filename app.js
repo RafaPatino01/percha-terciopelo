@@ -526,19 +526,16 @@ app.get('/uploads/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
 });
-
 // Send IMG
 app.get('/img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/img/'+filename));
 });
-
 // Send CSS
 app.get('/css/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/css/'+filename));
 });
-
 // Send JS
 app.get('/js/:filename', function(req, res) {
 	const filename = req.params["filename"];
@@ -548,6 +545,30 @@ app.get('/js/:filename', function(req, res) {
 // Send home
 app.get('/home', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/home.html'));
+});
+// Send feat
+app.get('/feat', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/feat.html'));
+});
+// Send stories
+app.get('/stories', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/stories.html'));
+});
+// Send news
+app.get('/news', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/news.html'));
+});
+// Send interviews
+app.get('/interviews', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/interviews.html'));
+});
+// Send articles
+app.get('/articles', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/articles.html'));
+});
+// Send contact
+app.get('/contact', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/contact.html'));
 });
 
 // SERVER PORT --------------------------------------------------------------------------
