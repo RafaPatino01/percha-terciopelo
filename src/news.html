@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- MetaData -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Creative content">
+    <meta name="keywords" content="Diseño, Moda, Revista">
+    <meta name="author" content="Melius Studio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PERCHA | News</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/news.css">
+    
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<!-- HUD -->
+<div class="w-100 fixed p-4">
+    <div class="row">
+        <div class="col-4 pl-5">
+            <h6 onclick="location.href='/about';" style="cursor: pointer;">ABOUT US</h6>
+        </div>
+        <div class="col-4">
+            <h4 onclick="location.href='/home';" class="text-center" style="cursor: pointer;">
+                <img src="/img/logo.svg" class="logo">
+            </h4>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+<div class="w-100 fixed align-bottom p-4">
+    <div class="row">
+        <div class="col-4 pl-5">
+            <h6 onclick="location.href='/contact';" style="cursor: pointer;">CONTACT</h6>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4 pr-5">
+            <div class="row pr-3 text-right text-muted">
+                <div onclick="location.href='https://www.instagram.com/perchamagazine/?hl=es-la';" style="cursor: pointer;" class="col-4 p-0"><h6><b>Instagram</b></h6></div>
+                <div onclick="location.href='/';" style="cursor: pointer;" class="col-4 p-0"><h6><b>Facebook</b></h6></div>
+                <div onclick="location.href='/';" style="cursor: pointer;" class="col-4 p-0"><h6><b>TikTok</b></h6></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="menuArea" class="mr-4">
+    <input type="checkbox" id="menuToggle"></input>
+    
+    <label for="menuToggle" class="menuOpen">
+        <div class="open brand mt-3">
+            <div class="brand-label">
+                <svg style="z-index: 100;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300" aria-hidden="true">
+                    <defs>
+                        <path id="a" d="M90 150a60 60 0 01120 0 60 60 0 01-120 0" />
+                    </defs>
+                    <use xlink:href="#a" fill="none" /><text>
+                        <textPath xlink:href="#a"># fashion addict # fashion addict</textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </label>
+    
+    <div class="menu menuEffects">
+        <label for="menuToggle"></label>
+        <div class="menuContent">
+            <div class="row mt-0">
+                <div class="col-6">
+                </div>
+                <div class="col-6">
+                    <ul>
+                        <li><a href="/home">__home</a></li>
+                        <li><a href="/home">__stories</a></li>
+                        <li><a href="/feat">__feat</a></li>
+                        <li><a href="/news">__news</a></li>
+                        <li><a href="/interviews">__interviews</a></li>
+                        <li><a href="/articles">__articles</a></li>
+                        <li><a href="/contact">__contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body> <!-- Contenido -->    
+    <div class="row m-5 title w-100 zindex-back">
+        <div class="col-lg-6 position-fixed">
+            <h1 class="text-big mt-5">_NEWS</h1>
+
+            <div class="w-100 text-right">
+                <p>
+                    <img id="noticia-img" class="w-50 mt-img news-img visible" src="https://www.colorhexa.com/ffffff.png">
+                </p>
+            </div>
+
+        </div>
+        
+        <div class="col-lg-4 offset-lg-6 pl-5">
+
+            <div id="output"></div>
+
+            <div class="mt-large">
+                <div class="m-5 noticia" url="https://ichef.bbci.co.uk/news/640/amz/worldservice/live/assets/images/2016/05/28/160528143525_getty_modelaje_624x460_getty_nocredit.jpg">
+                    <h6><b>TITLE TITLE / Dec 2021</b></h6>
+                    <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
+                </div>
+
+                <div class="m-5 noticia" url="https://static.vix.com/es/sites/default/files/styles/16x9/public/imj/imujer/s/secretos-oscuros-mundo-del-modelaje-1.jpg">
+                    <h6><b>TITLE TITLE / Dec 2021</b></h6>
+                    <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
+                </div>
+
+                <div class="m-5 noticia" url="https://mott.pe/noticias/wp-content/uploads/2020/09/las-mejores-agencias-de-modelaje-en-el-mundo-2.png">
+                    <h6><b>TITLE TITLE / Dec 2021</b></h6>
+                    <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
+                </div>
+
+                <div class="m-5 noticia" url="http://cdn2.dineroenimagen.com/media/dinero/styles/xlarge/public/images/2018/05/mar-horiz.jpg">
+                    <h6><b>TITLE TITLE / Dec 2021</b></h6>
+                    <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
+                </div>
+
+                <div class="m-5 noticia" url="https://castingyeventos.com/multimedia/fashion-show-1746621_1280-490x550.jpg">
+                    <h6><b>TITLE TITLE / Dec 2021</b></h6>
+                    <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Change images -->
+    <script src="/js/news.js"></script>
+</body>
+</html>

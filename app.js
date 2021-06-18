@@ -499,14 +499,6 @@ app.get('/admin_edit_col/:id', function(req, res) {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
-app.get('/mensajes', function(req, res) {
-	if(req.session.flag == 1){ // Admin has logged in
-		res.sendFile(path.join(__dirname + '/admin/mensajes.html'));
-	}
-	else {
-		res.sendFile(path.join(__dirname + '/admin/login.html'));
-	}
-});
 
 app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));

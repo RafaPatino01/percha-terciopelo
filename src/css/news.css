@@ -1,0 +1,57 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.zindex-back {
+    z-index: -1;
+}
+
+.title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+}
+
+.text-big {
+    font-size: 80px;
+    white-space: nowrap;
+}
+
+.mt-large {
+    margin-top: 16em;
+}
+
+.mt-img {
+    margin-top: 8em;
+}
+
+.news-img {
+    /* width: 500px; */
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.visible {
+    transition:opacity 0.25s linear;   
+    -moz-transition:opacity 0.25s linear;   
+    -webkit-transition:opacity 0.25s linear;   
+    opacity:1;
+}
+
+.not-visible {
+    opacity:0.3 !important;
+}
+
+.noticia {
+    cursor: pointer;
+}
+
+.noticia:hover h6 {
+    text-decoration: underline;
+}
