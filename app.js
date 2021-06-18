@@ -701,6 +701,11 @@ app.get('/img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/img/'+filename));
 });
+// Send videos
+app.get('/videos/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/videos/'+filename));
+});
 // Send CSS
 app.get('/css/:filename', function(req, res) {
 	const filename = req.params["filename"];
@@ -719,6 +724,10 @@ app.get('/feat', function(req, res) {
 // Send news
 app.get('/news', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/news.html'));
+});
+// Send news-posts
+app.get('/news_post', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/news_post.html'));
 });
 // Send interviews
 app.get('/interviews', function(req, res) {

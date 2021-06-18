@@ -6,19 +6,63 @@
 }
 
 #Video {
-    position: fixed;
+    position: absolute;
     right: 0;
     bottom: 0;
-    min-width: 100%;
+    width: 100%;
     min-height: 100%;
 }
+
+
+section{
+    width: 100%;
+    min-height: 100vh;
+    padding:100px;
+}
+
+::-webkit-scrollbar{
+    width: 6px;
+}
+::-webkit-scrollbar-thumb{
+    background: grey;
+    /* background: linear-gradient(transparent,grey); */
+    border-radius: 6px;
+}
+
 
 /* Menu */
 .logo {
     width: 28%;
 }
+
+.home-logo{
+    width:25%;
+    position: absolute;
+    /* margin: 14em 27em; */
+    margin:15% 30%;
+}
+
+.home-text{
+    position: absolute;
+    color: #ffffff;
+    margin: 19% 38.2%;
+    font-size: 28px;
+}
+
 .fixed {
     position: fixed;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.relative{
+    position:relative;
+}
+
+.static{
+    position: static;
 }
 
 .align-bottom {
@@ -78,6 +122,14 @@ input {
     background-color: #ffffff !important;
 }
 
+.open-grey:before {
+    background-color: rgb(209, 209, 209) !important;
+}
+
+.open-grey:after {
+    background-color: rgb(209, 209, 209) !important;
+}
+
 .menuOpen {
     width: 24px;
     height: 20px;
@@ -93,7 +145,7 @@ input {
     height: 100vh;
     top: 0;
     left: 0;
-    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOb-0WZYUMVQ%2Fmaxresdefault.jpg&f=1&nofb=1");
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2017%2F03%2F29%2F489967-neon-city-drawing.jpg&f=1&nofb=1");
     background-size:cover;
     background-repeat: no-repeat;
     box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.411);
@@ -134,8 +186,8 @@ input {
 }
 
 .menu ul li a:hover {
-    color:black;
-    font-weight: bold;
+    color:aliceblue;
+    font-weight:bolder;
 }
 
 .menuEffects {
@@ -210,7 +262,7 @@ input {
     
     pointer-events: none;
     animation-name: rotate;
-    animation-duration: 15s;
+    animation-duration: 25s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-play-state: running;
@@ -231,6 +283,14 @@ input {
     fill: #ffffff !important;
 }
 
+.brand .brand-label svg .grey {
+    font-family: "Inter", sans-serif;
+    font-size: 23.5px;
+    letter-spacing: 1px;
+    font-variation-settings: "wght" 650;
+    fill:darkgrey !important;
+}
+
 @keyframes rotate {
   from {
     transform: rotate(360deg);
@@ -238,4 +298,8 @@ input {
   to {
     transform: rotate(0);
   }
+}
+
+.white{
+    color: #ffffff;
 }
