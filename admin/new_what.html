@@ -1,38 +1,43 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>PERCHA TERCIOPELO</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="/admin_css">
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="/uploadfile_js"></script>
-
-        
-    </head>
+  <head>
+    <meta charset="UTF-8">
+    <title>PERCHA | Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/admin_css">
     
-    <body>
-      <div class="container mt-5 p-5">
-        <h1 class="display-1">NEW</h1>
-        <h5 class="mb-3">
-          <a class="mr-5" href="/admin_all"><i>see posts</i></a>
-          <a class="mr-5" href="/admin_new_what"><i>new</i></a>
-          <a class="mr-5" href="/admin_delete"><i>delete post</i></a>
-          <a class="mr-5" href="/mensajes"><i>mensajes</i></a>
-        </h5>
-        
-        <br><br><br>
-        
-        <div class="row">
-            <div class="col-md-6 bg-lighter p-5">
-                <h1 class="display-4"><a href="/admin_new">Nueva Publicación</a></h1>
-            </div>
-            <div class="col-md-6">
-                <h1 class="display-4 bg-lighter2 p-5"><a href="/admin_new_col">Nueva Columna</a></h1>
-            </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/uploadfile_js"></script>
+  </head>
+    
+  <body>
+    <div class="container mt-5 p-5">
+      <h1 class="display-1">ADD</h1>
+      <h5 class="mb-3">
+        <a class="mr-5" href="/admin_all"><i>all</i></a>
+          <a class="mr-5" href="/admin_new_what"><i>add</i></a>
+          <a class="mr-5" href="/admin_delete"><i>delete</i></a>
+      </h5>
+      
+      <br>
+      
+      <div class="row" id="FadeIn">
+        <div class="col-md-8 bg-lighter p-5 m-3">
+          <h1 class="display-4"><a href="/admin_new">Add Story</a></h1>
         </div>
-       
-        
+        <div class="col-md-8 bg-lighter2 p-5 m-3">
+          <h1 class="display-4"><a href="/admin_new_col">Add Col</a></h1>
+        </div>
+        <div class="col-md-8 bg-lighter4 p-5 m-3">
+          <h1 class="display-4"><a href="/admin_new_noticia">Add News</a></h1>
+        </div>
+        <div class="col-md-8 bg-lighter3 p-5 m-3">
+          <h1 class="display-4"><a href="/admin_new_feat">Add Feat</a></h1>
+        </div>
+        <div class="col-md-8 bg-lighter5 p-5 m-3">
+          <h1 class="display-4"><a href="/admin_new_noticia">Add Interview</a></h1>
+        </div>
       </div>
-    </body>
+
+    </div>
+  </body>
 </html>

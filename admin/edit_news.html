@@ -6,11 +6,11 @@
         <link rel="stylesheet" type="text/css" href="/admin_css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="/uploadfile_js"></script>
+        <!-- <script src="/uploadfile_js"></script> -->
         
     </head>
     
-    <body onload="placeinfo2()">
+    <body onload="placeinfo_news()">
       <div class="container mt-5 p-5">
 
         <h1 class="display-1" id="content">EDIT</h1>
@@ -21,7 +21,7 @@
            
         </h5>
         <form>
-          <div class="row bg-lighter2 p-3" id="FadeIn">
+          <div class="row bg-lighter4 p-3" id="FadeIn">
             <div class="col-4 text-right pt-3">
               <h3>TITLE</h3>
             </div>
@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <div class="row bg-lighter2 p-3" id="FadeIn">
+          <div class="row bg-lighter4 p-3" id="FadeIn">
             <div class="col-4 text-right pt-3">
               <h3>DATE</h3>
             </div>
@@ -39,16 +39,16 @@
             </div>
           </div>
 
-          <div class="row bg-lighter2 p-3" id="FadeIn">
+          <div class="row bg-lighter4 p-3" id="FadeIn">
             <div class="col-4 text-right pt-3">
-              <h3>DESCRIPTION</h3>
+              <h3>SUBTITLE</h3>
             </div>
             <div class="col-8 p-3">
-              <input class="form-control form-control-lg" type="text" id="descr" placeholder="">
+              <input class="form-control form-control-lg" type="text" id="subtitle" placeholder="">
             </div>
           </div>
 
-          <div class="row bg-lighter2 p-3" id="FadeIn">
+          <div class="row bg-lighter4 p-3" id="FadeIn">
             <div class="col-4 text-right pt-3">
               <h3>MAIN TEXT</h3>
             </div>
@@ -57,7 +57,7 @@
             </div>
           </div>
 
-          <div class="row bg-lighter2 p-3" id="FadeIn">
+          <div class="row bg-lighter4 p-3" id="FadeIn">
             <div class="col-4 text-right pt-3">
               
             </div>
@@ -69,7 +69,7 @@
               <div class="wrapper">
                 <footer>
                   <ul>
-                    <li><button onclick="prepare_data2();" class="btn btn-lg btn-primary btn-block">Update</a></li>
+                    <li><button onclick="prepare_data_news();" class="btn btn-lg btn-primary btn-block">Update</a></li>
                   </ul>
                 </footer> 
               </div>

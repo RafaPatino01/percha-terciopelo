@@ -72,22 +72,17 @@ function send_data(p_title,p_date,p_descr,p_main_text,p_secondary_text) {
 	contentType: false,
 	processData: false,
 	success: function(data) {
-	  alert("It works!");
+	  alert("Información actualizada correctamente");
 	  location.replace("/admin_all");
 	},    
 	error: function() {
-	  alert("Damn, it did not work!");
+	  alert("Ocurrió un error");
 	}
 	});
 
 }
 
-
-
-
 // -------- COLUMNAS DE MODA --------
-
-
 // Set current info to inputs
 async function placeinfo2() {
 
@@ -101,7 +96,6 @@ async function placeinfo2() {
 	document.getElementById("descr").value = info.descr;
 	document.getElementById("main_text").value = info.main_text;
 }
-
 // Prepare current info to db
 async function prepare_data2() {
 
@@ -118,7 +112,6 @@ async function prepare_data2() {
 	}
 
 }
-
 // Send current info to server
 function send_data2(p_title,p_date,p_descr,p_main_text) { 
 
@@ -137,12 +130,67 @@ function send_data2(p_title,p_date,p_descr,p_main_text) {
 	contentType: false,
 	processData: false,
 	success: function(data) {
-	  alert("It works!");
+	  alert("Información actualizada correctamente");
 	  location.replace("/admin_all");
 	},    
 	error: function() {
-	  alert("Damn, it did not work!");
+	  alert("Ocurrió un error");
 	}
 	});
+}
 
+// -------- NEWS --------
+// Set current info to inputs
+async function placeinfo_news() {
+
+	var info = await getData("/get_news/"+id);
+
+	info = info[0];
+	var fecha = info.date.substring(0, info.date.lastIndexOf('T')); //fix date-time
+
+	document.getElementById("title").value = info.title;
+	document.getElementById("date").value = fecha;
+	document.getElementById("subtitle").value = info.subtitle;
+	document.getElementById("main_text").value = info.main_text;
+}
+// Prepare current info to db
+async function prepare_data_news() {
+
+	var title = document.getElementById("title").value;
+	var date = document.getElementById("date").value;
+	var subtitle = document.getElementById("subtitle").value;
+	var main_text = document.getElementById("main_text").value;
+
+	if(!title || !date || !subtitle || !main_text) {
+		alert("Missing Fields");
+	}
+	else {
+		send_data_news(title,date,subtitle,main_text);
+	}
+}
+// Send current info to server
+function send_data_news(p_title,p_date,p_subtitle,p_main_text) { 
+
+	var data = new FormData();
+
+	data.append('title', p_title);
+	data.append('subtitle', p_subtitle);
+
+	data.append('date',p_date);
+	data.append('main_text', p_main_text);
+
+	$.ajax({
+	url :  "/edit_news/"+id,
+	type: 'PUT',
+	data: data,
+	contentType: false,
+	processData: false,
+	success: function(data) {
+	  alert("Información actualizada correctamente");
+	  location.replace("/admin_all");
+	},    
+	error: function() {
+	  alert("Ocurrió un error");
+	}
+	});
 }

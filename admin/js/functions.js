@@ -12,12 +12,15 @@ async function getData(p_endpoint) {
 async function loadPosts(p_page) {
 	var posts = await getData("/get_allposts");
 	var cols = await getData("/get_allcols");
+	var news = await getData("/get_allnews");
 
 	var no_result = '{"error":"no_result"}';
 
 	switch(p_page)
 	{
+		// para all.html
 		case "all":
+			// posts
 			if (JSON.stringify(posts) != no_result){
 				for(var i = 0; i < posts.length; i++)
 				{
@@ -56,6 +59,7 @@ async function loadPosts(p_page) {
 				document.getElementById("output_posts").innerHTML += "No hay posts";
 			}
 			
+			// cols
 			if (JSON.stringify(cols) != no_result){
 				for(var i = 0; i < cols.length; i++)
 				{
@@ -84,15 +88,48 @@ async function loadPosts(p_page) {
 			else {
 				document.getElementById("output_cols").innerHTML += "No hay cols";
 			}
+
+			// news
+			if (JSON.stringify(news) != no_result){
+				for(var i = 0; i < news.length; i++)
+				{
+					document.getElementById("output_news").innerHTML += `
+					<div class="row border" id="FadeIn">
+						<div class="col-md-3 bg-azul p-3">
+						<h3>`+ news[i].title +`</h3>
+						<p>`+ news[i].date.substring(0, 7) +`</p>
+						</div>
+						<div class="col-md-8 bg-lighter4">
+							<div class="row p-3">
+							<p class="lead">`+ news[i].subtitle +`</p>
+							</div>
+							
+							<div class="row border-top p-3">
+							<p>`+ news[i].main_text.substring(0, 150) +`...</p>
+							</div>
+						</div>
+						<div class="col-md-1 bg-lighter4 border-left pt-5">
+							<h5><a href="/admin_edit_news/`+news[i].id+`"><i>EDIT</i></a></h5>
+						</div>
+					</div><br>
+					`;
+				}
+			}
+			else {
+				document.getElementById("output_news").innerHTML += "No hay news";
+			}
 			
 			break;
-
+		
+		// para delete.html
 		case "delete":
+			// posts
 			if (JSON.stringify(posts) != no_result){
+				document.getElementById("output_posts").innerHTML += "<h1 class='display-4 mb-3'>Stories</h1>";
 				for(var i = 0; i < posts.length; i++)
 				{
 					document.getElementById("output_posts").innerHTML += `
-						<div class="row border" id="FadeIn">
+						<div class="row" id="FadeIn">
 							<div class="col-md-1 bg-lighter text-right">
 							<a class="btn" href="/admin_delete" onclick="deletePost(`+ posts[i].id +`);">
 							  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -112,11 +149,13 @@ async function loadPosts(p_page) {
 				document.getElementById("output_posts").innerHTML += "No hay posts";
 			}
 			
+			// cols
 			if (JSON.stringify(cols) != no_result){
+				document.getElementById("output_posts").innerHTML += "<h1 class='display-4 mb-3'>Cols</h1>";
 				for(var i = 0; i < cols.length; i++)
 				{
 					document.getElementById("output_posts").innerHTML += `
-					<div class="row border" id="FadeIn">
+					<div class="row" id="FadeIn">
 						<div class="col-md-1 bg-lighter2 text-right">
 						<a class="btn" href="/admin_delete" onclick="deleteCol(`+ cols[i].id +`);">
 						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -135,6 +174,33 @@ async function loadPosts(p_page) {
 			else {
 				document.getElementById("output_posts").innerHTML += "No hay cols";
 			}
+			
+			// news
+			if (JSON.stringify(news) != no_result){
+				document.getElementById("output_posts").innerHTML += "<h1 class='display-4 mb-3'>News</h1>";
+				for(var i = 0; i < news.length; i++)
+				{
+					document.getElementById("output_posts").innerHTML += `
+						<div class="row" id="FadeIn">
+							<div class="col-md-1 bg-lighter4 text-right">
+							<a class="btn" href="/admin_delete" onclick="deleteNews(`+ news[i].id +`);">
+							  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+								<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+							  </svg>
+							</a>
+							</div>
+							<div class="col-md-11 bg-azul">
+							  <h3>`+ news[i].title +`</h3>
+							</div>
+						</div><br>
+					`;
+				}
+			}
+			else {
+				document.getElementById("output_posts").innerHTML += "No hay news";
+			}
+
 			break;
 
 		default:
@@ -152,6 +218,12 @@ async function deletePost(p_id) {
 // Delete col by id
 async function deleteCol(p_id) {
 	const url = "/delete_col/"+p_id;
+	const response = await fetch(url, { method: 'PUT' });
+}
+
+// Delete news by id
+async function deleteNews(p_id) {
+	const url = "/delete_news/"+p_id;
 	const response = await fetch(url, { method: 'PUT' });
 }
 

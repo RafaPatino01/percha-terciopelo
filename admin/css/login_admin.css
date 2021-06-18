@@ -1,5 +1,5 @@
 body {
-    font-family: "Courier", sans-serif;
+    /* font-family: "Courier", sans-serif; */
     background-color: #FFFAF8;
 }
 
@@ -11,17 +11,31 @@ body {
     background-color: #F5CBA7;
 }
 
-.bg-lighter {
-    background-color: #FEF5E7;
-}
-
-
 .bg-purple {
   background-color: #ffc5db;
 }
+.bg-azul {
+  background-color: #ddd0ff;
+}
+
+
+.bg-lighter {
+    background-color: #fff1dc;
+}
 
 .bg-lighter2 {
-  background-color: #FFF2F7;
+  background-color: #ffe5ef;
+}
+
+.bg-lighter3 {
+  background-color: #def2ff;
+}
+
+.bg-lighter4 {
+  background-color: #ebe3ff;
+}
+.bg-lighter5 {
+  background-color: rgb(240, 240, 240);
 }
 
 

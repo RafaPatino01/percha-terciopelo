@@ -28,7 +28,7 @@ try {
   console.log('crypto support is disabled!');
 }
 
-// Admin Login -----------------------------------------------------------------
+// [ LOGIN ] Admin -----------------------------------------------------------------
 var session = require('express-session')
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
@@ -60,7 +60,7 @@ app.get('/check_login/:pass', function(req, res) {
 
 
 
-// MYSQL  ----------------------------------------------------------------------------
+// [ MYSQL ]  ----------------------------------------------------------------------------
 
 // Heroku DB
 // mysql://b375ab530b6efd:cf4ade3a@us-cdbr-east-03.cleardb.com/heroku_a16f974a985f837?reconnect=true
@@ -100,10 +100,10 @@ function handleDisconnect() {
 
 handleDisconnect();
 
+// ENDPOINTS ----------------------------------------------------------------------------
 
-// ENDPOINTS --------------------------------------------------------------------
-
-// get all posts
+// [ GET ] ALL ----------------------------------------------
+// All posts
 app.get('/get_allposts', function(req, res) {
 
     const sql = 'SELECT * FROM posts WHERE status>0';
@@ -120,8 +120,43 @@ app.get('/get_allposts', function(req, res) {
     	}
     });
 });
+// All cols
+app.get('/get_allcols', function(req, res) {
 
-// get DESTACADOS posts
+    const sql = 'SELECT * FROM cols WHERE status>0';
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+			
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
+});
+// All news
+app.get('/get_allnews', function(req, res) {
+
+    const sql = 'SELECT * FROM news WHERE status>0';
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+			
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
+});
+// Destacados posts
 app.get('/get_destacados', function(req, res) {
 
     const sql = 'SELECT * FROM posts WHERE status=2';
@@ -139,6 +174,7 @@ app.get('/get_destacados', function(req, res) {
     });
 });
 
+// [ GET ] BY ID ----------------------------------------------
 // get post by ID
 app.get('/get_post/:id', function(req, res) {
     
@@ -158,26 +194,7 @@ app.get('/get_post/:id', function(req, res) {
     });
 });
 
-// get all cols
-app.get('/get_allcols', function(req, res) {
-
-    const sql = 'SELECT * FROM cols WHERE status>0';
-
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		throw err;
-    	}
-    	if(result.length > 0) {
-			
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
-});
-
-// get col by ID
+// col by id
 app.get('/get_col/:id', function(req, res) {
     
     const {id } = req.params
@@ -195,12 +212,29 @@ app.get('/get_col/:id', function(req, res) {
     	}
     });
 });
+app.get('/get_news/:id', function(req, res) {
+    
+    const {id } = req.params
+    const sql = `SELECT * FROM news WHERE id=${id} AND status>0`;
 
-// get image URL by post ID
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
+});
+
+
+// [ GET ] IMAGES ----------------------------------------------
+// img posts
 app.get('/get_im_url/:id', function(req, res) {
-
 	const id = req.params["id"];
-
     const sql = 'SELECT * FROM posts_images WHERE post_id='+id;
 
     connection.query(sql,(err,result)=>{
@@ -215,13 +249,27 @@ app.get('/get_im_url/:id', function(req, res) {
     	}
     });
 });
-
-// get image URL by col ID
+// img cols
 app.get('/get_im_col/:id', function(req, res) {
-
 	const id = req.params["id"];
-
     const sql = 'SELECT * FROM cols_images WHERE post_id='+id;
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
+});
+// img news
+app.get('/get_im_news/:id', function(req, res) {
+	const id = req.params["id"];
+    const sql = 'SELECT * FROM news_images WHERE post_id='+id;
 
     connection.query(sql,(err,result)=>{
     	if(err){
@@ -237,7 +285,8 @@ app.get('/get_im_col/:id', function(req, res) {
 });
 
 
-// add post
+// [ ADD ] Stuff ----------------------------------------------
+// Add post
 app.post('/add_post', function (req, res) {
 
 	console.log('Recieved: ' + typeof(req.body.title)) //ACCESS DATA FROM FORM
@@ -280,7 +329,7 @@ app.post('/add_post', function (req, res) {
 				});
 
 				// Write image to folder
-				require("fs").writeFile("src/uploads/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+				require("fs").writeFile("src/uploads/stories" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
 		  		console.log(err);
 				});
 
@@ -291,7 +340,8 @@ app.post('/add_post', function (req, res) {
 
 })
 
-// add post
+// Add col
+// (article)
 app.post('/add_col', function (req, res) {
 
 	console.log('Recieved: ' + typeof(req.body.title)) //ACCESS DATA FROM FORM
@@ -333,7 +383,61 @@ app.post('/add_col', function (req, res) {
 				});
 
 				// Write image to folder
-				require("fs").writeFile("src/uploads/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+				require("fs").writeFile("src/uploads/cols" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+		  		console.log(err);
+				});
+
+				console.log("Added image: " + req.body.title + i + ".png")
+			}
+		}
+	});
+})
+
+// Add noticia
+app.post('/add_noticia', function (req, res) {
+
+	console.log('Recieved: ' + typeof(req.body.title)) // ACCESS DATA FROM FORM
+	console.log('Recieved: ' + typeof(req.body.im0))
+
+	const sql = 'INSERT INTO news SET ?';
+
+	const postObject = {
+		title: req.body.title,
+		subtitle: req.body.subtitle,
+		date: req.body.date,
+		main_text: req.body.main_text,
+		status: 1
+	}
+
+	connection.query(sql, postObject, (err, result)=> {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Added news");
+
+			console.log("LAST INSERTED ID: " + result.insertId);
+
+			const sql2 = 'INSERT INTO news_images SET ?';
+			let base64Data = req.body.im;
+
+			// For each image
+			for (var i = 0; i < req.body.n; i++) {
+
+				let postObject2 = {
+					url: req.body.title+i,
+					post_id: result.insertId
+				}
+
+				// Write to database
+				connection.query(sql2, postObject2, (err, result)=> { 
+					if(err) { 
+						throw err;
+					}
+				});
+
+				// Write image to folder
+				require("fs").writeFile("src/uploads/news/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
 		  		console.log(err);
 				});
 
@@ -343,8 +447,8 @@ app.post('/add_col', function (req, res) {
 	});
 })
 
-
-// edit post
+// [ EDIT ] Stuff ----------------------------------------------
+// Edit post
 app.put('/edit_post/:id', function (req, res) {
     const id = req.params["id"];
     const title = req.body.title;
@@ -367,7 +471,7 @@ app.put('/edit_post/:id', function (req, res) {
 	});
 
 })
-// edit col
+// Edit col
 app.put('/edit_col/:id', function (req, res) {
     const id = req.params["id"];
     const title = req.body.title;
@@ -386,13 +490,33 @@ app.put('/edit_col/:id', function (req, res) {
 			res.send("Cols updated");
 		}
 	});
+})
+// Edit news
+app.put('/edit_news/:id', function (req, res) {
+    const id = req.params["id"];
+    const title = req.body.title;
+    const subtitle = req.body.subtitle;
 
+    const date = req.body.date;
+    const main_text = req.body.main_text;
+
+    const sql = 'UPDATE news SET title='+'"'+title+'"'+', subtitle='+'"'+subtitle+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
+
+    connection.query(sql, err => {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("News updated");
+		}
+	});
 })
 
-// delete post (status 0)
+
+// [ DELETE ] Stuff ----------------------------------------------
+// Delete post
 app.put('/delete_post/:id', function (req, res) {
     const id = req.params["id"];
-
     const sql = 'UPDATE posts SET status=0 WHERE id='+id;
 
     connection.query(sql, err => {
@@ -404,11 +528,9 @@ app.put('/delete_post/:id', function (req, res) {
 		}
 	});
 })
-
-// delete col (status 0)
+// Delete col
 app.put('/delete_col/:id', function (req, res) {
     const id = req.params["id"];
-
     const sql = 'UPDATE cols SET status=0 WHERE id='+id;
 
     connection.query(sql, err => {
@@ -420,9 +542,25 @@ app.put('/delete_col/:id', function (req, res) {
 		}
 	});
 })
+// Delete news
+app.put('/delete_news/:id', function (req, res) {
+    const id = req.params["id"];
+    const sql = 'UPDATE news SET status=0 WHERE id='+id;
 
-// ADMIN ROUNTING --------------------------------------------------------------------
+    connection.query(sql, err => {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("News status set to 0");
+		}
+	});
+})
 
+
+// [ ADMIN ROUNTING ] --------------------------------------------------------------------
+
+// login
 app.get('/admin', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/login.html'));
 });
@@ -447,6 +585,16 @@ app.get('/admin_all', function(req, res) {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
+
+// Admin Adder
+app.get('/admin_new_what', function(req, res) {
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/new_what.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
 app.get('/admin_new', function(req, res) {
 	if(req.session.flag == 1){ // Admin has logged in
 		res.sendFile(path.join(__dirname + '/admin/new.html'));
@@ -463,22 +611,16 @@ app.get('/admin_new_col', function(req, res) {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
-app.get('/admin_new_what', function(req, res) {
+app.get('/admin_new_noticia', function(req, res) {
 	if(req.session.flag == 1){ // Admin has logged in
-		res.sendFile(path.join(__dirname + '/admin/new_what.html'));
+		res.sendFile(path.join(__dirname + '/admin/new_noticia.html'));
 	}
 	else {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
-app.get('/admin_delete', function(req, res) {
-	if(req.session.flag == 1){ // Admin has logged in
-		res.sendFile(path.join(__dirname + '/admin/delete.html'));
-	}
-	else {
-		res.sendFile(path.join(__dirname + '/admin/login.html'));
-	}
-});
+
+// Admin Edit
 app.get('/admin_edit/:id', function(req, res) {
 	const id = req.params["id"];
 
@@ -499,7 +641,28 @@ app.get('/admin_edit_col/:id', function(req, res) {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
+app.get('/admin_edit_news/:id', function(req, res) {
+	const id = req.params["id"];
 
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/edit_news.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
+
+// Admin Delete
+app.get('/admin_delete', function(req, res) {
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/delete.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
+
+// Send JS Admin
 app.get('/uploadfile_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
 });
@@ -509,9 +672,21 @@ app.get('/uploadfile_js2', function(req, res) {
 app.get('/edit_js', function(req, res) {
     res.sendFile(path.join(__dirname + '/admin/js/edit.js'));
 });
+app.get('/admin_js/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/admin/js/'+filename));
+});
 
 
-// Public Routing ----------------------------------------------------------------------
+// [ PUBLIC Routing ] ----------------------------------------------------------------------
+
+// Send home
+app.get('/', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/home.html'));
+});
+app.get('/home', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/home.html'));
+});
 
 // Send Uploads
 app.get('/uploads/:filename', function(req, res) {
@@ -534,10 +709,6 @@ app.get('/js/:filename', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/js/'+filename));
 });
 
-// Send home
-app.get('/home', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/home.html'));
-});
 // Send feat
 app.get('/feat', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/feat.html'));
@@ -568,7 +739,7 @@ app.get('/temp', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/template.html'));
 });
 
-// SERVER PORT --------------------------------------------------------------------------
+// [ SERVER PORT ] --------------------------------------------------------------------------
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`)
 })
