@@ -12,11 +12,14 @@ const port = process.env.PORT || 9000;
 var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname, 'src/img/', 'icon.ico')));
 
-var upload = multer();
+var upload = multer({
+	limits: { fieldSize: 10 * 1024 * 1024 }
+})
 
 // Parse json data
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 // For multi form data
 app.use(upload.array());
 
@@ -329,8 +332,8 @@ app.post('/add_post', function (req, res) {
 				});
 
 				// Write image to folder
-				require("fs").writeFile("src/uploads/stories" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
-		  		console.log(err);
+				require("fs").writeFile("src/uploads/stories/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+		  			console.log(err);
 				});
 
 				console.log("Added image: " + req.body.title+ i + ".png")
@@ -383,7 +386,7 @@ app.post('/add_col', function (req, res) {
 				});
 
 				// Write image to folder
-				require("fs").writeFile("src/uploads/cols" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+				require("fs").writeFile("src/uploads/cols/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
 		  		console.log(err);
 				});
 
