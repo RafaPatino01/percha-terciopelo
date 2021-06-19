@@ -24,9 +24,10 @@ html, body {
 }
 
 .cuadro-img {
-    width: 600px;
-    height: 600px;
+    width: 450px;
+    height: 450px;
     object-fit: cover;
+    margin-right: 10em !important;
 }
 
 .bg-black {

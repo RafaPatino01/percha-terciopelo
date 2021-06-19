@@ -46,7 +46,7 @@ html, body {
 }
 
 .mt-img {
-    margin-top: 8em;
+    margin-top: 5em;
 }
 .pr-med{
     padding-right:25px;
@@ -54,13 +54,12 @@ html, body {
 
 .news-img {
     /* width: 500px; */
-    max-height: 500px;
+    height: 400px;
     object-fit: cover;
 }
 
 .fit-img{
     object-fit: cover;
-    height:500px;
 }
 
 .w-50 {
