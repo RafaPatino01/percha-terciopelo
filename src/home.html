@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="css/stories.css">
+    <link rel="stylesheet" href="/css/stories.css">
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script src="/js/functions.js"></script>
 </head>
 <!-- HUD -->
 <div class="w-100 fixed p-4">
@@ -93,7 +93,7 @@
         </div>
     </div>
 </div>
-<body > <!-- Contenido -->
+<body onload="loadStoriesMenu()"> <!-- Contenido -->
     <section  style="height: 100vh;">
         <video loop muted autoplay id="Video">
             <source src="/videos/homevideo.mp4" type="video/mp4">
@@ -108,29 +108,8 @@
             <div class="top-content w-100">
                 <div class="container-fluid">
                     <div id="carousel-example" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                            <div class="carousel-item col-12 col-sm-6 col-md-4  active">
-                                <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img1">
-                            </div>
-                            <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                                <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img2">
-                            </div>
-                            <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                                <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img3">
-                            </div>
-                            <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                                <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img4">
-                            </div>
-                            <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                                <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img5">
-                            </div>
-                            <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                                <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img6">
-                            </div>
-                            <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                                <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img7">
-                            </div>
-                            <div class="carousel-item col-12 col-sm-6 col-md-4">
+                        <div class="carousel-inner row w-100 mx-auto" role="listbox" id="carouselMain">
+                            <div class="carousel-item col-12 col-sm-6 col-md-4 active">
                                 <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img8">
                             </div>
                         </div>

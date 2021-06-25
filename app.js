@@ -692,10 +692,11 @@ app.get('/home', function(req, res) {
 });
 
 // Send Uploads
-app.get('/uploads/:filename', function(req, res) {
+app.get('/stories_img/:filename', function(req, res) {
 	const filename = req.params["filename"];
-	res.sendFile(path.join(__dirname + '/src/uploads/'+filename));
+	res.sendFile(path.join(__dirname + '/src/uploads/stories/'+filename));
 });
+
 // Send IMG
 app.get('/img/:filename', function(req, res) {
 	const filename = req.params["filename"];
