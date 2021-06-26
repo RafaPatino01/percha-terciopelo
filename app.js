@@ -520,6 +520,7 @@ app.post('/add_interview', function (req, res) {
 		date: req.body.date,
 		location: req.body.location,
 		main_text: req.body.main_text,
+		spotify: req.body.spotify,
 		status: 1
 	}
 
@@ -594,10 +595,11 @@ app.put('/edit_interview/:id', function (req, res) {
     const main_text = req.body.main_text;
     const author = req.body.author;
 	const location = req.body.location;
+	const spotify = req.body.spotify;
 
 	const status = 1;
 
-    const sql = 'UPDATE interviews SET status='+'"'+status+'"'+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+',location='+'"'+location+'"'+', author='+'"'+author+'"'+' WHERE id='+id;
+    const sql = 'UPDATE interviews SET status='+'"'+status+'"'+', spotify='+'"'+spotify+'"'+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+',location='+'"'+location+'"'+', author='+'"'+author+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {
@@ -899,6 +901,11 @@ app.get('/news_post', function(req, res) {
 // Send interviews
 app.get('/interviews', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/interviews.html'));
+});
+// Send interviews-posts
+app.get('/interview_post/:id', function(req, res) {
+	const id = req.params["id"];
+	res.sendFile(path.join(__dirname + '/src/interviews_post.html'));
 });
 // Send articles
 app.get('/articles', function(req, res) {

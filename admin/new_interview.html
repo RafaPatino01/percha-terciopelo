@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,6 +8,12 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="/admin_js/uploadfile_interview.js"></script>
+
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.css' rel='stylesheet'>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/htmlmixed/htmlmixed.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/javascript/javascript.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/xml/xml.js'></script>
     </head>
     
     <body>
@@ -74,6 +81,15 @@
 
           <div class="row bg-lighter5 p-3" id="FadeIn">
             <div class="col-4 text-right pt-3">
+              <h3>SPOTIFY</h3>
+            </div>
+            <div class="col-8 p-3">
+              <textarea class="form-control form-control-lg" type="text" id="spotify" placeholder="" rows="5"></textarea>
+            </div>
+          </div>
+
+          <div class="row bg-lighter5 p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
               <h3>IMAGE</h3>
               <p>(Only add 1 image)</p>
             </div>
@@ -102,5 +118,63 @@
       
 
       </div>
+
+      <!-- TEXT EDITOR STUFF-->
+      <div class="HTMLContainer" style="display: none;"></div>
+      <textarea type="text" id="main_text_html" rows="5" style="display: none;"></textarea>
+
+
+
     </body>
+
+    <script src='https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/5/tinymce.min.js'></script>
+    <script>
+
+tinymce.init({
+  selector: "#main_text",
+  height: 400,
+  plugins: [
+    "advlist autolink lists link image charmap print preview anchor",
+    "searchreplace visualblocks code fullscreen",
+    "insertdatetime media table paste emoticons"
+  ],
+  toolbar:
+    "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image emoticons",
+  skin: "small",
+  icons: "",
+  setup: function (editor) {
+    editor.on("keyup", function (e) {
+      updateHTML(editor.getContent());
+      console.log(document.getElementById("main_text_html").value); // final HTML we need
+      
+    });
+    editor.on("change", function (e) {
+      updateHTML(editor.getContent());
+    });
+  }
+});
+
+function updateHTML(content) {
+  cmeditor.getDoc().setValue(content);
+  document.getElementById("main_text_html").value = content;
+}
+
+function updateEditor() {
+  if (!tinymce.activeEditor.hasFocus()) {
+    tinymce.activeEditor.setContent(cmeditor.getDoc().getValue());
+  }
+}
+
+var HTMLContainer = document.querySelector(".HTMLContainer");
+
+var cmeditor = CodeMirror(HTMLContainer, {
+  lineNumbers: true,
+  mode: "htmlmixed"
+});
+
+cmeditor.on("change", (editor) => {
+  updateEditor();
+});
+
+    </script>
 </html>

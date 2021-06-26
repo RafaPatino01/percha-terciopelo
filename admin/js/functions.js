@@ -281,15 +281,17 @@ async function disable(p_section, p_id) {
 	{
 		case "post":
 			var url = "/delete_post/"+p_id;
+			var response = await fetch(url, { method: 'PUT' });
 		case "col":
 			var url = "/delete_col/"+p_id;
+			var response = await fetch(url, { method: 'PUT' });
 		case "news":
 			var url = "/delete_news/"+p_id;
+			var response = await fetch(url, { method: 'PUT' });
 		case "interview":
 			var url = "/delete_interview/"+p_id;
+			var response = await fetch(url, { method: 'PUT' });
 	}
-	
-	const response = await fetch(url, { method: 'PUT' });
 }
 
 // load image by Id

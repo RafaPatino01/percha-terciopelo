@@ -5,6 +5,45 @@ async function getData(p_endpoint) {
     return data;
 }
 
+// load individual post of section
+async function load(p_section) {
+    const href = window.location.href.toString()
+    var n = href.lastIndexOf('/');
+    var id = href.substring(n + 1); // get id
+     
+    var no_result = '{"error":"no_result"}';
+
+    // Which section will be loaded
+    switch(p_section) {
+        case "stories":
+            console.log("something");
+            break;
+
+        case "interview":
+            var data = await getData("/get_interview/"+id);
+            if (JSON.stringify(data) != no_result )
+            {
+                var title = data[0].title;
+                var descr = data[0].descr;
+                var author = data[0].author;
+                var location = data[0].location;
+                var date = data[0].date;
+                var location_date = location.toUpperCase() + " / " + date.substring(0, date.length - 17);
+                var main_text = data[0].main_text;
+                var spotify = data[0].spotify;
+
+                document.getElementById("title").innerHTML = title;
+                document.getElementById("descr").innerHTML = descr;
+                document.getElementById("author").innerHTML = author;
+                document.getElementById("location_date").innerHTML = location_date;
+            }
+            break;
+
+        default:
+            console.log("wrong parameter");
+            break;
+    }
+}
 
 // load image by Id
 async function loadImages(p_id) {

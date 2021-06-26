@@ -306,3 +306,7 @@ input {
 .z-99{
     z-index: 99;
 }
+
+.text-title {
+    font-size: 3em;
+}
