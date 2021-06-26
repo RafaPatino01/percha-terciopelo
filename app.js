@@ -159,6 +159,24 @@ app.get('/get_allnews', function(req, res) {
     	}
     });
 });
+// All interviews
+app.get('/get_allinterviews', function(req, res) {
+
+    const sql = 'SELECT * FROM interviews WHERE status>0';
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+			
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
+});
 // Destacados posts
 app.get('/get_destacados', function(req, res) {
 
@@ -197,6 +215,25 @@ app.get('/get_post/:id', function(req, res) {
     });
 });
 
+// get interview by ID
+app.get('/get_interview/:id', function(req, res) {
+    
+    const {id } = req.params
+    const sql = `SELECT * FROM interviews WHERE id=${id} AND status>0`;
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
+});
+
 // col by id
 app.get('/get_col/:id', function(req, res) {
     
@@ -215,6 +252,8 @@ app.get('/get_col/:id', function(req, res) {
     	}
     });
 });
+
+// news by id
 app.get('/get_news/:id', function(req, res) {
     
     const {id } = req.params
@@ -239,6 +278,23 @@ app.get('/get_news/:id', function(req, res) {
 app.get('/get_im_url/:id', function(req, res) {
 	const id = req.params["id"];
     const sql = 'SELECT * FROM posts_images WHERE post_id='+id;
+
+    connection.query(sql,(err,result)=>{
+    	if(err){
+    		throw err;
+    	}
+    	if(result.length > 0) {
+    		res.json(result);
+    	}
+    	else {
+    		res.send('{"error":"no_result"}');
+    	}
+    });
+});
+// img interviews
+app.get('/get_im_interview/:id', function(req, res) {
+	const id = req.params["id"];
+    const sql = 'SELECT * FROM interviews_images WHERE post_id='+id;
 
     connection.query(sql,(err,result)=>{
     	if(err){
@@ -344,7 +400,6 @@ app.post('/add_post', function (req, res) {
 })
 
 // Add col
-// (article)
 app.post('/add_col', function (req, res) {
 
 	console.log('Recieved: ' + typeof(req.body.title)) //ACCESS DATA FROM FORM
@@ -450,6 +505,62 @@ app.post('/add_noticia', function (req, res) {
 	});
 })
 
+// Add interview
+app.post('/add_interview', function (req, res) {
+
+	console.log('Recieved: ' + typeof(req.body.title)) // ACCESS DATA FROM FORM
+	console.log('Recieved: ' + typeof(req.body.im0))
+
+	const sql = 'INSERT INTO interviews SET ?';
+
+	const postObject = {
+		title: req.body.title,
+		descr: req.body.descr,
+		author: req.body.author,
+		date: req.body.date,
+		location: req.body.location,
+		main_text: req.body.main_text,
+		status: 1
+	}
+
+	connection.query(sql, postObject, (err, result)=> {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Added interview");
+
+			console.log("LAST INSERTED ID: " + result.insertId);
+
+			const sql2 = 'INSERT INTO interviews_images SET ?';
+			let base64Data = req.body.im;
+
+			// For each image
+			for (var i = 0; i < req.body.n; i++) {
+
+				let postObject2 = {
+					url: req.body.title+i,
+					post_id: result.insertId
+				}
+
+				// Write to database
+				connection.query(sql2, postObject2, (err, result)=> { 
+					if(err) { 
+						throw err;
+					}
+				});
+
+				// Write image to folder
+				require("fs").writeFile("src/uploads/interviews/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+		  			console.log(err);
+				});
+
+				console.log("Added image: " + req.body.title + i + ".png")
+			}
+		}
+	});
+})
+
 // [ EDIT ] Stuff ----------------------------------------------
 // Edit post
 app.put('/edit_post/:id', function (req, res) {
@@ -472,7 +583,30 @@ app.put('/edit_post/:id', function (req, res) {
 			res.send("Post updated");
 		}
 	});
+})
+// Edit interview
+app.put('/edit_interview/:id', function (req, res) {
+    const id = req.params["id"];
 
+    const title = req.body.title;
+    const descr = req.body.descr;
+    const date = req.body.date;
+    const main_text = req.body.main_text;
+    const author = req.body.author;
+	const location = req.body.location;
+
+	const status = 1;
+
+    const sql = 'UPDATE interviews SET status='+'"'+status+'"'+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+',location='+'"'+location+'"'+', author='+'"'+author+'"'+' WHERE id='+id;
+
+    connection.query(sql, err => {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Interview updated");
+		}
+	});
 })
 // Edit col
 app.put('/edit_col/:id', function (req, res) {
@@ -528,6 +662,20 @@ app.put('/delete_post/:id', function (req, res) {
 		}
 		else {
 			res.send("Post status set to 0");
+		}
+	});
+})
+// Delete interview
+app.put('/delete_interview/:id', function (req, res) {
+    const id = req.params["id"];
+    const sql = 'UPDATE interviews SET status=0 WHERE id='+id;
+
+    connection.query(sql, err => {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("interview status set to 0");
 		}
 	});
 })
@@ -622,6 +770,14 @@ app.get('/admin_new_noticia', function(req, res) {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
 	}
 });
+app.get('/admin_new_interview', function(req, res) {
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/new_interview.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
 
 // Admin Edit
 app.get('/admin_edit/:id', function(req, res) {
@@ -649,6 +805,16 @@ app.get('/admin_edit_news/:id', function(req, res) {
 
 	if(req.session.flag == 1){ // Admin has logged in
 		res.sendFile(path.join(__dirname + '/admin/edit_news.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
+app.get('/admin_edit_interview/:id', function(req, res) {
+	const id = req.params["id"];
+
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/edit_interview.html'));
 	}
 	else {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));

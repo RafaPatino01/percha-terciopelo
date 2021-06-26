@@ -194,3 +194,67 @@ function send_data_news(p_title,p_date,p_subtitle,p_main_text) {
 	}
 	});
 }
+
+
+
+// -------- INTERVIEW --------
+// Set current info to inputs
+async function placeinfo_interview() {
+
+	var info = await getData("/get_interview/"+id);
+
+	info = info[0];
+	var fecha = info.date.substring(0, info.date.lastIndexOf('T')); //fix date-time
+
+	document.getElementById("title").value = info.title;
+	document.getElementById("location").value = info.location;
+	document.getElementById("author").value = info.author;
+	document.getElementById("date").value = fecha;
+	document.getElementById("descr").value = info.descr;
+	document.getElementById("main_text").value = info.main_text;
+}
+// Prepare current info to db
+async function prepare_data_interview() {
+
+	var title = document.getElementById("title").value;
+	var date = document.getElementById("date").value;
+	var descr = document.getElementById("descr").value;
+	var main_text = document.getElementById("main_text").value;
+	var location = document.getElementById("location").value;
+	var author = document.getElementById("author").value;
+
+
+	if(!author || !location || !title || !date || !descr || !main_text) {
+		alert("Missing Fields");
+	}
+	else {
+		send_data_interview(title,date,descr,main_text,location,author);
+	}
+}
+// Send current info to server
+function send_data_interview(p_title,p_date,p_descr,p_main_text,p_location,p_author) { 
+
+	var data = new FormData();
+
+	data.append('title', p_title);
+	data.append('location', p_location);
+	data.append('author', p_author);
+	data.append('descr', p_descr);
+	data.append('date',p_date);
+	data.append('main_text', p_main_text);
+
+	$.ajax({
+	url :  "/edit_interview/"+id,
+	type: 'PUT',
+	data: data,
+	contentType: false,
+	processData: false,
+	success: function(data) {
+	  alert("Información actualizada correctamente");
+	  location.replace("/admin_all");
+	},    
+	error: function() {
+	  alert("Ocurrió un error");
+	}
+	});
+}
