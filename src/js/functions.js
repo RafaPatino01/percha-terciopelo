@@ -50,3 +50,19 @@ async function loadStoriesMenu(){
         }
     }
 }
+
+// load interviews
+async function loadInterviewsMenu() {
+    var interviews = await getData("/get_allinterviews");
+    var no_result = '{"error":"no_result"}';
+
+    if (JSON.stringify(interviews) != no_result )
+    {
+        for(var i = 0; i < interviews.length; i++)
+        {
+            document.getElementById("output_interviews").innerHTML += `
+            <a href="/interview_post/`+interviews[i].id+`" class="btn btn-block btn-outline-dark mb-4"><h1 class="p-5">`+interviews[i].title+`</h1></a>
+            `;
+        }
+    }
+}
