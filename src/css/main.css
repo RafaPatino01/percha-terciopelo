@@ -303,3 +303,6 @@ input {
 .white{
     color: #ffffff;
 }
+.z-99{
+    z-index: 99;
+}

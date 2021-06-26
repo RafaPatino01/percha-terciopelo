@@ -24,7 +24,7 @@
     <script src="/js/functions.js"></script>
 </head>
 <!-- HUD -->
-<div class="w-100 fixed p-4">
+<div class="w-100 fixed p-4" style="z-index: 99;">
     <div class="row">
         <div class="col-4 pl-5">
             <h6 onclick="location.href='/about';" style="cursor: pointer;">ABOUT US</h6>
@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<div class="w-100 fixed align-bottom p-4">
+<div class="w-100 fixed align-bottom p-4" style="z-index: 99;">
     <div class="row">
         <div class="col-4 pl-5">
             <h6 onclick="location.href='/contact';" style="cursor: pointer;">CONTACT</h6>
@@ -103,7 +103,7 @@
             <p class="home-text">magazine</p>
         </div>
     </section>
-    <section style="height: 100vh; position: relative" id="stories">
+    <section style="height: 100vh; position: relative; z-index: 0;" id="stories">
         <div class="align-items-center" style="position: absolute;top: 0;left: 0; width: 100%; height: 100vh; display:flex; flex-direction:row">
             <div class="top-content w-100">
                 <div class="container-fluid">
