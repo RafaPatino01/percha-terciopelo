@@ -912,6 +912,19 @@ app.get('/interview_post/:id', function(req, res) {
 app.get('/articles', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/comingsoon.html'));
 });
+
+
+// Send Story
+app.get('/stories_post/:id', function(req, res) {
+	const id = req.params["id"];
+	res.sendFile(path.join(__dirname + '/src/stories_post.html'));
+});
+
+// Send articles
+app.get('/articles', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/comingsoon.html'));
+});
+
 // Send contact
 app.get('/contact', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/contact.html'));
