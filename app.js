@@ -4,6 +4,7 @@ const express = require('express')
 const path = require('path');
 const multer = require('multer');
 const mysql = require('mysql');
+const useragent = require('express-useragent');
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -30,6 +31,8 @@ try {
 } catch (err) {
   console.log('crypto support is disabled!');
 }
+
+app.use(useragent.express()); // mobile detection
 
 // [ LOGIN ] Admin -----------------------------------------------------------------
 var session = require('express-session')
@@ -852,26 +855,16 @@ app.get('/admin_js/:filename', function(req, res) {
 
 // [ PUBLIC Routing ] ----------------------------------------------------------------------
 
-// Send home
-app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/home.html'));
-});
-app.get('/home', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/home.html'));
-});
-
 // Send Uploads
 app.get('/stories_img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/stories/'+filename));
 });
-
 // Send Interviews uploads
 app.get('/interviews_img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/interviews/'+filename));
 });
-
 // Send IMG
 app.get('/img/:filename', function(req, res) {
 	const filename = req.params["filename"];
@@ -893,51 +886,88 @@ app.get('/js/:filename', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/js/'+filename));
 });
 
-// Send feat
-app.get('/feat', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/feat.html'));
+// Send home
+app.get('/', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/home.html'));} //desktop
 });
-// Send news
-app.get('/news', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/comingsoon.html'));
-});
-// Send news-posts
-app.get('/news_post', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/news_post.html'));
-});
-// Send interviews
-app.get('/interviews', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/interviews.html'));
-});
-// Send interviews-posts
-app.get('/interview_post/:id', function(req, res) {
-	const id = req.params["id"];
-	res.sendFile(path.join(__dirname + '/src/interviews_post.html'));
-});
-// Send articles
-app.get('/articles', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/comingsoon.html'));
+app.get('/home', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/home.html'));} //desktop
 });
 
+// Send feat
+app.get('/feat', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/feat.html'));} //desktop
+});
+
+// Send news
+app.get('/news', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //desktop
+});
+
+// Send news-posts
+app.get('/news_post', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/news_post.html'));}//desktop
+});
+
+// Send interviews
+app.get('/interviews', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/interviews.html'));}//desktop
+});
+
+// Send interviews-posts
+app.get('/interview_post/:id', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	const id = req.params["id"];
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/interviews_post.html'));}//desktop
+});
+
+// Send articles
+app.get('/articles', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));}//desktop
+});
 
 // Send Story
 app.get('/stories_post/:id', function(req, res) {
+	var mobile = req.useragent.isMobile;
 	const id = req.params["id"];
-	res.sendFile(path.join(__dirname + '/src/stories_post.html'));
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/stories_post.html'));}//desktop
 });
 
 // Send articles
 app.get('/articles', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/comingsoon.html'));
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));}//desktop
 });
 
 // Send contact
 app.get('/contact', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/contact.html'));
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/contact.html'));}//desktop
 });
+
 // Send about
 app.get('/about', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/about.html'));
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/about.html'));}//desktop
 });
 
 // Send temp
