@@ -1,3 +1,21 @@
+// formatea fecha
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+
+
 // Fetch de la base de datos
 async function getData(p_endpoint) {
     const response = await fetch(p_endpoint);
@@ -74,7 +92,9 @@ async function loadStoriesMenu(){
         var images = await loadImages(stories[0].id) ;
         document.getElementById("carouselMain").innerHTML = `
         <div class="carousel-item col-12 col-sm-6 col-md-4 active">
-            <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2">
+            <a href="/stories_post/`+ stories[0].id +`">
+                <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2">
+            </a>
         </div>
         `;
 
@@ -82,7 +102,9 @@ async function loadStoriesMenu(){
             images = await loadImages(stories[i].id) ;
             document.getElementById("carouselMain").innerHTML += `
             <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2">
+                <a href="/stories_post/`+ stories[i].id +`" >
+                    <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2">
+                </a>
             </div>
             `;
         }
@@ -96,6 +118,54 @@ async function loadStoriesMenu(){
         }
     }
 }
+
+async function loadStory(){
+    const href = window.location.href.toString()
+    var n = href.lastIndexOf('/');
+    var id = href.substring(n + 1); // get id
+
+
+    var story = await getData("/get_post/" + id);
+    var no_result = '{"error":"no_result"}';
+    console.log(story)
+    if (JSON.stringify(story) != no_result ){
+
+        var images = await loadImages(id)
+
+        document.getElementById("main").innerHTML = `
+        <div class="section">
+            <div class="fixed">
+                <h1 class="large">` + story[0].title +`</h1>
+                <p>`  + story[0].descr + " " +formatDate(story[0].date) + `</p>
+            </div>
+        </div>
+        `;
+
+        for(var i = 0; i < images.length; i++){
+            document.getElementById("main").innerHTML+=`
+            <div class="section">
+                <div class="p fixed w-100">
+                    <img class="w-100" src="/stories_img/`+ images[i] +`.png">
+                </div>
+            </div>
+            `;
+        }
+        for(var i = 0; i <= images.length ; i++) {
+            document.getElementById("mystyle").innerText +=`
+                .section:nth-child(`+ (i+1) +`) {
+                    background-color: #fff;
+                    color: #000;
+                    top:`+ (i * 100) +`vh;
+                    z-index:`+ (i+1) +`;
+                }       
+                .section:nth-child(`+ (i+1) +`) .fixed {
+                    transform: translate(-50%, -50%);
+                }
+            `;
+        }
+    }
+}
+
 
 // load interviews
 async function loadInterviewsMenu() {
