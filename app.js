@@ -13,7 +13,7 @@ var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname, 'src/img/', 'icon.ico')));
 
 var upload = multer({
-	limits: { fieldSize: 10 * 1024 * 1024 }
+	limits: { fieldSize: 20 * 1024 * 1024 }
 })
 
 // Parse json data
@@ -520,6 +520,7 @@ app.post('/add_interview', function (req, res) {
 		date: req.body.date,
 		location: req.body.location,
 		main_text: req.body.main_text,
+		secondary_text: req.body.secondary_text,
 		spotify: req.body.spotify,
 		status: 1
 	}
@@ -568,7 +569,6 @@ app.put('/edit_post/:id', function (req, res) {
     const id = req.params["id"];
     const title = req.body.title;
     const descr = req.body.descr;
-
     const date = req.body.date;
     const main_text = req.body.main_text;
     const secondary_text = req.body.secondary_text;
@@ -593,13 +593,14 @@ app.put('/edit_interview/:id', function (req, res) {
     const descr = req.body.descr;
     const date = req.body.date;
     const main_text = req.body.main_text;
+	const secondary_text = req.body.secondary_text;
     const author = req.body.author;
 	const location = req.body.location;
 	const spotify = req.body.spotify;
 
 	const status = 1;
 
-    const sql = 'UPDATE interviews SET status='+'"'+status+'"'+', spotify='+'"'+spotify+'"'+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+',location='+'"'+location+'"'+', author='+'"'+author+'"'+' WHERE id='+id;
+    const sql = 'UPDATE interviews SET status='+'"'+status+'"'+', spotify='+"'"+spotify+"'"+', secondary_text='+"'"+secondary_text+"'"+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+',location='+'"'+location+'"'+', author='+'"'+author+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {

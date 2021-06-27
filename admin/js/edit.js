@@ -213,6 +213,7 @@ async function placeinfo_interview() {
 	document.getElementById("descr").value = info.descr;
 	document.getElementById("spotify").value = info.spotify;
 	document.getElementById("main_text").value = info.main_text;
+	document.getElementById("secondary_text").value = info.secondary_text;
 }
 // Prepare current info to db
 async function prepare_data_interview() {
@@ -221,20 +222,21 @@ async function prepare_data_interview() {
 	var date = document.getElementById("date").value;
 	var descr = document.getElementById("descr").value;
 	var main_text = document.getElementById("main_text").value;
+	var secondary_text = document.getElementById("secondary_text").value;
 	var location = document.getElementById("location").value;
 	var author = document.getElementById("author").value;
 	var spotify = document.getElementById("spotify").value;
 
 
-	if(!spotify || !author || !location || !title || !date || !descr || !main_text) {
+	if(!secondary_text || !spotify || !author || !location || !title || !date || !descr || !main_text) {
 		alert("Missing Fields");
 	}
 	else {
-		send_data_interview(title,date,descr,main_text,location,author,spotify);
+		send_data_interview(title,date,descr,main_text,location,author,spotify,secondary_text);
 	}
 }
 // Send current info to server
-function send_data_interview(p_title,p_date,p_descr,p_main_text,p_location,p_author,p_spotify) { 
+function send_data_interview(p_title,p_date,p_descr,p_main_text,p_location,p_author,p_spotify,p_secondary_text) { 
 
 	var data = new FormData();
 
@@ -244,6 +246,7 @@ function send_data_interview(p_title,p_date,p_descr,p_main_text,p_location,p_aut
 	data.append('descr', p_descr);
 	data.append('date',p_date);
 	data.append('main_text', p_main_text);
+	data.append('secondary_text', p_secondary_text);
 	data.append('spotify', p_spotify);
 
 	$.ajax({

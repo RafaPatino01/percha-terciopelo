@@ -117,6 +117,7 @@
           var location  = $('#location')
           var date  = $('#date')
           var main_text  = $('#main_text_html')
+          var secondary_text  = $('#secondary_text_html')
           var spotify  = $('#spotify')
           var images = $('.images .img')
           var imageArr = []
@@ -133,6 +134,7 @@
             descr: descr.val(),
             date: date.val(),
             main_text: main_text.val(),
+            secondary_text: secondary_text.val(),
             spotify: spotify.val(),
             images: imageArr,
             type: 1
@@ -219,7 +221,7 @@
               check = 1
             }
         } else {
-          if(!stock.spotify || !stock.location || !stock.author || !stock.title || !stock.descr || stock.images == 0 || !stock.date || !stock.main_text) {
+          if(!stock.secondary_text || !stock.spotify || !stock.location || !stock.author || !stock.title || !stock.descr || stock.images == 0 || !stock.date || !stock.main_text) {
             check = 1
           }
         }
@@ -244,6 +246,7 @@
       $('#author').val('')
       $('#date').val('')
       $('#main_text').val('')
+      $('#secondary_text').val('')
       $('#spotify').val('')
       $('.select-option .head').html('Category')
       $('select#category').val('')
@@ -270,6 +273,7 @@ function send_data(p_data) {
       data.append('location', p_data["location"]);
       data.append('date', p_data["date"]);
       data.append('main_text', p_data["main_text"]);
+      data.append('secondary_text', p_data["secondary_text"]);
       data.append('spotify', p_data["spotify"]);
 
       data.append('n', n_images);

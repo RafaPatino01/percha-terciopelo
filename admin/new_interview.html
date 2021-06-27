@@ -73,9 +73,20 @@
           <div class="row bg-lighter5 p-3" id="FadeIn">
             <div class="col-4 text-right pt-3">
               <h3>MAIN TEXT</h3>
+              <p>(Left column)</p>
             </div>
             <div class="col-8 p-3">
               <textarea class="form-control form-control-lg" type="text" id="main_text" placeholder="" rows="20"></textarea>
+            </div>
+          </div>
+
+          <div class="row bg-lighter5 p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
+              <h3>SECONDARY TEXT</h3>
+              <p>(Right column)</p>
+            </div>
+            <div class="col-8 p-3">
+              <textarea class="form-control form-control-lg" type="text" id="secondary_text" placeholder="" rows="20"></textarea>
             </div>
           </div>
 
@@ -122,6 +133,7 @@
       <!-- TEXT EDITOR STUFF-->
       <div class="HTMLContainer" style="display: none;"></div>
       <textarea type="text" id="main_text_html" rows="5" style="display: none;"></textarea>
+      <textarea type="text" id="secondary_text_html" rows="5" style="display: none;"></textarea>
 
 
 
@@ -145,7 +157,7 @@ tinymce.init({
   setup: function (editor) {
     editor.on("keyup", function (e) {
       updateHTML(editor.getContent());
-      console.log(document.getElementById("main_text_html").value); // final HTML we need
+      console.log("main: " + document.getElementById("main_text_html").value); // final HTML we need
       
     });
     editor.on("change", function (e) {
@@ -153,6 +165,35 @@ tinymce.init({
     });
   }
 });
+
+tinymce.init({
+  selector: "#secondary_text",
+  height: 400,
+  plugins: [
+    "advlist autolink lists link image charmap print preview anchor",
+    "searchreplace visualblocks code fullscreen",
+    "insertdatetime media table paste emoticons"
+  ],
+  toolbar:
+    "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image emoticons",
+  skin: "small",
+  icons: "",
+  setup: function (editor) {
+    editor.on("keyup", function (e) {
+      updateHTML2(editor.getContent());
+      console.log("secondary: " +  document.getElementById("secondary_text_html").value); // final HTML we need
+      
+    });
+    editor.on("change", function (e) {
+      updateHTML2(editor.getContent());
+    });
+  }
+});
+
+function updateHTML2(content) {
+  cmeditor.getDoc().setValue(content);
+  document.getElementById("secondary_text_html").value = content;
+}
 
 function updateHTML(content) {
   cmeditor.getDoc().setValue(content);
