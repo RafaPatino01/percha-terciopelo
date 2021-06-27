@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/interviews.css">
     
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
@@ -45,14 +45,17 @@
 <div class="w-100 fixed align-bottom p-4">
     <div class="row">
         <div class="col-4 pl-5">
+            <br><br>
             <h6 onclick="location.href='/contact';" style="cursor: pointer;">CONTACT</h6>
         </div>
-        <div class="col-4"></div>
+        <div class="col-4" id="spotify">
+            <iframe src="https://open.spotify.com/embed/track/7vJhZnFfHRgHArNOb2Y6pW?theme=0" width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
         <div class="col-4 pr-5">
             <div class="row pr-3 text-right text-muted">
-                <div onclick="location.href='https://www.instagram.com/perchamagazine/?hl=es-la';" style="cursor: pointer;" class="col-4 p-0"><h6><b>Instagram</b></h6></div>
-                <div onclick="location.href='/';" style="cursor: pointer;" class="col-4 p-0"><h6><b>Facebook</b></h6></div>
-                <div onclick="location.href='/';" style="cursor: pointer;" class="col-4 p-0"><h6><b>TikTok</b></h6></div>
+                <div onclick="location.href='https://www.instagram.com/perchamagazine/?hl=es-la';" style="cursor: pointer;" class="col-4 p-0"><br><br><h6><b>Instagram</b></h6></div>
+                <div onclick="location.href='/';" style="cursor: pointer;" class="col-4 p-0"><br><br><h6><b>Facebook</b></h6></div>
+                <div onclick="location.href='/';" style="cursor: pointer;" class="col-4 p-0"><br><br><h6><b>TikTok</b></h6></div>
             </div>
         </div>
     </div>
@@ -105,19 +108,44 @@
             <h1 class="text-big mt-5 position-fixed z-99">_INTERVIEW</h1>
         </div>
     </div>
-    <div class="row bg-warning mt-large">
-        <h1 class="w-100 text-center text-title" id="title">Title</h1>
+    <div class="row mt-large">
+        <h1 class="w-100 text-center text-title text-uppercase mt-5" id="title">Title</h1>
     </div>
     <div class="row mt-0 justify-content-center">
-        <div class="col-md-5 bg-danger">
-            <p class="lead" id="descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus voluptatibus voluptatem corporis illum voluptates ex optio libero quam labore hic, natus cupiditate iusto assumenda in modi. Et voluptates odio expedita.</p>
+        <div class="col-md-6">
+            <p id="descr" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus voluptatibus voluptatem corporis illum voluptates ex optio libero quam labore hic, natus cupiditate iusto assumenda in modi. Et voluptates odio expedita.</p>
             <p class="text-center m-0" id="author"><i>Author</i></p>
-            <p class="text-center p-0 m-0" id="location_date"><b>Location / date</b></p>
+            <p class="text-center p-0 m-0" id="location_date" style="font-weight: bold;"><b>Location / date</b></p>
         </div>
     </div>
-    <div class="row bg-success mt-5">
-        a
+    <div class="row mt-5 justify-content-center pt-0 pl-5 pr-5 pb-5">
+        <div class="col-md-2 pr-0" id="main_text">
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab magni libero sequi dolores, reiciendis aliquam alias rem. Molestiae, voluptatum? Impedit aliquam voluptates repudiandae blanditiis atque eveniet doloremque provident ipsa soluta.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis nemo officia consequuntur unde recusandae mollitia dolorem tempore quod, nostrum, dolore odio animi temporibus ut perferendis ducimus? Voluptatem modi quos quam!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae iste dolores, fuga iure omnis corrupti commodi provident error aliquid quisquam, possimus voluptatibus nihil quod rerum veritatis magnam soluta? Tenetur, nihil.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae nobis alias soluta. Natus similique mollitia exercitationem magnam, tempore doloribus fugiat recusandae doloremque accusantium nisi impedit corporis? Tempora iste possimus nesciunt.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum repellat eaque saepe sit unde officia iste nesciunt asperiores
+            </p>
+        </div>
+        <div class="col-md-8 pl-0" id="secondary_text">
+            <!-- <img class="int_img" id="main_img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2018%2F03%2F19%2F579886-digital_art-portrait_display-vertical-colorful.jpg&f=1&nofb=1"> -->
+            <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, necessitatibus ipsa blanditiis, id odio, alias quas nulla porro unde expedita dolorum labore. Dolorum aliquam earum ducimus totam asperiores tenetur officia.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur sit suscipit neque quis? Odit quibusdam culpa laborum tempora earum nulla similique voluptatibus, esse, eaque laboriosam hic minima laudantium atque provident.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, id! Corporis sunt reprehenderit doloribus magni enim suscipit ipsum ex accusamus facere dolorum, sequi tenetur debitis aperiam saepe delectus id! Doloremque.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam harum quod, natus eveniet quam adipisci repudiandae sed. Explicabo, molestias tenetur. Consequatur nostrum amet quisquam sequi. Dolorum dolorem saepe minima assumenda.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto cumque pariatur amet blanditiis. Explicabo quia enim pariatur deserunt, corporis nobis expedita incidunt accusantium. Nam ab asperiores rerum perspiciatis nobis veritatis!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam repellat recusandae explicabo dolore rem culpa eos vero, animi repudiandae consequatur pariatur harum! Facilis adipisci soluta voluptas doloribus! Doloribus, neque aliquam!
+            </p>
+        </div>
     </div>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <p class="center-text italic _18px">También escucha la entrevista</p>
+        </div>
+    </div>
+    <br><br><br><br><br>
 </body>
 </html>
 
