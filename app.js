@@ -92,7 +92,7 @@ function handleDisconnect() {
   });                                     // process asynchronous requests in the meantime.
                                           // If you're also serving http, display a 503 error.
   connection.on('error', function(err) {
-    console.log('[ERR] DB disconection...');
+    console.log('[ERR] DB disconected...');
     if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
       handleDisconnect();                         // lost due to either server restart, or a
     } else {                                      // connnection idle timeout (the wait_timeout
@@ -892,7 +892,7 @@ app.get('/feat', function(req, res) {
 });
 // Send news
 app.get('/news', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/news.html'));
+	res.sendFile(path.join(__dirname + '/src/comingsoon.html'));
 });
 // Send news-posts
 app.get('/news_post', function(req, res) {
@@ -909,7 +909,7 @@ app.get('/interview_post/:id', function(req, res) {
 });
 // Send articles
 app.get('/articles', function(req, res) {
-	res.sendFile(path.join(__dirname + '/src/articles.html'));
+	res.sendFile(path.join(__dirname + '/src/comingsoon.html'));
 });
 // Send contact
 app.get('/contact', function(req, res) {
@@ -923,6 +923,11 @@ app.get('/about', function(req, res) {
 // Send temp
 app.get('/temp', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/template.html'));
+});
+
+// 404
+app.get('*', function(req, res) {
+	res.sendFile(path.join(__dirname + '/src/notfound.html'));
 });
 
 // [ SERVER PORT ] --------------------------------------------------------------------------
