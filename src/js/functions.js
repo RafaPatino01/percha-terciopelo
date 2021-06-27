@@ -85,7 +85,7 @@ async function loadStoriesMenu(){
         var images = await loadImages(stories[0].id) ;
         document.getElementById("carouselMain").innerHTML = `
         <div class="carousel-item col-12 col-sm-6 col-md-4 active">
-            <a href="/stories_post/`+ stories[0].id +`">
+            <a href="/stories_post/`+ stories[0].id +`" role="button">
                 <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2">
             </a>
         </div>
@@ -95,7 +95,7 @@ async function loadStoriesMenu(){
             images = await loadImages(stories[i].id) ;
             document.getElementById("carouselMain").innerHTML += `
             <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                <a href="/stories_post/`+ stories[i].id +`" >
+                <a href="/stories_post/`+ stories[i].id +`" role="button">
                     <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2">
                 </a>
             </div>
@@ -134,7 +134,7 @@ async function loadStory(){
         </div>
         `;
 
-        for(var i = 0; i < images.length; i++){
+        for(var i = 1; i < images.length; i++){
             document.getElementById("main").innerHTML+=`
             <div class="section">
                 <div class="p fixed w-100">
