@@ -30,12 +30,19 @@ async function load(p_section) {
                 var date = data[0].date;
                 var location_date = location.toUpperCase() + " / " + date.substring(0, date.length - 17);
                 var main_text = data[0].main_text;
+                var secondary_text = data[0].secondary_text;
                 var spotify = data[0].spotify;
+                var img = await getData("/get_im_interview/" + id)
+                var l_arr = "/interviews_img/"+img[0].url+".png";
 
                 document.getElementById("title").innerHTML = title;
                 document.getElementById("descr").innerHTML = descr;
                 document.getElementById("author").innerHTML = author;
                 document.getElementById("location_date").innerHTML = location_date;
+                document.getElementById("main_text").innerHTML = main_text;
+                document.getElementById("secondary_text").innerHTML = '<img class="int_img" src="'+ l_arr +'">' + secondary_text;
+                document.getElementById("spotify").innerHTML = spotify;
+
             }
             break;
 
@@ -105,3 +112,10 @@ async function loadInterviewsMenu() {
         }
     }
 }
+
+function countWords(str) {
+    str = str.replace(/(^\s*)|(\s*$)/gi,"");
+    str = str.replace(/[ ]{2,}/gi," ");
+    str = str.replace(/\n /,"\n");
+    return str.split(' ').length;
+ }

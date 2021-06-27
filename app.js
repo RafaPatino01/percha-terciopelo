@@ -866,6 +866,12 @@ app.get('/stories_img/:filename', function(req, res) {
 	res.sendFile(path.join(__dirname + '/src/uploads/stories/'+filename));
 });
 
+// Send Interviews uploads
+app.get('/interviews_img/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/uploads/interviews/'+filename));
+});
+
 // Send IMG
 app.get('/img/:filename', function(req, res) {
 	const filename = req.params["filename"];
