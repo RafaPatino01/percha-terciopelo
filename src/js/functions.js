@@ -131,16 +131,7 @@ async function loadStory(){
     if (JSON.stringify(story) != no_result ){
 
         var images = await loadImages(id)
-
-        document.getElementById("main").innerHTML = `
-        <div class="section">
-            <div class="fixed">
-                <h1 class="large">` + story[0].title +`</h1>
-                <p>`  + story[0].descr + " " +formatDate(story[0].date) + `</p>
-            </div>
-        </div>
-        `;
-
+        document.getElementById("main").innerHTML = ``;
         for(var i = 1; i < images.length; i++){
             document.getElementById("main").innerHTML+=`
             <div class="section">
