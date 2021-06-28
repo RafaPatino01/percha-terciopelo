@@ -167,16 +167,23 @@ async function loadInterviewsMenu() {
     {
         for(var i = 0; i < interviews.length; i++)
         {
+            var img = await getData("/get_im_interview/" + interviews[i].id)
+            var l_arr = "/interviews_img/"+img[0].url+".png";
             document.getElementById("output_interviews").innerHTML += `
-            <a href="/interview_post/`+interviews[i].id+`" class="btn btn-block btn-outline-dark mb-4"><h1 class="p-5">`+interviews[i].title+`</h1></a>
+            <div style="background-image:url('`+ l_arr +`'); background-size:470px 460px; width:460px !important;
+            height:460px;
+            margin:5px;"><br><br><br><br><br><br>
+            <a href="/interview_post/`+interviews[i].id+`" style="color:white;"><h1 class="pt-5 pr-5 pl-5 pb-0 text-center text-title text-uppercase">`+interviews[i].title+`</h1><p class="text-center" style="font-style:italic;">`+interviews[i].author+`</p></a>
+            </div>
             `;
         }
+        $('#output_interviews').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+          });
     }
 }
 
-function countWords(str) {
-    str = str.replace(/(^\s*)|(\s*$)/gi,"");
-    str = str.replace(/[ ]{2,}/gi," ");
-    str = str.replace(/\n /,"\n");
-    return str.split(' ').length;
- }
+
