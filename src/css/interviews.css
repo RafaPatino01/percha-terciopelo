@@ -88,6 +88,7 @@ font-size: 12px;
     margin-top: 8px;
     padding-bottom:0;
     margin-bottom: 0;
+    object-fit: cover;
 }
 
 .italic{
@@ -97,6 +98,7 @@ font-size: 12px;
 ._18px{
     font-size: 18px;
 }
+<<<<<<< Updated upstream
 
 /* Mobile STYLE */
 .interview-container {
@@ -116,3 +118,5 @@ font-size: 12px;
     width: 100%;
     color: white;
 }
+=======
+>>>>>>> Stashed changes
