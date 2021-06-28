@@ -899,6 +899,12 @@ app.get('/home', function(req, res) {
 });
 
 // Send feat
+app.get('/stories', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/stories.html'));} //mobile
+});
+
+// Send feat
 app.get('/feat', function(req, res) {
 	var mobile = req.useragent.isMobile;
 	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
