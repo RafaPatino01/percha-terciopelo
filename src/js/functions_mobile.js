@@ -30,8 +30,36 @@ async function load(p_section) {
 
     // Which section will be loaded
     switch(p_section) {
-        case "stories":
-            console.log("something");
+        case "story":
+            var story = await getData("/get_post/"+id);
+            if (JSON.stringify(story) != no_result )
+            {
+                var images = await loadImages(id)
+                document.getElementById("main").innerHTML = ``;
+                for(var i = 1; i < images.length; i++){
+                    document.getElementById("main").innerHTML+=`
+                    <div class="section">
+                        <div class="p fixed w-100">
+                            <img class="w-100" src="/stories_img/`+ images[i] +`.png">
+                        </div>
+                    </div>
+                    `;
+                }
+                for(var i = 0; i <= images.length ; i++) {
+                    document.getElementById("mystyle").innerText +=`
+                        .section:nth-child(`+ (i+1) +`) {
+                            background-color: #fff;
+                            color: #000;
+                            top:`+ (i * 100) +`vh;
+                            z-index:`+ (i+1) +`;
+                        }       
+                        .section:nth-child(`+ (i+1) +`) .fixed {
+                            transform: translate(-50%, -50%);
+                        }
+                    `;
+                }
+
+            }
             break;
 
         case "interview":
@@ -106,6 +134,29 @@ async function loadInterviewsMenu() {
                 </div>
             </div>
             `;
+        }
+    }
+}
+
+// load stories
+async function loadStoriesMenu() {
+    var stories = await getData("/get_allposts");
+    var no_result = '{"error":"no_result"}';
+
+    if (JSON.stringify(stories) != no_result )
+    {
+        for(var i = 0; i < stories.length; i++)
+        {
+            if(stories[i].status == 2){ //Stories
+                var imageURL = await getData("/get_im_url/"+stories[i].id);
+                imageURL = imageURL[0].url + ".png";
+    
+                document.getElementById("output_stories").innerHTML += `
+                <div class="story-post mr-5">
+                    <a href="/stories_post/`+stories[i].id+`"><img src="/stories_img/`+imageURL+`" class="w-100 story-img"></a>
+                </div>
+                `;
+            }
         }
     }
 }

@@ -951,7 +951,7 @@ app.get('/articles', function(req, res) {
 app.get('/stories_post/:id', function(req, res) {
 	var mobile = req.useragent.isMobile;
 	const id = req.params["id"];
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/stories_post.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/stories_post.html'));}//desktop
 });
 
