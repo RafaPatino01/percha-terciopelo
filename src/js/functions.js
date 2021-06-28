@@ -84,8 +84,18 @@ async function loadImages(p_id) {
 }
 //load Stories carousel
 async function loadStoriesMenu(){
-    var stories = await getData("/get_allposts");
+    var stories_all = await getData("/get_allposts");
     var no_result = '{"error":"no_result"}';
+
+    var stories = [];
+
+    // Filtrar las que son para desktop
+    for(var i = 0; i<stories_all.length; i++) {
+        if(stories_all[i].status == 1) {
+            stories.push(stories_all[i]);
+        }
+    }
+
     var l = stories.length;
     if (JSON.stringify(stories) != no_result ){
 
