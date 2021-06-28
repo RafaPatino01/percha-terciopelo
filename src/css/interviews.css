@@ -97,3 +97,22 @@ font-size: 12px;
 ._18px{
     font-size: 18px;
 }
+
+/* Mobile STYLE */
+.interview-container {
+    position: relative;
+}
+
+.interview-img {
+    height: 600px;
+    object-fit: cover;
+    position: relative;
+    filter: brightness(60%);
+}
+
+.interview-title {
+    position: absolute;
+    top: 350px;
+    width: 100%;
+    color: white;
+}

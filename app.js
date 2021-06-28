@@ -889,12 +889,12 @@ app.get('/js/:filename', function(req, res) {
 // Send home
 app.get('/', function(req, res) {
 	var mobile = req.useragent.isMobile;
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/home.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/home.html'));} //desktop
 });
 app.get('/home', function(req, res) {
 	var mobile = req.useragent.isMobile;
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/home.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/home.html'));} //desktop
 });
 
@@ -922,7 +922,7 @@ app.get('/news_post', function(req, res) {
 // Send interviews
 app.get('/interviews', function(req, res) {
 	var mobile = req.useragent.isMobile;
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/interviews.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/interviews.html'));}//desktop
 });
 
@@ -930,7 +930,7 @@ app.get('/interviews', function(req, res) {
 app.get('/interview_post/:id', function(req, res) {
 	var mobile = req.useragent.isMobile;
 	const id = req.params["id"];
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/interview_post.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/interviews_post.html'));}//desktop
 });
 

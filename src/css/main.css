@@ -1,3 +1,7 @@
+body{
+    font-family: Helvetica, Arial, sans-serif;
+}
+
 .hello {
     color:black;
     font-size: 50px;
@@ -298,6 +302,16 @@ input {
     font-variation-settings: "wght" 650;
     fill:darkgrey !important;
 }
+.white{
+    color: #ffffff;
+}
+.z-99{
+    z-index: 99;
+}
+
+.text-title {
+    font-size: 3em;
+}
 
 @keyframes rotate {
   from {
@@ -308,13 +322,41 @@ input {
   }
 }
 
-.white{
-    color: #ffffff;
-}
-.z-99{
-    z-index: 99;
-}
+/* Mobile styling */
+@media only screen and (max-width: 600px) {
+    .menu {
+        background-image: url("http://www.solidbackgrounds.com/images/1024x600/1024x600-black-solid-color-background.jpg");
+    }
 
-.text-title {
-    font-size: 3em;
+    .text-small {
+        font-size: 0.8em;
+    }
+    .zindex-top{
+        z-index: 1;
+    }
+    .card {
+        z-index: 0;
+        height: 450px;
+        border: #ffffff;
+    }
+
+    .card-img {
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0% !important;
+    }
+
+    .card-title{
+        position: relative;
+        top: 33%;
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .card-text{
+        position: relative;
+        top: 33%;
+        color: #ffffff;
+    }
 }
