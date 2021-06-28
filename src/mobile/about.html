@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- MetaData -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Creative content">
+    <meta name="keywords" content="Diseño, Moda, Revista">
+    <meta name="author" content="Melius Studio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PERCHA | Interviews</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/about.css">
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/js/functions_mobile.js"></script>
+
+</head>
+
+<!-- HUD -->
+<div class="w-100 fixed p-4 zindex-top">
+    <div class="row">
+        <div class="col-4 pl-1 pt-1">
+            <p class="text-small" onclick="location.href='/about';" style="cursor: pointer;">ABOUT US</p>
+        </div>
+        <div class="col-4" onclick="location.href='/home';" class="text-center" style="cursor: pointer;"">
+        <img src="/img/logo.svg" class="w-100">
+    </div>
+    <div class="col-4"></div>
+</div>
+</div>
+
+<div class="w-100 fixed align-bottom p-4" style="z-index: 98;">
+    <div class="row">
+        <div class="col-4 pl-1 pt-1">
+            <p class="text-small" onclick="location.href='/contact';" style="cursor: pointer;">CONTACT</p>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-7 pl-1 pt-1 pr-1">
+            <div class="row text-center text-muted text-small">
+                <div onclick="location.href='https://www.instagram.com/perchamagazine/?hl=es-la';" style="cursor: pointer;" class="col-4 p-0"><p><b>Instagram</b></p></div>
+                <div onclick="location.href='/';" style="cursor: pointer;" class="col-4 p-0"><p><b>Facebook</b></p></div>
+                <div onclick="location.href='/';" style="cursor: pointer;" class="col-4 p-0"><p><b>TikTok</b></p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="menuArea" class="mr-4">
+    <input type="checkbox" id="menuToggle"></input>
+
+    <label for="menuToggle" class="menuOpen">
+        <div class="open brand mt-3">
+            <div class="brand-label">
+                <svg style="z-index: 100;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300" aria-hidden="true">
+                    <defs>
+                        <path id="a" d="M90 150a60 60 0 01120 0 60 60 0 01-120 0" />
+                    </defs>
+                    <use xlink:href="#a" fill="none" /><text>
+                    <textPath xlink:href="#a">/ creative content / creative content</textPath>
+                </text>
+                </svg>
+            </div>
+        </div>
+    </label>
+
+    <div class="menu menuEffects">
+        <label for="menuToggle"></label>
+        <div class="menuContent">
+            <div class="row mt-0">
+                <div class="col-6">
+                </div>
+                <div class="col-6">
+                    <ul>
+                        <li><a href="/home">__home</a></li>
+                        <li><a href="/stories">__stories</a></li>
+                        <li><a href="/feat">__feat</a></li>
+                        <li><a href="/news">__news</a></li>
+                        <li><a href="/interviews">__interviews</a></li>
+                        <li><a href="/articles">__articles</a></li>
+                        <li><a href="/contact">__contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<body> <!-- Contenido -->
+<div class="container text-center">
+    <br><br><br><br>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6">
+            <h1 class="text-title mb-5" style="text-align: center">_ABOUT US</h1>
+            <img src="/img/about.png" class="img-fluid">
+            <br>
+            <div>
+                <p style="text-align: left; font-size: 14px;" class="m-4">
+                    En Percha Terciopelo nos encargamos de dirigir y producir 
+                    las mejores imágenes que transmitan el mensaje correcto 
+                    de nuestro cliente, mediante sus campañas, lookbooks o 
+                    catálogos, así como de potencializar la imagen de celebridades 
+                    y marcas de moda mediante el mejor styling. <br>
+                    En Percha Terciopelo nos preocupamos por promover y 
+                    fortalecer la industria de la moda mexicana, adaptándonos a 
+                    las necesidades del cliente, analizando su perfil y logrando el 
+                    mejor resultado que los haga convertirse igual que nosotros en 
+                    unos #obsesionadosporlasimágenes.</p>
+                <p class="name-text mb-0 ml-4 mr-4" style="line-height: 14px; font-size: 13px;">JOHNY LOPEZ_ <i style="font-size: small;">Fundador, Director Creativo, Fashion & Celebrity Stylist</i></p>
+                <p class="mb-0"><a style="font-size:small; font-style: italic; text-align: center;" href="https://www.instagram.com/bienfufurufo/" class="black_a">@bienfufurufo</a></p>
+                <p style="text-align: left; font-size: 14px;" class="mt-3 ml-4 mr-4">
+                    Diseñador Textil y de Moda egresado de Centro y con más de 10 años de 
+                    trayectoria, ha colaborado con las editoriales, celebridades, marcas de 
+                    moda y belleza más importantes. En 2015 es considerado uno de los 8 
+                    mejores stylists de México según la Revista Grazia.</p>
+                <p class="name-text  mb-0 ml-4 mr-4 mt-4" style="line-height: 14px; font-size: 13px;">Edu Espejo<i style="font-size: small;">Co-Fundador, Fashion & Celebrity Stylist</i></p>
+                <p mb-0><a style="font-size:small; font-style: italic;" href="https://www.instagram.com/edu.espejo/" class="black_a">@edu.espejo</a></p>
+                <p style="text-align: left; font-size: 14px;" class="mt-3 ml-4 mr-4">
+                    Licenciado en Mercadotecnia y especializado en moda y marcas de lujo, 
+                    egresado del ITESO, Edu cuenta con más de 6 años de trayectoria como 
+                    Fashion Stylist para editoriales, celebridades y las marcas de moda más 
+                    importantes.
+                </p>
+                <img src="/img/logo.svg" class="img-fluid mt-4" style="margin-left: 7rem; margin-right: 7rem;">
+                <p class="text-center" style="font-size: 11px;">magazine</p>
+                <p class="mt-5 center-text" style="font-size: 18px;">TEAM</p>
+                <p class="center-text _12px mb-0 mt-3 italic" style="font-weight: 400;">Coordinación & Producción</p>
+                <p class="center-text _12px mb-0">Sara Lugo <a href="https://www.instagram.com/mariaslugo/" class="black_a">@mariaslugo</a></p>
+                <p class="center-text _12px mb-0">Paulina Áviles <a href="https://www.instagram.com/pauaviflores/" class="black_a">@pauaviflores</a></p>
+                <p class="center-text _12px mb-0 mt-3 italic" style="font-weight: 400;">Diseño</p>
+                <p class="center-text _12px mb-0">Crhistian Montaño <a href="https://www.instagram.com/crhismoga/" class="black_a">@crhismoga</a></p>
+                <p class="center-text _12px mb-0 mt-3 italic" style="font-weight: 400;">Redacción y Estilo</p>
+                <p class="center-text _12px mb-0">Renata Joffre <a href="https://www.instagram.com/renatajoffre/" class="black_a">@renatajoffre</a></p>
+                <p class="center-text _12px mb-0">Carlos Franco <a href="https://www.instagram.com/dbill_charles/" class="black_a">@dbill_charles</a></p>
+                <p class="center-text _12px mb-0 mt-3 italic" style="font-weight: 400;">Programación</p>
+                <p class="center-text _12px mb-0">Rafael Patiño <a href="https://www.instagram.com/melius__mx/" class="black_a">@melius_mx</a></p>
+                <p class="center-text _12px mb-0">Ramón Ruiz <a href="https://www.instagram.com/melius__mx/" class="black_a">@melius_mx</a></p>
+            </div>
+            <br><br><br><br><br>
+        </div>
+    </div>
+</div>
+</body>
+</html>

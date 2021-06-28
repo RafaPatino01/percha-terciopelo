@@ -74,3 +74,8 @@ font-size: 12px;
 .italic{
     font-style: italic;
 }
+
+.black_a{
+    color:black;
+    font-weight: bold;
+}
