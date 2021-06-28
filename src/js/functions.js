@@ -102,8 +102,8 @@ async function loadStoriesMenu(){
             images = await loadImages(stories[i].id) ;
             document.getElementById("carouselMain").innerHTML += `
             <div class="carousel-item col-12 col-sm-6 col-md-4 ">
-                <a href="/stories_post/`+ stories[i].id +`" role="button">
-                    <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2">
+                <a href="/stories_post/`+ stories[i].id +`" role="button" >
+                    <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2" style="object-fit: cover">
                 </a>
             </div>
             `;
@@ -112,7 +112,7 @@ async function loadStoriesMenu(){
         for(var i = l; i < 6; i++) {
             document.getElementById("carouselMain").innerHTML += `
             <div class="carousel-item col-12 col-sm-6 col-md-4">
-                <img src="https://via.placeholder.com/150" class="img-fluid mx-auto d-block w-100" alt="img8">
+                <img src="/img/PERCHA.jpg" class="img-fluid mx-auto d-block w-100" alt="img8">
             </div>
             `;
         }
@@ -135,8 +135,8 @@ async function loadStory(){
         for(var i = 1; i < images.length; i++){
             document.getElementById("main").innerHTML+=`
             <div class="section">
-                <div class="p fixed w-100">
-                    <img class="w-100" src="/stories_img/`+ images[i] +`.png">
+                <div class="p fixed w-100 ">
+                    <img class="w-100" src="/stories_img/`+ images[i] +`.png" >
                 </div>
             </div>
             `;
