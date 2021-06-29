@@ -116,7 +116,8 @@ app.get('/get_allposts', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -133,7 +134,8 @@ app.get('/get_allcols', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
 			
@@ -151,7 +153,8 @@ app.get('/get_allnews', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
 			
@@ -169,7 +172,8 @@ app.get('/get_allinterviews', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
 			
@@ -187,7 +191,8 @@ app.get('/get_destacados', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -207,7 +212,8 @@ app.get('/get_post/:id', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -226,7 +232,8 @@ app.get('/get_interview/:id', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -245,7 +252,8 @@ app.get('/get_col/:id', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -264,7 +272,8 @@ app.get('/get_news/:id', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -284,7 +293,8 @@ app.get('/get_im_url/:id', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -301,7 +311,8 @@ app.get('/get_im_interview/:id', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -318,7 +329,8 @@ app.get('/get_im_col/:id', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);
@@ -335,7 +347,8 @@ app.get('/get_im_news/:id', function(req, res) {
 
     connection.query(sql,(err,result)=>{
     	if(err){
-    		throw err;
+    		//throw err;
+			res.send('{"error":"no_result"}');
     	}
     	if(result.length > 0) {
     		res.json(result);

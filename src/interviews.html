@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow-x: hidden;">
 
 <head>
     <!-- MetaData -->
@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="/css/slick-theme.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/interviews.css">
     
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
@@ -100,12 +101,18 @@
 </div>
 
 
-<body onload="loadInterviewsMenu();"> <!-- Contenido -->    
-        <br><br><br><br>
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-12">
-                <div class="p-5" id="output_interviews"></div>
-            </div>
+<body onload="loadInterviewsMenu();"> <!-- Contenido -->
+    <div class="row m-5 title">
+        <div class="col-lg-4">
+            <h1 class="text-big mt-5 position-fixed z-99">_INTERVIEW</h1>
         </div>
+    </div>
+
+    <br><br><br><br>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-12">
+            <div class="p-5" id="output_interviews"></div>
+        </div>
+    </div>
 </body>
 </html>

@@ -59,6 +59,7 @@ section{
     left:45.5%;
     font-size: 28px;
     z-index: 100;
+    letter-spacing: 3px;
 }
 
 .fixed {
@@ -157,7 +158,7 @@ input {
     height: 100vh;
     top: 0;
     left: 0;
-    background-image: url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2017%2F03%2F29%2F489967-neon-city-drawing.jpg&f=1&nofb=1");
+    background-image: url("/img/menu.jpg");
     background-size:cover;
     background-repeat: no-repeat;
     box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.411);
