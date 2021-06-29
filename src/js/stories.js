@@ -30,6 +30,17 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 /*
    mecanismo scroll
 */
+
+function move(direction){
+
+    if (direction == false) {
+        $('.carousel-control-next').click();
+    } else {
+        $('.carousel-control-prev').click();
+    }
+}
+
+
 window.onscroll = function(ev) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 
