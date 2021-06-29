@@ -63,7 +63,7 @@ window.onscroll = function(ev) {
 
                 eventCount++;
 
-                if (new Date().getTime() - eventCountStart > 100) {
+                if (new Date().getTime() - eventCountStart > 200) {
                     if (eventCount > 10) {
                         isTouchPad = true;
                     } else {
@@ -93,51 +93,49 @@ window.onscroll = function(ev) {
                         setTimeout(function() {oldTime = new Date().getTime();scrolling = false}, 500);
                     }
                 }
+                else {
+                    function debounce(func, wait, immediate) {
+                        var timeout;
+                        return function() {
+                            var context = this,
+                                args = arguments;
+                            var later = function() {
+                                timeout = null;
+                                if (!immediate) func.apply(context, args);
+                            };
+                            var callNow = immediate && !timeout;
+                            clearTimeout(timeout);
+                            timeout = setTimeout(later, wait);
+                            if (callNow) func.apply(context, args);
+                        };
+                    }
+
+                    var slider = document.getElementById("stories");
+                    var onScroll = debounce(function(direction) {
+                        console.log(direction);
+                        if (direction == false) {
+                            $('.carousel-control-next').click();
+                        } else {
+                            $('.carousel-control-prev').click();
+                        }
+                    }, 100, true);
+
+                    slider.addEventListener("wheel", function(e) {
+                        e.preventDefault();
+                        var delta;
+                        if (event.wheelDelta) {
+                            delta = event.wheelDelta;
+                        } else {
+                            delta = -1 * event.deltaY;
+                        }
+
+                        onScroll(delta >= 0);
+                    });
+                }
             }
         }
         document.addEventListener("mousewheel", mouseHandle, false);
         document.addEventListener("DOMMouseScroll", mouseHandle, false);
-
-
-        function debounce(func, wait, immediate) {
-            var timeout;
-            return function() {
-                var context = this,
-                    args = arguments;
-                var later = function() {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                var callNow = immediate && !timeout;
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-                if (callNow) func.apply(context, args);
-            };
-        }
-
-        var slider = document.getElementById("stories");
-        var onScroll = debounce(function(direction) {
-            console.log(direction);
-            if (direction == false) {
-                $('.carousel-control-next').click();
-            } else {
-                $('.carousel-control-prev').click();
-            }
-        }, 100, true);
-
-        slider.addEventListener("wheel", function(e) {
-            e.preventDefault();
-            var delta;
-            if (event.wheelDelta) {
-                delta = event.wheelDelta;
-            } else {
-                delta = -1 * event.deltaY;
-            }
-
-            onScroll(delta >= 0);
-        });
-
-
     }
 };
 
