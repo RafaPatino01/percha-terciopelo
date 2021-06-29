@@ -95,6 +95,8 @@ window.onscroll = function(ev) {
                 }
             }
         }
+        document.addEventListener("mousewheel", mouseHandle, false);
+        document.addEventListener("DOMMouseScroll", mouseHandle, false);
 
 
         function debounce(func, wait, immediate) {
