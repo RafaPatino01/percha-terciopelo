@@ -41,9 +41,37 @@ function move(direction){
     }
 }
 
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+  e.preventDefault();
+}
+
+function preventDefaultForScrollKeys(e) {
+  if (keys[e.keyCode]) {
+    preventDefault(e);
+    return false;
+  }
+}
+
+// modern Chrome requires { passive: false } when adding event
+var supportsPassive = false;
+try {
+  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+    get: function () { supportsPassive = true; } 
+  }));
+} catch(e) {}
+
+var wheelOpt = supportsPassive ? { passive: false } : false;
+var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
 window.onscroll = function(ev) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+
+        window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+        window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+        window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+        window.addEventListener('keydown', preventDefaultForScrollKeys, false);
 
 
         var scrolling = false;
@@ -63,8 +91,8 @@ window.onscroll = function(ev) {
 
                 eventCount++;
 
-                if (new Date().getTime() - eventCountStart > 200) {
-                    if (eventCount > 10) {
+                if (new Date().getTime() - eventCountStart > 100) {
+                    if (eventCount > 50) {
                         isTouchPad = true;
                     } else {
                         isTouchPad = false;
@@ -93,49 +121,51 @@ window.onscroll = function(ev) {
                         setTimeout(function() {oldTime = new Date().getTime();scrolling = false}, 500);
                     }
                 }
-                else {
-                    function debounce(func, wait, immediate) {
-                        var timeout;
-                        return function() {
-                            var context = this,
-                                args = arguments;
-                            var later = function() {
-                                timeout = null;
-                                if (!immediate) func.apply(context, args);
-                            };
-                            var callNow = immediate && !timeout;
-                            clearTimeout(timeout);
-                            timeout = setTimeout(later, wait);
-                            if (callNow) func.apply(context, args);
-                        };
-                    }
-
-                    var slider = document.getElementById("stories");
-                    var onScroll = debounce(function(direction) {
-                        console.log(direction);
-                        if (direction == false) {
-                            $('.carousel-control-next').click();
-                        } else {
-                            $('.carousel-control-prev').click();
-                        }
-                    }, 100, true);
-
-                    slider.addEventListener("wheel", function(e) {
-                        e.preventDefault();
-                        var delta;
-                        if (event.wheelDelta) {
-                            delta = event.wheelDelta;
-                        } else {
-                            delta = -1 * event.deltaY;
-                        }
-
-                        onScroll(delta >= 0);
-                    });
-                }
             }
         }
         document.addEventListener("mousewheel", mouseHandle, false);
         document.addEventListener("DOMMouseScroll", mouseHandle, false);
+
+
+        function debounce(func, wait, immediate) {
+            var timeout;
+            return function() {
+                var context = this,
+                    args = arguments;
+                var later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+
+        var slider = document.getElementById("stories");
+        var onScroll = debounce(function(direction) {
+            console.log(direction);
+            if (direction == false) {
+                $('.carousel-control-next').click();
+            } else {
+                $('.carousel-control-prev').click();
+            }
+        }, 100, true);
+
+        slider.addEventListener("wheel", function(e) {
+            e.preventDefault();
+            var delta;
+            if (event.wheelDelta) {
+                delta = event.wheelDelta;
+            } else {
+                delta = -1 * event.deltaY;
+            }
+
+            onScroll(delta >= 0);
+        });
+
+
     }
 };
 
