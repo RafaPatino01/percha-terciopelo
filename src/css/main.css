@@ -384,3 +384,6 @@ input {
         z-index: 100;
     }
 }
+.menu{
+    text-align: left;
+}
