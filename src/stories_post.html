@@ -66,9 +66,12 @@
     .section .white {
         color: #fff;
     }
-    li{
 
+    li:hover {
+        color:aliceblue;
+        font-weight:bolder;
     }
+
 </style>
 
 <div class="w-100 fixed p-4" style="z-index: 100">
@@ -89,13 +92,13 @@
     <input type="checkbox" id="menuToggle"></input>
 
     <label for="menuToggle" class="menuOpen">
-        <div class="open open-grey brand mt-3">
+        <div class="open brand mt-3">
             <div class="brand-label">
                 <svg style="z-index: 100;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300" aria-hidden="true">
                     <defs>
                         <path id="a" d="M90 150a60 60 0 01120 0 60 60 0 01-120 0" />
                     </defs>
-                    <use xlink:href="#a" fill="none" /><text class="grey">
+                    <use xlink:href="#a" fill="none"/><text>
                     <textPath xlink:href="#a">/ creative content / creative content</textPath>
                 </text>
                 </svg>
@@ -127,7 +130,7 @@
 
 <div class="row mx-5 fixed" style=" z-index: 100; pointer-events: none">
     <div class="col-4 " style=" height: 100vh; padding-top: 12vh;">
-        <h1 onclick="location.href='/home/#stories';" style="pointer-events:auto; font-size: 90px; cursor: pointer;">_STORIES</h1>
+        <h1 class="stories-hud" onclick="location.href='/home/#stories';" >_STORIES</h1>
     </div>
     <div class="col-8"></div>
 </div>

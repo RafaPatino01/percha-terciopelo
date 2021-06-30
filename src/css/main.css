@@ -314,6 +314,24 @@ input {
     font-size: 3em;
 }
 
+.text-big {
+    font-size: 60px !important;
+    letter-spacing: -3px;
+}
+.text-menus {
+    line-height: 1.2;
+}
+
+.stories-hud {
+    height: 68%;
+    font-size: 90px;
+    letter-spacing: -4px;
+}
+
+h6 b {
+    font-size: 14px;
+}
+
 @keyframes rotate {
   from {
     transform: rotate(360deg);
@@ -373,14 +391,12 @@ input {
         object-fit: cover;
     }
     .logo-home {
-        min-width:33%;
-        max-width: 33%;
+        min-width:50%;
+        max-width: 50%;
         width: auto;
         position: absolute;
-        /* margin: 14em 27em; */
-        /* margin:15% 31%; */
-        top:45%;
-        left:33.33%;
+        top:43%;
+        left:25%;
         z-index: 100;
     }
 }

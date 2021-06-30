@@ -74,6 +74,7 @@
             <div class="col-4 text-right pt-3">
               <h3>MAIN TEXT</h3>
               <p>(Left column)</p>
+              <p id="n_palabras"></p>
             </div>
             <div class="col-8 p-3">
               <textarea class="form-control form-control-lg" type="text" id="main_text" placeholder="" rows="20"></textarea>
@@ -158,6 +159,23 @@ tinymce.init({
     editor.on("keyup", function (e) {
       updateHTML(editor.getContent());
       console.log("main: " + document.getElementById("main_text_html").value); // final HTML we need
+      
+      var str = document.getElementById("main_text_html").value;
+      
+      var n_palabras = 1;
+      for (var i = 0; i < str.length; i++) {
+        if(str.charAt(i) == " "){
+          n_palabras++;
+        }
+      }
+
+      document.getElementById("n_palabras").innerHTML = "<b>palabras: " + n_palabras + "</b>";
+
+      if(n_palabras > 200) {
+        document.getElementById("n_palabras").style = "color: red";
+      }else {
+        document.getElementById("n_palabras").style = "color: black";
+      }
       
     });
     editor.on("change", function (e) {

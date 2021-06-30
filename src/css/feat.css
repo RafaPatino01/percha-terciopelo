@@ -24,10 +24,8 @@ html, body {
 }
 
 .cuadro-img {
-    width: 450px;
-    height: 450px;
+    width: 100%;
     object-fit: cover;
-    margin-right: 10em !important;
 }
 
 .bg-black {
