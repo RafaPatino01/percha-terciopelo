@@ -292,8 +292,12 @@ function send_data(p_data) {
         success: function(data) {
           alert("It works!");
         },    
-        error: function() {
+        error: function(xhr, textStatus, error) {
           alert("Damn, it did not work!");
+          console.log(xhr.responseText);
+          console.log(xhr.statusText);
+          console.log(textStatus);
+          console.log(error);
         }
       });
 
