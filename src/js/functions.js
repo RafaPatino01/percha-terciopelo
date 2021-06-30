@@ -59,7 +59,7 @@ async function load(p_section) {
                 document.getElementById("location_date").innerHTML = location_date;
                 document.getElementById("main_text").innerHTML = main_text;
                 document.getElementById("secondary_text").innerHTML = '<img class="int_img" src="'+ l_arr +'">' + secondary_text;
-                document.getElementById("spotify").innerHTML = spotify;
+                document.getElementById("spotify").innerHTML += spotify;
 
             }
             break;
@@ -120,11 +120,20 @@ async function loadStoriesMenu(){
         }
 
         for(var i = l; i < 6; i++) {
+            if(i % 2 == 0) {
             document.getElementById("carouselMain").innerHTML += `
             <div class="carousel-item col-12 col-sm-6 col-md-4">
-                <img src="/img/PERCHA.jpg" class="img-fluid mx-auto d-block w-100" alt="img8">
+                <img src="/img/comingsoon.jpg" class="img-fluid mx-auto d-block w-100" alt="img8">
             </div>
             `;
+            }
+            else {
+            document.getElementById("carouselMain").innerHTML += `
+            <div class="carousel-item col-12 col-sm-6 col-md-4">
+                <img src="/img/comingsoon2.jpg" class="img-fluid mx-auto d-block w-100" alt="img8">
+            </div>
+            `;
+            }
         }
     }
 }
@@ -180,9 +189,7 @@ async function loadInterviewsMenu() {
             var img = await getData("/get_im_interview/" + interviews[i].id)
             var l_arr = "/interviews_img/"+img[0].url+".png";
             document.getElementById("output_interviews").innerHTML += `
-            <div style="background-image:url('`+ l_arr +`'); background-size:470px 460px; width:460px !important;
-            height:460px;
-            margin:5px;"><br><br><br><br><br><br>
+            <div style="background-image:url('`+ l_arr +`'); background-size: cover; width:460px !important; height:460px; margin:5px;"><br><br><br><br><br><br>
             <a href="/interview_post/`+interviews[i].id+`" style="color:white;"><h1 class="pt-5 pr-5 pl-5 pb-0 text-center text-title text-uppercase">`+interviews[i].title+`</h1><p class="text-center" style="font-style:italic;">`+interviews[i].author+`</p></a>
             </div>
             `;
