@@ -86,6 +86,10 @@ input {
     display: none;
 }
 
+.bg-black {
+    background-color: black !important;
+}
+
 .open {
     background-color: #3c3c3c00;
     width: 24px;
