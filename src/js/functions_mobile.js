@@ -38,8 +38,8 @@ async function load(p_section) {
                 document.getElementById("main").innerHTML = ``;
                 for(var i = 1; i < images.length; i++){
                     document.getElementById("main").innerHTML+=`
-                    <div class="section">
-                        <div class="p fixed w-100">
+                    <div class="section bg-black">
+                        <div class="p fixed w-100 h-100">
                             <img class="w-100" src="/stories_img/`+ images[i] +`.png">
                         </div>
                     </div>

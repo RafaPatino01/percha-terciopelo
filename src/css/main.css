@@ -86,6 +86,10 @@ input {
     display: none;
 }
 
+.bg-black {
+    background-color: black !important;
+}
+
 .open {
     background-color: #3c3c3c00;
     width: 24px;
@@ -324,7 +328,7 @@ input {
 
 .stories-hud {
     height: 68%;
-    font-size: 90px;
+    font-size: 80px;
     letter-spacing: -4px;
 }
 
