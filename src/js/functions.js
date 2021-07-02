@@ -191,7 +191,7 @@ async function loadInterviewsMenu() {
             var img = await getData("/get_im_interview/" + interviews[i].id)
             var l_arr = "/interviews_img/"+img[0].url+".png";
             document.getElementById("output_interviews").innerHTML += `
-            <div style="background-image:url('`+ l_arr +`'); background-size: cover; width:460px !important; height:460px; margin:5px;"><br><br><br><br><br><br>
+            <div style="background-image:url('`+ l_arr +`'); background-size: cover; width:460px !important; height:460px; margin:5px; box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.25);"><br><br><br><br><br><br>
             <a href="/interview_post/`+interviews[i].id+`" style="color:white;"><h1 class="pt-5 pr-5 pl-5 pb-0 text-center text-title text-uppercase">`+interviews[i].title+`</h1><p class="text-center" style="font-style:italic;">`+interviews[i].author+`</p></a>
             </div>
             `;
