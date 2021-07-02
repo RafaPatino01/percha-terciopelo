@@ -538,6 +538,7 @@ app.post('/add_interview', function (req, res) {
 		main_text: req.body.main_text,
 		secondary_text: req.body.secondary_text,
 		spotify: req.body.spotify,
+		creditos: req.body.creditos,
 		status: 1
 	}
 
