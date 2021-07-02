@@ -50,6 +50,7 @@ async function load(p_section) {
                 var main_text = data[0].main_text;
                 var secondary_text = data[0].secondary_text;
                 var spotify = data[0].spotify;
+                var source = data[0].source;
                 var img = await getData("/get_im_interview/" + id)
                 var l_arr = "/interviews_img/"+img[0].url+".png";
 
@@ -58,7 +59,19 @@ async function load(p_section) {
                 document.getElementById("author").innerHTML = author;
                 document.getElementById("location_date").innerHTML = location_date;
                 document.getElementById("main_text").innerHTML = main_text;
-                document.getElementById("secondary_text").innerHTML = '<img class="int_img" src="'+ l_arr +'">' + secondary_text;
+                document.getElementById("secondary_text").innerHTML = `
+                    
+                    <div class="int_img" style="position: relative; margin: 0 0; margin-bottom: 10px">
+                        <div>
+                            <img class="int_img" style="position: absolute;top: 0;left: 0;" src="`+ l_arr +`">
+                        </div>
+                        <div class="row w-100 int_source" style="position: absolute;top: 0;left: 0; height: 100%">
+                            <div class="" style="position: absolute; bottom: 0; background-color: white; width: inherit; height: 20px;">
+                                <p><b>`+ source +`</b></p>
+                            </div>
+                        </div>
+                    </div>` + secondary_text;
+
                 document.getElementById("spotify").innerHTML += spotify;
 
             }

@@ -87,8 +87,16 @@ font-size: 12px;
     padding-right: 4px;
     margin-top: 8px;
     padding-bottom:0;
-    margin-bottom: 0;
+    margin-bottom: 3px;
     object-fit: cover;
+}
+.int_source{
+
+    margin-left: 0px;
+    padding-right: 4px;
+    margin-top: 8px;
+    padding-bottom:0;
+    margin-bottom: 0;
 }
 
 .italic{
