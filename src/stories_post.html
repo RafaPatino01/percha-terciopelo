@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- ANALYTICS -->
+    <!-- Global site tag Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VP83KQSVM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-3VP83KQSVM');
+    </script>
     <!-- MetaData -->
     <meta charset="UTF-8">
     <meta name="description" content="Creative content">
     <meta name="keywords" content="Diseño, Moda, Revista">
     <meta name="author" content="Melius Studio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="image_src" href="/img/icon.ico"/>
     <title>PERCHA | Stories</title>
 
     <!-- CSS -->
@@ -66,9 +77,12 @@
     .section .white {
         color: #fff;
     }
-    li{
 
+    li:hover {
+        color:aliceblue;
+        font-weight:bolder;
     }
+
 </style>
 
 <div class="w-100 fixed p-4" style="z-index: 100">
@@ -85,17 +99,33 @@
     </div>
 </div>
 
+<div class="w-100 fixed align-bottom p-4" style="z-index: 99;">
+    <div class="row">
+        <div class="col-4 pl-5">
+            <h6 onclick="location.href='/contact';" style="cursor: pointer;">CONTACT</h6>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4 pr-5">
+            <div class="row pr-3 text-right text-muted">
+                <a href="https://www.instagram.com/perchamagazine/?hl=es-la" class="col-4 p-0 text-muted" target="_blank"><h6><b>Instagram</b></h6></a>
+                <a href="https://www.facebook.com/perchamagazine/" class="col-4 p-0 text-muted" target="_blank"><h6><b>Facebook</b></h6></a>
+                <a href="https://vm.tiktok.com/ZMdm6xAT4/" class="col-4 p-0 text-muted" target="_blank"><h6><b>TikTok</b></h6></a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="menuArea" class="mr-4">
     <input type="checkbox" id="menuToggle"></input>
 
     <label for="menuToggle" class="menuOpen">
-        <div class="open open-grey brand mt-3">
+        <div class="open brand mt-3">
             <div class="brand-label">
                 <svg style="z-index: 100;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300" aria-hidden="true">
                     <defs>
                         <path id="a" d="M90 150a60 60 0 01120 0 60 60 0 01-120 0" />
                     </defs>
-                    <use xlink:href="#a" fill="none" /><text class="grey">
+                    <use xlink:href="#a" fill="none"/><text>
                     <textPath xlink:href="#a">/ creative content / creative content</textPath>
                 </text>
                 </svg>
@@ -112,7 +142,7 @@
                 <div class="col-3" style="text-align: left">
                     <ul>
                         <li><a href="/home">__home</a></li>
-                        <li><a href="/home">__stories</a></li>
+                        <li><a href="/home#stories">__stories</a></li>
                         <li><a href="/feat">__feat</a></li>
                         <li><a href="/news">__news</a></li>
                         <li><a href="/interviews">__interviews</a></li>
@@ -125,11 +155,10 @@
     </div>
 </div>
 
-<div class="row mx-5 fixed" style=" z-index: 100; pointer-events: none">
+<div class="row mx-5 fixed" style="z-index: 96;">
     <div class="col-4 " style=" height: 100vh; padding-top: 12vh;">
-        <h1 class="stories-hud" onclick="location.href='/home/#stories';" style="pointer-events:auto; cursor: pointer;" >_STORIES</h1>
+        <h1 class="stories-hud" onclick="location.href='/home/#stories';" style="cursor: pointer;">_STORIES</h1>
     </div>
-    <div class="col-8"></div>
 </div>
 
 <body onload="loadStory()"> <!-- Contenido -->
