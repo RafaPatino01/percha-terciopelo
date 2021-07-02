@@ -50,7 +50,7 @@ async function load(p_section) {
                 var main_text = data[0].main_text;
                 var secondary_text = data[0].secondary_text;
                 var spotify = data[0].spotify;
-                var source = data[0].source;
+                var source = data[0].creditos;
                 var img = await getData("/get_im_interview/" + id)
                 var l_arr = "/interviews_img/"+img[0].url+".png";
 
