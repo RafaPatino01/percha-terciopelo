@@ -934,7 +934,8 @@ app.get('/news', function(req, res) {
 });
 
 // Send news-posts
-app.get('/news_post', function(req, res) {
+app.get('/news_post/:id', function(req, res) {
+	const id = req.params["id"];
 	var mobile = req.useragent.isMobile;
 	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/news_post.html'));}//desktop
