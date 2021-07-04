@@ -929,8 +929,8 @@ app.get('/feat', function(req, res) {
 // Send news
 app.get('/news', function(req, res) {
 	var mobile = req.useragent.isMobile;
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
-	if(!mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //desktop
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/news.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/news.html'));} //desktop
 });
 
 // Send news-posts
