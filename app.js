@@ -884,6 +884,11 @@ app.get('/news_img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/news/'+filename));
 });
+// Send articles img
+app.get('/cols_img/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/uploads/cols/'+filename));
+});
 // Send IMG
 app.get('/img/:filename', function(req, res) {
 	const filename = req.params["filename"];
@@ -980,7 +985,7 @@ app.get('/stories_post/:id', function(req, res) {
 app.get('/articles', function(req, res) {
 	var mobile = req.useragent.isMobile;
 	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
-	if(!mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));}//desktop
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/articles.html'));}//desktop
 });
 
 // Send contact

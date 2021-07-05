@@ -152,18 +152,28 @@ async function load(p_section) {
                     var subtitle = data[0].subtitle;
                     var date = formatDate_news(data[0].date);
                     var main_text = data[0].main_text;
-                    var img = await getData("/get_im_news/" + id);
-
-                    var src = "/news_img/"+img[0].url+".png";
     
                     document.getElementById("title").innerHTML = `
                         <h2 class="w-100 text-center">`+title+`</h2>
                         <p class="text-small mb-1 text-center m-1"><b class="text-uppercase">`+subtitle+`</b> / `+date+`</p>
                     `;
-                    document.getElementById("img").innerHTML = `
-                        <img class="w-100" src="`+src+`" style="max-height: 280px; object-fit: cover;">
-                    `;
+
                     document.getElementById("main_text").innerHTML = main_text;
+
+
+                    var img = await getData("/get_im_news/" + id)
+                    document.getElementById("img").innerHTML =`
+                          <div class="carousel-item active">
+                            <img class="d-block w-100 fit-img" src="/news_img/`+img[0].url+`.png">
+                          </div>
+                    `;
+                    for(var i = 1; i <= img.length ; i++) {
+                        document.getElementById("car_images").innerHTML +=`
+                              <div class="carousel-item">
+                                <img class="d-block w-100 fit-img" src="/news_img/`+img[i].url+`.png">
+                              </div>
+                    `;
+                    }
                 }
                 break;
 
