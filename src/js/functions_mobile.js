@@ -94,6 +94,30 @@ async function load(p_section) {
             }
             break;
 
+            case "news":
+                var data = await getData("/get_news/"+id);
+    
+                if (JSON.stringify(data) != no_result )
+                {
+                    var title = data[0].title;
+                    var subtitle = data[0].subtitle;
+                    var date = formatDate(data[0].date);
+                    var main_text = data[0].main_text;
+                    var img = await getData("/get_im_news/" + id);
+
+                    var src = "/news_img/"+img[0].url+".png";
+    
+                    document.getElementById("title").innerHTML = `
+                        <h2 class="w-100 text-center">`+title+`</h2>
+                        <p class="text-small mb-1 text-center m-1"><b class="text-uppercase">`+subtitle+`</b> / `+date+`</p>
+                    `;
+                    document.getElementById("img").innerHTML = `
+                        <img class="w-100" src="`+src+`" style="max-height: 280px; object-fit: cover;">
+                    `;
+                    document.getElementById("main_text").innerHTML = main_text;
+                }
+                break;
+
         default:
             console.log("wrong parameter");
             break;
@@ -160,6 +184,29 @@ async function loadStoriesMenu() {
         }
     }
 }
+
+// load news
+async function loadNewsMenu() {
+    var news = await getData("/get_allnews");
+    var no_result = '{"error":"no_result"}';
+
+    if (JSON.stringify(news) != no_result)
+    {
+        for(var i = 0; i < news.length; i++)
+        {
+            var date = news[i].date;
+            date = formatDate(date);
+
+            document.getElementById("output_news").innerHTML += `
+            <div class="pr-3 pl-3 w-100 pb-3" onclick="location.href = '/news_post/`+news[i].id+`';">
+                <p class="text-small mb-1 text-left"><b class="text-uppercase">`+news[i].subtitle+`</b> / `+date+`</p>
+                <p class="text-left">`+news[i].title+`</p>
+            </div>
+            `;
+        }
+    }
+}
+
 
 function countWords(str) {
     str = str.replace(/(^\s*)|(\s*$)/gi,"");

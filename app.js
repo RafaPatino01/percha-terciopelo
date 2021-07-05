@@ -869,15 +869,20 @@ app.get('/admin_js/:filename', function(req, res) {
 
 // [ PUBLIC Routing ] ----------------------------------------------------------------------
 
-// Send Uploads
+// Send stories img
 app.get('/stories_img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/stories/'+filename));
 });
-// Send Interviews uploads
+// Send Interviews img
 app.get('/interviews_img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/interviews/'+filename));
+});
+// Send news img
+app.get('/news_img/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/uploads/news/'+filename));
 });
 // Send IMG
 app.get('/img/:filename', function(req, res) {
@@ -937,7 +942,7 @@ app.get('/news', function(req, res) {
 app.get('/news_post/:id', function(req, res) {
 	const id = req.params["id"];
 	var mobile = req.useragent.isMobile;
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/news_post.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/news_post.html'));}//desktop
 });
 
