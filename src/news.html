@@ -33,6 +33,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/js/functions.js"></script>
 </head>
 
 <!-- HUD -->
@@ -106,7 +107,7 @@
     </div>
 </div>
 
-<body> <!-- Contenido -->    
+<body onload="loadNewsMenu()"> <!-- Contenido -->
     <div class="row m-5 title w-100 zindex-back">
         <div class="col-lg-6 position-fixed">
             <h1 class="text-big mt-5">_NEWS</h1>
@@ -123,7 +124,7 @@
 
             <div id="output"></div>
 
-            <div class="mt-large">
+            <div class="mt-large" id="output_news">
                 <div class="m-5 noticia" url="https://ichef.bbci.co.uk/news/640/amz/worldservice/live/assets/images/2016/05/28/160528143525_getty_modelaje_624x460_getty_nocredit.jpg">
                     <h6><b>TITLE TITLE / Dec 2021</b></h6>
                     <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
@@ -134,25 +135,8 @@
                     <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
                 </div>
 
-                <div class="m-5 noticia" url="https://mott.pe/noticias/wp-content/uploads/2020/09/las-mejores-agencias-de-modelaje-en-el-mundo-2.png">
-                    <h6><b>TITLE TITLE / Dec 2021</b></h6>
-                    <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
-                </div>
-
-                <div class="m-5 noticia" url="http://cdn2.dineroenimagen.com/media/dinero/styles/xlarge/public/images/2018/05/mar-horiz.jpg">
-                    <h6><b>TITLE TITLE / Dec 2021</b></h6>
-                    <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
-                </div>
-
-                <div class="m-5 noticia" url="https://castingyeventos.com/multimedia/fashion-show-1746621_1280-490x550.jpg">
-                    <h6><b>TITLE TITLE / Dec 2021</b></h6>
-                    <p class="lead">Text text text text text text text text text text text text text text text text text text text.</p>
-                </div>
             </div>
         </div>
     </div>
-
-    <!-- Script Change images -->
-    <script src="/js/news.js"></script>
 </body>
 </html>

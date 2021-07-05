@@ -218,4 +218,75 @@ async function loadInterviewsMenu() {
     }
 }
 
+//load news
+async function loadNewsMenu(){
+    var news = await getData("/get_allnews");
+    console.log(news)
+    var no_result = '{"error":"no_result"}';
+
+    if (JSON.stringify(news) != no_result )
+    {
+        for(var i = 0; i < news.length; i++)
+        {
+            var img = await getData("/get_im_news/" + news[i].id)
+            var l_arr = "/news_img/"+img[0].url+".png";
+            document.getElementById("output_news").innerHTML += `
+            
+                <div style="cursor: pointer" onclick="location.href='/news_post/`+ news[i].id +`'" class="m-5 noticia" url="`+ l_arr +`">
+                    <h6><b>`+ news[i].subtitle +` / `+ formatDate( news[i].date) +` </b></h6>
+                    <p class="lead">`+ news[i].title +`</p>
+                </div>
+            
+            `;
+        }
+    }
+    // Change noticia image on hover!
+    $("div.noticia")
+        .mouseenter(function() {
+            console.log($( this ).attr("url"));
+
+            var url = $( this ).attr("url"); // Read atribute from element
+            $("#noticia-img").attr("src",url);
+            $("#noticia-img").removeClass('not-visible');
+
+        })
+        .mouseleave(function() {
+            console.log($( this ).attr("url"));
+            // $("#noticia-img").attr("src","https://www.colorhexa.com/ffffff.png");
+            $("#noticia-img").addClass('not-visible');
+        })
+}
+
+async function loadNews(){
+    const href = window.location.href.toString()
+    var n = href.lastIndexOf('/');
+    var id = href.substring(n + 1); // get id
+
+
+    var news = await getData("/get_news/" + id);
+    console.log(news)
+    var no_result = '{"error":"no_result"}';
+    console.log(news)
+    if (JSON.stringify(news) != no_result ){
+
+        document.getElementById("Title").innerText = news[0].subtitle;
+        document.getElementById("mainText").innerText = news[0].main_text;
+        document.getElementById("subTitle").innerText = news[0].title +` / `+ formatDate( news[0].date);
+
+
+        var img = await getData("/get_im_news/" + id)
+        document.getElementById("car_images").innerHTML =`
+                  <div class="carousel-item active">
+                    <img class="d-block w-100 fit-img" src="/news_img/`+img[0].url+`.png">
+                  </div>
+            `;
+        for(var i = 1; i <= img.length ; i++) {
+            document.getElementById("car_images").innerHTML +=`
+                  <div class="carousel-item">
+                    <img class="d-block w-100 fit-img" src="/news_img/`+img[i].url+`.png">
+                  </div>
+            `;
+        }
+    }
+}
 

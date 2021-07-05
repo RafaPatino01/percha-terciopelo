@@ -32,7 +32,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        
+        <script src="/js/functions.js"></script>
     </head>
     <!-- HUD -->
     <div class="w-100 fixed p-4">
@@ -105,21 +105,13 @@
         </div>
     </div>
 
-<body>
+<body onload="loadNews()">
     <div class="row m-5 title w-100 zindex-back" style="margin-left: 0;">
         <div class="col-lg-7" style="padding-left: 0;">
             <h1 class="text-big mt-5 ml-5">_NEWS</h1>
             <div id="carouselExampleControls" class="carousel slide mt-5" data-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="d-block w-100 fit-img" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2017%2F03%2F29%2F489967-neon-city-drawing.jpg&f=1&nofb=1" alt="First slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100 fit-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F04%2F10%2F255416-bicycle-artwork-fantasy_art.jpg&f=1&nofb=1" alt="Second slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100 fit-img" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2017%2F03%2F29%2F489967-neon-city-drawing.jpg&f=1&nofb=1" alt="Third slide">
-                  </div>
+                <div class="carousel-inner" id="car_images">
+
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -132,50 +124,14 @@
               </div>
         </div>
         <div class="col-lg-4 mt-3">
-            <h1 class="text-med mt-5">Apiendam nossin 
-                conet planis 
-                accae. Ur abori re 
-                non ped experi
+            <h1 class="text-med mt-5" id="Title">
+
             </h1>
-            <h2 class="subtitle mt-4">
-                HARPERS BAZAAR / DEC. 10 2020
+            <h2 class="subtitle mt-4" id="subTitle">
+
             </h2>
-            <p class="mt-med news_text">
-                Sit, illa que sant, vid eosa cus, se si dolupis dollore, sequod 
-                maionse quatur? Ori aut volessum ant ium iunt dustiscimint 
-                harum quia velliae stiantet explate voloratum eatur, tenihit 
-                iosaped icabo. Maion cullupta dipis est alitaspicte lat accab 
-                ipsaerro tecumet maxim faccatu sdandem porroresequi tem 
-                sunt aut omnis.<br><br>
-                Endicidus pro blaut fugiamet moditiae laut et omniendem am 
-                et offic tem estiis sita dem repel ex eror sum, volupta taep.Ut 
-                fuga. Ibeatur sum coriti ullit officiis etur? Quiat.
-                Ihicabo. Ro cum untiant.<br><br>
-                Erumquam rescimo luptaque nobitiis volla volorem aut 
-                reMoluptaquid eate volupta turibusam, accumquis minullorite 
-                omnisque pa de ni andae plist magnis ipsanis experup tatium 
-                nam, sit vendita tumqui culluptatem. Alit omnis escimenis vid 
-                mo eum sitempe rspiet, expliquam fugitatquia dolorpo recerchil 
-                evenda cusapit ationem posaepu dandaep editat que por 
-                aliquae ptatquia nihicia spiendem id quam fuga. Officil milic to 
-                dolumquodi untotatus et dolorepe volest, te aut que dolupta 
-                turiam vendestotat velliasit, quias eatur, ut qui beratem quas 
-                aut liquossi reprendipsae eum est fugita qui blam sequassinto 
-                eos doloren imillut et aditas doluptate as dite cusda soluptat.<br><br>
-                Tatium aut hil ipsus, coriatumquam es dolecus minti rem. 
-                Namet re dolendis expliqui am, voluptatur? Qui dendit, is 
-                denderum fuga. Idipsunt volorum ut ullabor modigeni conseque 
-                num, cus maio con nonsequ asitae num volectum fugia vel 
-                incideliquos anim atecatem aut faccae nissi con pernam, cum 
-                volorpo ratasi que si dolorepedio del in perspis id eos repe des 
-                utempero veniet, cus esti doluptiis exerese ctiatius, cus as quia 
-                cus, ut ullacer aeculparum aut facia con reptior eceatempori 
-                odit lant dollest minusci enihicit id ut ditatius, quatiae sequid 
-                quaspictotam inus et et, a audignim rempore serspie ndionse 
-                quoditati omnis ne pa sectestio dis es diaest aut vendio. 
-                Nequiant laudanis saeritias plabor aut laborem num rere volo 
-                quas et occumet quo evenihi tibusam eum fugiti anti doluptat 
-                labo. Itas etur molupid
+            <p class="mt-med news_text" id="mainText">
+
             </p>
         </div>
         <div class="col-lg-1"></div>

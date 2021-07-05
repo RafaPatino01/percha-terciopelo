@@ -879,6 +879,11 @@ app.get('/interviews_img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/interviews/'+filename));
 });
+// Send news uploads
+app.get('/news_img/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/uploads/news/'+filename));
+});
 // Send IMG
 app.get('/img/:filename', function(req, res) {
 	const filename = req.params["filename"];
@@ -934,8 +939,9 @@ app.get('/news', function(req, res) {
 });
 
 // Send news-posts
-app.get('/news_post', function(req, res) {
+app.get('/news_post/:id', function(req, res) {
 	var mobile = req.useragent.isMobile;
+	const id = req.params["id"];
 	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/news_post.html'));}//desktop
 });
