@@ -13,6 +13,55 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+
+function formatDate_news(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    switch(month){
+        case "1":
+            month = "Ene."
+            break;
+        case "2":
+            month = "Feb."
+            break;
+        case "3":
+            month = "Mar."
+            break;
+        case "4":
+            month = "Abr."
+            break;
+        case "5":
+            month = "May."
+            break;
+        case "6":
+            month = "Jun."
+            break;
+        case "7":
+            month = "Jul."
+            break;
+        case "8":
+            month = "Ago."
+            break;
+        case "9":
+            month = "Sep."
+            break;
+        case "10":
+            month = "Oct."
+            break;
+        case "11":
+            month = "Nov."
+            break;
+        case "12":
+            month = "Dic."
+            break;
+    }
+
+    return [month, day, year].join(' ');
+}
+
 // Fetch de la base de datos
 async function getData(p_endpoint) {
     const response = await fetch(p_endpoint);
@@ -101,7 +150,7 @@ async function load(p_section) {
                 {
                     var title = data[0].title;
                     var subtitle = data[0].subtitle;
-                    var date = formatDate(data[0].date);
+                    var date = formatDate_news(data[0].date);
                     var main_text = data[0].main_text;
                     var img = await getData("/get_im_news/" + id);
 
@@ -195,7 +244,7 @@ async function loadNewsMenu() {
         for(var i = 0; i < news.length; i++)
         {
             var date = news[i].date;
-            date = formatDate(date);
+            date = formatDate_news(date);
 
             document.getElementById("output_news").innerHTML += `
             <div class="pr-3 pl-3 w-100 pb-3" onclick="location.href = '/news_post/`+news[i].id+`';">

@@ -14,6 +14,55 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+function formatDate_news(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    switch(month){
+        case "1":
+            month = "Ene."
+            break;
+        case "2":
+            month = "Feb."
+            break;
+        case "3":
+            month = "Mar."
+            break;
+        case "4":
+            month = "Abr."
+            break;
+        case "5":
+            month = "May."
+            break;
+        case "6":
+            month = "Jun."
+            break;
+        case "7":
+            month = "Jul."
+            break;
+        case "8":
+            month = "Ago."
+            break;
+        case "9":
+            month = "Sep."
+            break;
+        case "10":
+            month = "Oct."
+            break;
+        case "11":
+            month = "Nov."
+            break;
+        case "12":
+            month = "Dic."
+            break;
+    }
+        
+
+    return [month, day, year].join(' ');
+}
+
 
 
 // Fetch de la base de datos
@@ -231,12 +280,10 @@ async function loadNewsMenu(){
             var img = await getData("/get_im_news/" + news[i].id)
             var l_arr = "/news_img/"+img[0].url+".png";
             document.getElementById("output_news").innerHTML += `
-            
                 <div style="cursor: pointer" onclick="location.href='/news_post/`+ news[i].id +`'" class="m-5 noticia" url="`+ l_arr +`">
-                    <h6><b>`+ news[i].subtitle +` / `+ formatDate( news[i].date) +` </b></h6>
+                    <h6><b>`+ news[i].subtitle +` / `+ formatDate_news(news[i].date) +` </b></h6>
                     <p class="lead">`+ news[i].title +`</p>
                 </div>
-            
             `;
         }
     }
@@ -269,9 +316,9 @@ async function loadNews(){
     console.log(news)
     if (JSON.stringify(news) != no_result ){
 
-        document.getElementById("Title").innerText = news[0].subtitle;
+        document.getElementById("Title").innerText = news[0].title;
         document.getElementById("mainText").innerText = news[0].main_text;
-        document.getElementById("subTitle").innerText = news[0].title +` / `+ formatDate( news[0].date);
+        document.getElementById("subTitle").innerText = news[0].subtitle +` / `+ formatDate_news(news[0].date);
 
 
         var img = await getData("/get_im_news/" + id)
