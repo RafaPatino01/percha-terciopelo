@@ -3,7 +3,7 @@
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
+        day = '' + (d.getDate() + 1),
         year = d.getFullYear();
 
     if (month.length < 2)
@@ -211,6 +211,9 @@ async function loadStory(){
     var story = await getData("/get_post/" + id);
     var no_result = '{"error":"no_result"}';
     console.log(story)
+    if(story[0].status == 2){
+        document.location = "/home#stories";
+    }
     if (JSON.stringify(story) != no_result ){
 
         var images = await loadImages(id)

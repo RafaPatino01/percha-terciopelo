@@ -17,7 +17,7 @@ function formatDate(date) {
 function formatDate_news(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
+        day = '' + (d.getDate() + 1),
         year = d.getFullYear();
 
     switch(month){
@@ -81,6 +81,9 @@ async function load(p_section) {
     switch(p_section) {
         case "story":
             var story = await getData("/get_post/"+id);
+            if(story[0].status == 1){
+                document.location = "/stories";
+            }
             if (JSON.stringify(story) != no_result )
             {
                 var images = await loadImages(id)
