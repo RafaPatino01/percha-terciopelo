@@ -168,7 +168,7 @@ async function load(p_section) {
                           </div>
                     `;
                     for(var i = 1; i <= img.length ; i++) {
-                        document.getElementById("car_images").innerHTML +=`
+                        document.getElementById("img").innerHTML +=`
                               <div class="carousel-item">
                                 <img class="d-block w-100 fit-img" src="/news_img/`+img[i].url+`.png">
                               </div>
