@@ -361,7 +361,8 @@ async function loadColsMenu(){
             var l_arr = "/cols_img/"+img[1].url+".png";
             document.getElementById("output_news").innerHTML += `
                 <div style="cursor: pointer" onclick="location.href='/articles_post/`+ cols[i].id +`'" class="m-5 noticia" url="`+ l_arr +`">
-                    <h6><b>`+ cols[i].subtitle +` / `+ formatDate_news(cols[i].date) +` </b></h6>
+                    <h6><b>`+ cols[i].loc +` / `+ formatDate_news(cols[i].date) +` </b></h6>
+                    <h6><b> Text by `+ cols[i].columnista +` </b></h6>
                     <p class="lead">`+ cols[i].title +`</p>
                 </div>
             `;
@@ -390,27 +391,47 @@ async function loadCol(){
     var id = href.substring(n + 1); // get id
 
 
-    var news = await getData("/get_col/" + id);
-    console.log(news)
+    var col = await getData("/get_col/" + id);
+    console.log(col)
     var no_result = '{"error":"no_result"}';
-    console.log(news)
-    if (JSON.stringify(news) != no_result ){
+    console.log (col)
+    if (JSON.stringify(col) != no_result ){
 
-        document.getElementById("Title").innerText = news[0].title;
-        document.getElementById("mainText").innerText = news[0].main_text;
-        document.getElementById("subTitle").innerText = news[0].subtitle +` / `+ formatDate_news(news[0].date);
+        document.getElementById("Title").innerText = col[0].title;
+        document.getElementById("mainText").innerText = col[0].main_text;
+        document.getElementById("columnista").innerHTML ="Text by <i>" + col[0].columnista + "</i>";
+        document.getElementById("subTitle").innerText = col[0].loc +` / `+ formatDate_news(col[0].date);
+
+        var insta = col[0].insta;
+        if(!insta.includes("@")){
+            insta = "@" + insta;
+        }
 
 
-        var img = await getData("/get_im_news/" + id)
+        var img = await getData("/get_im_col/" + id)
+        document.getElementById("colum_img").innerHTML = `
+            <div class="col-4">
+                <img class="w-100" src="/cols_img/`+img[0].url+`.png">
+            </div>
+            <div class="col-8" style="position: relative">
+                <div style="position: absolute; bottom: -20px">
+                    <p>`+col[0].columnista+` `+insta+`</p>
+                    <p>`+col[0].ocupacion+`</p>
+                </div>
+            </div>
+        
+        `
+
+
         document.getElementById("car_images").innerHTML =`
                   <div class="carousel-item active">
-                    <img class="d-block w-100 fit-img" src="/news_img/`+img[1].url+`.png">
+                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[1].url+`.png">
                   </div>
             `;
         for(var i = 2; i <= img.length ; i++) {
             document.getElementById("car_images").innerHTML +=`
                   <div class="carousel-item">
-                    <img class="d-block w-100 fit-img" src="/news_img/`+img[i].url+`.png">
+                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[i].url+`.png">
                   </div>
             `;
         }
