@@ -427,13 +427,13 @@ async function loadCol(){
 
         document.getElementById("car_images").innerHTML =`
                   <div class="carousel-item active">
-                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[1].url+`.png">
+                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[1].url+`.png" style="height: 500px; object-fit: cover;">
                   </div>
             `;
         for(var i = 2; i <= img.length ; i++) {
             document.getElementById("car_images").innerHTML +=`
                   <div class="carousel-item">
-                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[i].url+`.png">
+                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[i].url+`.png" style="height: 500px; object-fit: cover;">
                   </div>
             `;
         }
