@@ -410,13 +410,15 @@ async function loadCol(){
 
         var img = await getData("/get_im_col/" + id)
         document.getElementById("colum_img").innerHTML = `
-            <div class="col-4">
-                <img class="w-100" src="/cols_img/`+img[0].url+`.png">
+            <div class="col-3" xmlns="http://www.w3.org/1999/html">
+                <img class="w-100" src="https://via.placeholder.com/100x200">
             </div>
-            <div class="col-8" style="position: relative">
+            <div class="col-9" style="position: relative; font-size: 15px;">
                 <div style="position: absolute; bottom: -20px">
-                    <p>`+col[0].columnista+` `+insta+`</p>
-                    <p>`+col[0].ocupacion+`</p>
+                    <p>
+                    <span class="text-uppercase">`+col[0].columnista+` </span><i><b>`+insta+`</b></i><br>
+                    <i>`+col[0].ocupacion+`</i>     
+                    </p>
                 </div>
             </div>
         
