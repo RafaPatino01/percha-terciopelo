@@ -340,3 +340,72 @@ async function loadNews(){
     }
 }
 
+async function loadColsMenu(){
+    var cols = await getData("/get_allcols");
+    console.log(cols);
+    var no_result = '{"error":"no_result"}';
+
+    if (JSON.stringify(cols) != no_result )
+    {
+        for(var i = 0; i < cols.length; i++)
+        {
+            var img = await getData("/get_im_col/" + cols[i].id);
+            console.log(img);
+            var l_arr = "/cols_img/"+img[1].url+".png";
+            document.getElementById("output_news").innerHTML += `
+                <div style="cursor: pointer" onclick="location.href='/articles_post/`+ cols[i].id +`'" class="m-5 noticia" url="`+ l_arr +`">
+                    <h6><b>`+ cols[i].subtitle +` / `+ formatDate_news(cols[i].date) +` </b></h6>
+                    <p class="lead">`+ cols[i].title +`</p>
+                </div>
+            `;
+        }
+    }
+    // Change noticia image on hovcols
+    $("div.noticia")
+        .mouseenter(function() {
+            console.log($( this ).attr("url"));
+
+            var url = $( this ).attr("url"); // Read atribute from element
+            $("#noticia-img").attr("src",url);
+            $("#noticia-img").removeClass('not-visible');
+
+        })
+        .mouseleave(function() {
+            console.log($( this ).attr("url"));
+            // $("#noticia-img").attr("src","https://www.colorhexa.com/ffffff.png");
+            $("#noticia-img").addClass('not-visible');
+        })
+}
+
+async function loadCol(){
+    const href = window.location.href.toString()
+    var n = href.lastIndexOf('/');
+    var id = href.substring(n + 1); // get id
+
+
+    var news = await getData("/get_col/" + id);
+    console.log(news)
+    var no_result = '{"error":"no_result"}';
+    console.log(news)
+    if (JSON.stringify(news) != no_result ){
+
+        document.getElementById("Title").innerText = news[0].title;
+        document.getElementById("mainText").innerText = news[0].main_text;
+        document.getElementById("subTitle").innerText = news[0].subtitle +` / `+ formatDate_news(news[0].date);
+
+
+        var img = await getData("/get_im_news/" + id)
+        document.getElementById("car_images").innerHTML =`
+                  <div class="carousel-item active">
+                    <img class="d-block w-100 fit-img" src="/news_img/`+img[1].url+`.png">
+                  </div>
+            `;
+        for(var i = 2; i <= img.length ; i++) {
+            document.getElementById("car_images").innerHTML +=`
+                  <div class="carousel-item">
+                    <img class="d-block w-100 fit-img" src="/news_img/`+img[i].url+`.png">
+                  </div>
+            `;
+        }
+    }
+}
