@@ -663,7 +663,7 @@ app.put('/edit_news/:id', function (req, res) {
     const date = req.body.date;
     const main_text = req.body.main_text;
 
-    const sql = 'UPDATE news SET title='+'"'+title+'"'+', subtitle='+'"'+subtitle+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
+    const sql = 'UPDATE news SET title='+"'"+title+"'"+', subtitle='+"'"+subtitle+"'"+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {
