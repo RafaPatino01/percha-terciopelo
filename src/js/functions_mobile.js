@@ -201,10 +201,10 @@ async function load(p_section) {
                         document.getElementById("title").innerHTML = `
                             <h1 class="text-title mb-5 text-center">_ARTICLES</h1>
                             <div class="col-md-6">
-                                <img class="center" src="/cols_img/`+img[0].url+`.png" style="height:150px; object-fit:cover; width:120px;">
-                            <h2 class="w-100 text-center">`+title+`</h2>
-                            <p class="text-small mb-1 text-center m-1"><b class="text-uppercase">`+ columnista +`_ </b><i>`+ ocupacion +`</i><b> `+insta+`</b></p>
-                            <p class="text-small mb-1 text-center m-1"><b class="text-uppercase">`+loc+`</b> / `+date+`</p>
+                                <img class="center" src="/cols_img/`+img[0].url+`.png" style="height:140px; object-fit:cover; width:110px;">
+                            <h2 class="w-100 text-center mt-3 mb-0">`+title+`</h2>
+                            <p class="text-small mb-1 mt-0 text-center"><b class="text-uppercase">`+ columnista +`_ </b><i>`+ ocupacion +`</i><b> `+insta+`</b></p>
+                            <p class="text-small text-center mt-3 mb-0"><b class="text-uppercase" style="letter-spacing:3px;">`+loc+` / `+date+`</b></p>
                             </div>
                         `;
     
@@ -212,14 +212,14 @@ async function load(p_section) {
                         
                         document.getElementById("img").innerHTML =`
                               <div class="carousel-item active">
-                                <img class="d-block w-100 fit-img" src="/cols_img/`+img[1].url+`.png">
+                                <img class="d-block w-100 fit-img" src="/cols_img/`+img[1].url+`.png" style="height:300px;">
                               </div>
                         `;
                         for(var i = 2; i <= img.length ; i++) {
                             document.getElementById("img").innerHTML +=`
-                                  <div class="carousel-item">
-                                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[i].url+`.png">
-                                  </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100 fit-img" src="/cols_img/`+img[i].url+`.png" style="height:300px;">
+                            </div> 
                         `;
                         }
                     }
