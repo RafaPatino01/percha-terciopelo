@@ -973,7 +973,7 @@ app.get('/interview_post/:id', function(req, res) {
 app.get('/articles', function(req, res) {
 	var mobile = req.useragent.isMobile;
 	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/articles.html'));} //mobile
-	if(!mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));}//desktop
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/articles.html'));}//desktop
 });
 
 // Send articles-posts
