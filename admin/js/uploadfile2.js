@@ -7,6 +7,7 @@
     selectionOption()
     removeClass()
     uploadImage()
+    uploadImage2()
     submit()
     resetButton()
     removeNotification()
@@ -105,6 +106,30 @@
       })
     
     }
+
+    function uploadImage2() {
+      var button2 = $('.images2 .pic2')
+      var uploader2 = $('<input type="file" accept="image/*" />')
+      var images2 = $('.images2')
+      
+      button2.on('click', function () {
+        uploader2.click()
+      })
+      
+      uploader2.on('change', function () {
+          var reader = new FileReader()
+          reader.onload = function(event) {
+            images2.prepend('<div class="img2" style="background-image: url(\'' + event.target.result + '\');" rel="'+ event.target.result  +'"><span>remove</span></div>')
+          }
+          reader.readAsDataURL(uploader2[0].files[0])
+  
+       })
+      
+      images2.on('click', '.img2', function () {
+        $(this).remove()
+      })
+    
+    }
     
     function submit() {  
       var button = $('#send')
@@ -112,20 +137,32 @@
       button.on('click', function () {
         if(!way) {
           var title = $('#title')
+          var loc = $('#loc')
+          var insta = $('#insta')
+          var ocupacion = $('#ocupacion')
           var date  = $('#date')
-          var descr  = $('#descr')
+          var columnista  = $('#columnista')
           var main_text  = $('#main_text')
           var images = $('.images .img')
+          var images2 = $('.images2 .img2')
           var imageArr = []
 
+          for(var i = 0; i < images2.length; i++) {
+            imageArr.push({url: $(images2[i]).attr('rel')})
+          }
           
           for(var i = 0; i < images.length; i++) {
             imageArr.push({url: $(images[i]).attr('rel')})
           }
+
+          
           
           var newStock = {
             title: title.val(),
-            descr: descr.val(),
+            loc: loc.val(),
+            columnista: columnista.val(),
+            insta: insta.val(),
+            ocupacion: ocupacion.val(),
 
             date: date.val(),
             main_text: main_text.val(),
@@ -215,7 +252,7 @@
               check = 1
             }
         } else {
-          if(!stock.title || !stock.descr || stock.images == 0 || !stock.date || !stock.main_text) {
+          if(!stock.ocupacion || !stock.insta || !stock.loc || !stock.title || !stock.columnista || stock.images == 0 || !stock.date || !stock.main_text) {
             check = 1
           }
         }
@@ -235,8 +272,11 @@
     function reset() {
       
       $('#title').val('')
-      $('#descr').val('')
+      $('#loc').val('')
+      $('#columnista').val('')
       $('#date').val('')
+      $('#insta').val('')
+      $('#ocupacion').val('')
       $('#main_text').val('')
       $('.select-option .head').html('Category')
       $('select#category').val('')
@@ -258,7 +298,11 @@ function send_data(p_data) {
       let aux = "";
 
       data.append('title', p_data["title"]);
-      data.append('descr', p_data["descr"]);
+      data.append('columnista', p_data["columnista"]);
+      data.append('loc', p_data["loc"]);
+      data.append('insta', p_data["insta"]);
+      data.append('ocupacion', p_data["ocupacion"]);
+
 
       data.append('date', p_data["date"]);
       data.append('main_text', p_data["main_text"]);
@@ -279,6 +323,7 @@ function send_data(p_data) {
         processData: false,
         success: function(data) {
           alert("It works!");
+          location.replace("/admin_all");
         },    
         error: function() {
           alert("Damn, it did not work!");

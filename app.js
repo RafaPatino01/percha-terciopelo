@@ -425,9 +425,12 @@ app.post('/add_col', function (req, res) {
 
 	const postObject = {
 		title: req.body.title,
-		descr: req.body.descr,
 		date: req.body.date,
 		main_text: req.body.main_text,
+		columnista: req.body.columnista,
+		insta: req.body.insta,
+		ocupacion: req.body.ocupacion,
+		loc: req.body.loc,
 		status: 1
 	}
 
@@ -461,7 +464,7 @@ app.post('/add_col', function (req, res) {
 		  		console.log(err);
 				});
 
-				console.log("Added image: " + req.body.title + i + ".png")
+				console.log("Added image: " + result.insertId + i + ".png")
 			}
 		}
 	});
