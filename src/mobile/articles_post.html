@@ -19,12 +19,13 @@
     <meta name="author" content="Melius Studio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PERCHA | News</title>
+    <title>PERCHA | Articles</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/news.css">
     
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
@@ -102,10 +103,13 @@
 </div>
 
 
-<body onload="load('news');"> <!-- Contenido -->    
+<body onload="load('articles');"> <!-- Contenido -->    
     <div class="container text-center p-0">
         <br><br>
-        <div class="row justify-content-center mt-5 p-2 mb-3" id="title">
+        <div class="row justify-content-center mt-5 mb-3 p-0" id="title">
+            <div class="col-md-6">
+                <h1 class="text-title mb-5">_ARTICLES</h1>
+            </div>
         </div>
 
 
@@ -127,8 +131,8 @@
 
 
 
-        <div class="row justify-content-center mb-5 ml-2 mr-2">
-            <p class="text-left pt-2 pl-5 pr-5 text-small" id="main_text"></p>
+        <div class="row mb-5 ml-2 mr-2">
+            <p class="text-left pt-3 pl-5 pr-5 text-small" id="main_text"></p>
         </div>
 
         

@@ -1,10 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <!-- ANALYTICS -->
+    <!-- Global site tag Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VP83KQSVM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-3VP83KQSVM');
+    </script>
+
+    <!-- MetaData -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Creative content">
+    <meta name="keywords" content="Diseño, Moda, Revista">
+    <meta name="author" content="Melius Studio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="image_src" href="/img/icon.ico"/>
+    <title>PERCHA | ARTICLES</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/news.css">
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/js/functions.js"></script>
+</head>
+<!-- HUD -->
+<div class="w-100 fixed p-4">
+    <div class="row">
+        <div class="col-4 pl-5">
+            <h6 onclick="location.href='/about';" style="cursor: pointer;">ABOUT US</h6>
+        </div>
+        <div class="col-4">
+            <h4 onclick="location.href='/home';" class="text-center" style="cursor: pointer;">
+                <img src="/img/logo.svg" class="logo">
+            </h4>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+<div class="w-100 fixed align-bottom p-4">
+    <div class="row">
+        <div class="col-4 pl-5">
+            <h6 onclick="location.href='/contact';" style="cursor: pointer;">CONTACT</h6>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4 pr-5">
+            <div class="row pr-3 text-right text-muted">
+                <a href="https://www.instagram.com/perchamagazine/?hl=es-la" class="col-4 p-0 text-muted" target="_blank"><h6><b>Instagram</b></h6></a>
+                <a href="https://www.facebook.com/perchamagazine/" class="col-4 p-0 text-muted" target="_blank"><h6><b>Facebook</b></h6></a>
+                <a href="https://vm.tiktok.com/ZMdm6xAT4/" class="col-4 p-0 text-muted" target="_blank"><h6><b>TikTok</b></h6></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="menuArea" class="mr-4">
+    <input type="checkbox" id="menuToggle"></input>
+
+    <label for="menuToggle" class="menuOpen">
+        <div class="open brand mt-3">
+            <div class="brand-label">
+                <svg style="z-index: 100;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300" aria-hidden="true">
+                    <defs>
+                        <path id="a" d="M90 150a60 60 0 01120 0 60 60 0 01-120 0" />
+                    </defs>
+                    <use xlink:href="#a" fill="none" /><text>
+                    <textPath xlink:href="#a">/ creative content / creative content</textPath>
+                </text>
+                </svg>
+            </div>
+        </div>
+    </label>
+
+    <div class="menu menuEffects">
+        <label for="menuToggle"></label>
+        <div class="menuContent">
+            <div class="row mt-0">
+                <div class="col-9">
+                </div>
+                <div class="col-3" style="text-align: left">
+                    <ul>
+                        <li><a href="/home">__home</a></li>
+                        <li><a href="/home#stories">__stories</a></li>
+                        <li><a href="/feat">__feat</a></li>
+                        <li><a href="/news">__news</a></li>
+                        <li><a href="/interviews">__interviews</a></li>
+                        <li><a href="/articles">__articles</a></li>
+                        <li><a href="/contact">__contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body onload="loadCol()">
+<div class="row m-5 title w-100 zindex-back" style="margin-left: 0;">
+    <div class="col-lg-7 fixed" style="padding-left: 0;">
+        <h1 class="text-big mt-5" style="z-index: 98;" onclick="location.href='/news';" style="cursor: pointer;">_ARTICLES</h1>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" id="car_images">
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-4 offset-lg-7 mt-3 pb-5">
+        <h1 class="text-med mt-5" id="Title">
+
+        </h1>
+        <h2 class="subtitle mt-4 text-uppercase" id="subTitle">
+
+        </h2>
+        <p class="mt-med news_text mb-5" id="mainText" >
+
+        </p>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+<script>
+    ('.carousel-control-next').hover(
+        function () {
+            $(this).show();
+        },
+        function () {
+            $(this).hide();
+        }
+    );
+    ('.carousel-control-prev').hover(
+        function () {
+            $(this).show();
+        },
+        function () {
+            $(this).hide();
+        }
+    );
+</script>
 </body>
+
 </html>

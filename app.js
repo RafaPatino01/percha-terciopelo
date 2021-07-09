@@ -393,7 +393,7 @@ app.post('/add_post', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) { // For each image
 
 				let postObject2 = {
-					url: result.insertId+i,
+					url: result.insertId+i.toString(),
 					post_id: result.insertId
 				}
 
@@ -449,7 +449,7 @@ app.post('/add_col', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) { // For each image
 
 				let postObject2 = {
-					url: result.insertId+i,
+					url: result.insertId+i.toString(),
 					post_id: result.insertId
 				}
 
@@ -502,7 +502,7 @@ app.post('/add_noticia', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) {
 
 				let postObject2 = {
-					url: result.insertId+i,
+					url: result.insertId+i.toString(),
 					post_id: result.insertId
 				}
 
@@ -561,7 +561,7 @@ app.post('/add_interview', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) {
 
 				let postObject2 = {
-					url: result.insertId+i,
+					url: result.insertId+i.toString(),
 					post_id: result.insertId
 				}
 
@@ -975,8 +975,16 @@ app.get('/interview_post/:id', function(req, res) {
 // Send articles
 app.get('/articles', function(req, res) {
 	var mobile = req.useragent.isMobile;
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
-	if(!mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));}//desktop
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/articles.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/articles.html'));}//desktop
+});
+
+// Send articles-posts
+app.get('/articles_post/:id', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	const id = req.params["id"];
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/articles_post.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/articles_post.html'));}//desktop
 });
 
 // Send Story
@@ -985,13 +993,6 @@ app.get('/stories_post/:id', function(req, res) {
 	const id = req.params["id"];
 	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/stories_post.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/stories_post.html'));}//desktop
-});
-
-// Send articles
-app.get('/articles', function(req, res) {
-	var mobile = req.useragent.isMobile;
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
-	if(!mobile){res.sendFile(path.join(__dirname + '/src/articles.html'));}//desktop
 });
 
 // Send contact
