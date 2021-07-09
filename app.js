@@ -393,7 +393,7 @@ app.post('/add_post', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) { // For each image
 
 				let postObject2 = {
-					url: req.body.title+i,
+					url: result.insertId+i,
 					post_id: result.insertId
 				}
 
@@ -404,11 +404,11 @@ app.post('/add_post', function (req, res) {
 				});
 
 				// Write image to folder
-				require("fs").writeFile("src/uploads/stories/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+				require("fs").writeFile("src/uploads/stories/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
 		  			console.log(err);
 				});
 
-				console.log("Added image: " + req.body.title+ i + ".png")
+				console.log("Added image: " + result.insertId+ i + ".png")
 			}
 		}
 	});
@@ -446,7 +446,7 @@ app.post('/add_col', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) { // For each image
 
 				let postObject2 = {
-					url: req.body.title+i,
+					url: result.insertId+i,
 					post_id: result.insertId
 				}
 
@@ -457,7 +457,7 @@ app.post('/add_col', function (req, res) {
 				});
 
 				// Write image to folder
-				require("fs").writeFile("src/uploads/cols/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+				require("fs").writeFile("src/uploads/cols/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
 		  		console.log(err);
 				});
 
@@ -499,7 +499,7 @@ app.post('/add_noticia', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) {
 
 				let postObject2 = {
-					url: req.body.title+i,
+					url: result.insertId+i,
 					post_id: result.insertId
 				}
 
@@ -511,11 +511,11 @@ app.post('/add_noticia', function (req, res) {
 				});
 
 				// Write image to folder
-				require("fs").writeFile("src/uploads/news/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+				require("fs").writeFile("src/uploads/news/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
 		  		console.log(err);
 				});
 
-				console.log("Added image: " + req.body.title+ i + ".png")
+				console.log("Added image: " + result.insertId+ i + ".png")
 			}
 		}
 	});
@@ -558,7 +558,7 @@ app.post('/add_interview', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) {
 
 				let postObject2 = {
-					url: req.body.title+i,
+					url: result.insertId+i,
 					post_id: result.insertId
 				}
 
@@ -570,11 +570,11 @@ app.post('/add_interview', function (req, res) {
 				});
 
 				// Write image to folder
-				require("fs").writeFile("src/uploads/interviews/" + req.body.title + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+				require("fs").writeFile("src/uploads/interviews/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
 		  			console.log(err);
 				});
 
-				console.log("Added image: " + req.body.title + i + ".png")
+				console.log("Added image: " + result.insertId + i + ".png")
 			}
 		}
 	});
