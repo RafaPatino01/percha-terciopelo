@@ -393,7 +393,7 @@ app.post('/add_post', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) { // For each image
 
 				let postObject2 = {
-					url: result.insertId+i,
+					url: result.insertId+i.toString(),
 					post_id: result.insertId
 				}
 
@@ -449,7 +449,7 @@ app.post('/add_col', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) { // For each image
 
 				let postObject2 = {
-					url: result.insertId+i,
+					url: result.insertId+i.toString(),
 					post_id: result.insertId
 				}
 
@@ -502,7 +502,7 @@ app.post('/add_noticia', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) {
 
 				let postObject2 = {
-					url: result.insertId+i,
+					url: result.insertId+i.toString(),
 					post_id: result.insertId
 				}
 
@@ -561,7 +561,7 @@ app.post('/add_interview', function (req, res) {
 			for (var i = 0; i < req.body.n; i++) {
 
 				let postObject2 = {
-					url: result.insertId+i,
+					url: result.insertId+i.toString(),
 					post_id: result.insertId
 				}
 
