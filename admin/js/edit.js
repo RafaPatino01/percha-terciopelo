@@ -93,32 +93,41 @@ async function placeinfo2() {
 
 	document.getElementById("title").value = info.title;
 	document.getElementById("date").value = fecha;
-	document.getElementById("descr").value = info.descr;
+	document.getElementById("columnista").value = info.columnista;
 	document.getElementById("main_text").value = info.main_text;
+	document.getElementById("insta").value = info.insta;
+	document.getElementById("ocupacion").value = info.ocupacion;
+	document.getElementById("loc").value = info.loc;
 }
 // Prepare current info to db
 async function prepare_data2() {
 
 	var title = document.getElementById("title").value;
 	var date = document.getElementById("date").value;
-	var descr = document.getElementById("descr").value;
+	var columnista = document.getElementById("columnista").value;
+	var insta = document.getElementById("insta").value;
+	var ocupacion = document.getElementById("ocupacion").value;
+	var loc = document.getElementById("loc").value;
 	var main_text = document.getElementById("main_text").value;
 
-	if(!title || !date || !descr || !main_text) {
+	if(!ocupacion || !insta || !columnista || !title || !date || !loc || !main_text) {
 		alert("Missing Fields");
 	}
 	else {
-		send_data2(title,date,descr,main_text);
+		send_data2(title,date,columnista,main_text,ocupacion,insta,loc);
 	}
 
 }
 // Send current info to server
-function send_data2(p_title,p_date,p_descr,p_main_text) { 
+function send_data2(p_title,p_date,p_columnista,p_main_text,p_ocupacion,p_insta,p_loc) { 
 
 	var data = new FormData();
 
 	data.append('title', p_title);
-	data.append('descr', p_descr);
+	data.append('ocupacion', p_ocupacion);
+	data.append('insta', p_insta);
+	data.append('loc', p_loc);
+	data.append('columnista', p_columnista);
 
 	data.append('date',p_date);
 	data.append('main_text', p_main_text);

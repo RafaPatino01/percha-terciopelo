@@ -635,12 +635,15 @@ app.put('/edit_interview/:id', function (req, res) {
 app.put('/edit_col/:id', function (req, res) {
     const id = req.params["id"];
     const title = req.body.title;
-    const descr = req.body.descr;
+    const columnista = req.body.columnista;
+    const insta = req.body.insta;
+    const loc = req.body.loc;
+    const ocupacion = req.body.ocupacion;
 
     const date = req.body.date;
     const main_text = req.body.main_text;
 
-    const sql = 'UPDATE cols SET title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
+    const sql = 'UPDATE cols SET title='+'"'+title+'"'+', ocupacion='+'"'+ocupacion+'"'+', columnista='+'"'+columnista+'"'+', insta='+'"'+insta+'"'+', loc='+'"'+loc+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {

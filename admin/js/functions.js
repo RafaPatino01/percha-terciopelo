@@ -71,7 +71,7 @@ async function loadPosts(p_page) {
 						</div>
 						<div class="col-md-8 bg-lighter2">
 							<div class="row p-3">
-							<p class="lead">`+ cols[i].descr +`</p>
+							<p class="lead">`+ cols[i].columnista +`</p>
 							</div>
 							
 							<div class="row border-top p-3">
