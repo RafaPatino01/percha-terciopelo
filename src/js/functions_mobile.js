@@ -251,6 +251,8 @@ async function loadInterviewsMenu() {
 
     if (JSON.stringify(interviews) != no_result )
     {
+        interviews = interviews.reverse(); //show latest first
+
         for(var i = 0; i < interviews.length; i++)
         {
             var imageURL = await getData("/get_im_interview/"+interviews[i].id);
@@ -275,6 +277,8 @@ async function loadArticlesMenu() {
     
     if (JSON.stringify(cols) != no_result )
     {
+        cols = cols.reverse(); //show newest first
+
         for(var i = 0; i < cols.length; i++)
         {
             var imageURL = await getData("/get_im_col/"+cols[i].id);
@@ -301,6 +305,8 @@ async function loadStoriesMenu() {
 
     if (JSON.stringify(stories) != no_result )
     {
+        stories = stories.reverse();
+
         for(var i = 0; i < stories.length; i++)
         {
             if(stories[i].status == 2){ //Stories
@@ -324,6 +330,8 @@ async function loadNewsMenu() {
 
     if (JSON.stringify(news) != no_result)
     {
+        news = news.reverse();
+
         for(var i = 0; i < news.length; i++)
         {
             var date = news[i].date;

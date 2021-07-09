@@ -145,6 +145,9 @@ async function loadImages(p_id) {
     return urls
 }
 //load Stories carousel
+
+// FIX THIS
+// Cuando agregas otra storie no se muestra aqui ??????????
 async function loadStoriesMenu(){
     var stories_all = await getData("/get_allposts");
     var no_result = '{"error":"no_result"}';
@@ -251,6 +254,8 @@ async function loadInterviewsMenu() {
 
     if (JSON.stringify(interviews) != no_result )
     {
+        interviews = interviews.reverse();
+
         for(var i = 0; i < interviews.length; i++)
         {
             var img = await getData("/get_im_interview/" + interviews[i].id)
@@ -278,6 +283,8 @@ async function loadNewsMenu(){
 
     if (JSON.stringify(news) != no_result )
     {
+        news = news.reverse();
+
         for(var i = 0; i < news.length; i++)
         {
             var img = await getData("/get_im_news/" + news[i].id)
