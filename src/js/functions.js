@@ -416,7 +416,7 @@ async function loadCol(){
             <div class="col-9" style="position: relative; font-size: 15px;">
                 <div style="position: absolute; bottom: -20px">
                     <p>
-                    <span class="text-uppercase">`+col[0].columnista+` </span><i><b>`+insta+`</b></i><br>
+                    <span class="text-uppercase">`+col[0].columnista+` </span><i><a href="https://www.instagram.com/`+insta.slice(1) +`" style="color:black;"><b>`+insta+`</b></a></i><br>
                     <i>`+col[0].ocupacion+`</i>     
                     </p>
                 </div>
