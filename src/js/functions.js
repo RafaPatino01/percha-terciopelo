@@ -358,7 +358,7 @@ async function loadColsMenu(){
         {
             var img = await getData("/get_im_col/" + cols[i].id);
             console.log(img);
-            var l_arr = "/cols_img/"+img[1].url+".png";
+            var l_arr = "/cols_img/"+img[0].url+".png";
             document.getElementById("output_news").innerHTML += `
                 <div style="cursor: pointer" onclick="location.href='/articles_post/`+ cols[i].id +`'" class="m-5 noticia" url="`+ l_arr +`">
                     <h6><b>`+ cols[i].loc +` / `+ formatDate_news(cols[i].date) +` </b></h6>
