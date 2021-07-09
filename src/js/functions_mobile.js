@@ -180,6 +180,50 @@ async function load(p_section) {
                 }
                 break;
 
+                case "articles":
+                    var data = await getData("/get_col/"+id);
+        
+                    if (JSON.stringify(data) != no_result )
+                    {
+                        var title = data[0].title;
+                        var columnista = data[0].columnista;
+                        var date = formatDate_news(data[0].date);
+                        var main_text = data[0].main_text;
+                        var ocupacion = data[0].ocupacion;
+                        var insta = data[0].insta;
+                        if(!insta.includes("@")){
+                            insta = "@" + insta;
+                        }
+                        var loc = data[0].loc;
+
+                        var img = await getData("/get_im_news/" + id)
+                        document.getElementById("title").innerHTML = `
+                            <h1 class="text-title mb-5 text-center">_ARTICLES</h1>
+                            <div class="col-md-6">
+                                <img class="center" src="/cols_img/`+img[0].url+`.png" style="height:350px; object-fit:cover;">
+                            <h2 class="w-100 text-center">`+title+`</h2>
+                            <p class="text-small mb-1 text-center m-1">`+ columnista +`_ <i>`+ ocupacion +`</i>/ `+insta+`</p>
+                            <p class="text-small mb-1 text-center m-1"><b class="text-uppercase">`+loc+`</b> / `+date+`</p>
+                            </div>
+                        `;
+    
+                        document.getElementById("main_text").innerHTML = main_text;
+                        
+                        document.getElementById("img").innerHTML =`
+                              <div class="carousel-item active">
+                                <img class="d-block w-100 fit-img" src="/news_img/`+img[1].url+`.png">
+                              </div>
+                        `;
+                        for(var i = 2; i <= img.length ; i++) {
+                            document.getElementById("img").innerHTML +=`
+                                  <div class="carousel-item">
+                                    <img class="d-block w-100 fit-img" src="/news_img/`+img[i].url+`.png">
+                                  </div>
+                        `;
+                        }
+                    }
+                    break;
+
         default:
             console.log("wrong parameter");
             break;
@@ -217,6 +261,30 @@ async function loadInterviewsMenu() {
                 <div class="card-img-overlay p-5 text-dark">
                     <h5 class="card-title mb-0">`+interviews[i].title+`</h5>
                     <p class="card-text">Por `+interviews[i].author+`</p>
+                </div>
+            </div>
+            `;
+        }
+    }
+}
+
+async function loadArticlesMenu() {
+    var cols = await getData("/get_allcols");
+    var no_result = '{"error":"no_result"}';
+
+    if (JSON.stringify(cols) != no_result )
+    {
+        for(var i = 0; i < cols.length; i++)
+        {
+            var imageURL = await getData("/get_im_cols/"+cols[i].id);
+            imageURL = imageURL[0].url + ".png";
+
+            document.getElementById("output_interviews").innerHTML += `
+            <div class="card pr-5 pl-5" onclick="location.href='/articles_post/`+cols[i].id+`';">
+                <img class="card-img-top" src="/cols_img/`+imageURL+`" alt="Card image" style="height:350px; object-fit: cover;">
+                <div class="card-body p-0">
+                    <h5 class="card-title m-0" style="color: black; top:0;">`+cols[i].title+`</h5>
+                    <p class="card-text" style="color: black; top:0;">Text by `+cols[i].author+`</p>
                 </div>
             </div>
             `;
