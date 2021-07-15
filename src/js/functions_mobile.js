@@ -203,7 +203,7 @@ async function load(p_section) {
                             <div class="col-md-6">
                                 <img class="center" src="/cols_img/`+img[0].url+`.png" style="height:140px; object-fit:cover; width:110px;">
                             <h2 class="w-100 text-center mt-3 mb-0">`+title+`</h2>
-                            <p class="text-small mb-1 mt-0 text-center"><b class="text-uppercase">`+ columnista +`_ </b><i>`+ ocupacion +`</i><b> `+insta+`</b></p>
+                            <p class="text-small mb-1 mt-0 text-center"><b class="text-uppercase">`+ columnista +`_ </b><i>`+ ocupacion +`</i><a href="https://www.instagram.com/`+insta.slice(1) +`" style="color:black;"><b> `+insta+`</b></a></p>
                             <p class="text-small text-center mt-3 mb-0"><b class="text-uppercase" style="letter-spacing:3px;">`+loc+` / `+date+`</b></p>
                             </div>
                         `;
@@ -283,7 +283,7 @@ async function loadArticlesMenu() {
         {
             var imageURL = await getData("/get_im_col/"+cols[i].id);
             console.log(imageURL);
-            imageURL = imageURL[1].url + ".png";
+            imageURL = imageURL[0].url + ".png";
 
             document.getElementById("output_articles").innerHTML += `
             <div class="card pr-5 pl-5" onclick="location.href='/articles_post/`+cols[i].id+`';">

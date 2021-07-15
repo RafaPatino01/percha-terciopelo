@@ -358,7 +358,7 @@ async function loadColsMenu(){
         {
             var img = await getData("/get_im_col/" + cols[i].id);
             console.log(img);
-            var l_arr = "/cols_img/"+img[1].url+".png";
+            var l_arr = "/cols_img/"+img[0].url+".png";
             document.getElementById("output_news").innerHTML += `
                 <div style="cursor: pointer" onclick="location.href='/articles_post/`+ cols[i].id +`'" class="m-5 noticia" url="`+ l_arr +`">
                     <h6><b>`+ cols[i].loc +` / `+ formatDate_news(cols[i].date) +` </b></h6>
@@ -416,7 +416,7 @@ async function loadCol(){
             <div class="col-9" style="position: relative; font-size: 15px;">
                 <div style="position: absolute; bottom: -20px">
                     <p>
-                    <span class="text-uppercase">`+col[0].columnista+` </span><i><b>`+insta+`</b></i><br>
+                    <span class="text-uppercase">`+col[0].columnista+` </span><i><a href="https://www.instagram.com/`+insta.slice(1) +`" style="color:black;"><b>`+insta+`</b></a></i><br>
                     <i>`+col[0].ocupacion+`</i>     
                     </p>
                 </div>
@@ -427,13 +427,13 @@ async function loadCol(){
 
         document.getElementById("car_images").innerHTML =`
                   <div class="carousel-item active">
-                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[1].url+`.png">
+                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[1].url+`.png" style="height: 500px; object-fit: cover;">
                   </div>
             `;
         for(var i = 2; i <= img.length ; i++) {
             document.getElementById("car_images").innerHTML +=`
                   <div class="carousel-item">
-                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[i].url+`.png">
+                    <img class="d-block w-100 fit-img" src="/cols_img/`+img[i].url+`.png" style="height: 500px; object-fit: cover;">
                   </div>
             `;
         }
