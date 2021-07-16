@@ -256,7 +256,7 @@ async function loadInterviewsMenu() {
         for(var i = 0; i < interviews.length; i++)
         {
             var imageURL = await getData("/get_im_interview/"+interviews[i].id);
-            imageURL = imageURL[0].url + ".png";
+            imageURL = imageURL[1].url + ".png";
 
             document.getElementById("output_interviews").innerHTML += `
             <div class="card bg-dark text-white mb-5" onclick="location.href='/interview_post/`+interviews[i].id+`';">
