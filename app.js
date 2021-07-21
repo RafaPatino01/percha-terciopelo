@@ -594,7 +594,7 @@ app.put('/edit_post/:id', function (req, res) {
     const secondary_text = req.body.secondary_text;
 	const status = req.body.status;
 
-    const sql = 'UPDATE posts SET status='+'"'+status+'"'+', title='+"'"+title+"'"+', descr='+"'"+descr+"'"+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+', secondary_text='+"'"+secondary_text+"'"+' WHERE id='+id;
+    const sql = 'UPDATE posts SET status='+'"'+status+'"'+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+', secondary_text='+'"'+secondary_text+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {
@@ -643,7 +643,7 @@ app.put('/edit_col/:id', function (req, res) {
     const date = req.body.date;
     const main_text = req.body.main_text;
 
-    const sql = 'UPDATE cols SET title='+"'"+title+"'"+', ocupacion='+'"'+ocupacion+'"'+', columnista='+'"'+columnista+'"'+', insta='+'"'+insta+'"'+', loc='+'"'+loc+'"'+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+' WHERE id='+id;
+    const sql = 'UPDATE cols SET title='+'"'+title+'"'+', ocupacion='+'"'+ocupacion+'"'+', columnista='+'"'+columnista+'"'+', insta='+'"'+insta+'"'+', loc='+'"'+loc+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {
@@ -663,7 +663,7 @@ app.put('/edit_news/:id', function (req, res) {
     const date = req.body.date;
     const main_text = req.body.main_text;
 
-    const sql = 'UPDATE news SET title='+"'"+title+"'"+', subtitle='+"'"+subtitle+"'"+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+' WHERE id='+id;
+    const sql = 'UPDATE news SET title='+'"'+title+'"'+', subtitle='+'"'+subtitle+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
 
     connection.query(sql, err => {
 		if(err) {

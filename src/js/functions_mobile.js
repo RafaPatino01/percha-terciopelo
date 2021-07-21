@@ -347,6 +347,30 @@ async function loadNewsMenu() {
     }
 }
 
+// load Feat
+async function loadFeatMenu() {
+    var feat = await getData("/"); // incomplete, no endpoint!
+    var no_result = '{"error":"no_result"}';
+
+    if (JSON.stringify(feat) != no_result )
+    {
+        feat = feat.reverse();
+
+        for(var i = 0; i < feat.length; i++)
+        {
+            if(feat[i].status == 2){ //feat
+                var imageURL = await getData("/get_im_url/"+feat[i].id);
+                imageURL = imageURL[0].url + ".png";
+
+                document.getElementById("output_feat").innerHTML += `
+                <div class="story-post mr-5">
+                    <a href="/feat_post/`+feat[i].id+`"><img src="/feat_img/`+imageURL+`" class="w-100 story-img"></a>
+                </div>
+                `;
+            }
+        }
+    }
+}
 
 function countWords(str) {
     str = str.replace(/(^\s*)|(\s*$)/gi,"");
