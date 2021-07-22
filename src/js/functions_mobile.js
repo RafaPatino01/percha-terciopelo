@@ -358,28 +358,6 @@ async function loadStoriesMenu() {
     }
 }
 
-// load stories
-async function loadFeatMenu() {
-    var stories = await getData("/get_allfeat");
-    var no_result = '{"error":"no_result"}';
-    if (JSON.stringify(stories) != no_result )
-    {
-        stories = stories.reverse();
-
-        for(var i = 0; i < stories.length; i++)
-        {
-            if(stories[i].status == 2){ //Stories
-                var imageURL = await getData("/get_im_feat/"+stories[i].id);
-                imageURL = imageURL[0].url + ".png";
-                document.getElementById("output_stories").innerHTML += `
-                <div class="story-post mr-5">
-                    <a href="/feat_post/`+stories[i].id+`"><img src="/feat_img/`+imageURL+`" class="w-100 story-img"></a>
-                </div>
-                `;
-            }
-        }
-    }
-}
 
 // load news
 async function loadNewsMenu() {
@@ -407,7 +385,7 @@ async function loadNewsMenu() {
 
 // load Feat
 async function loadFeatMenu() {
-    var feat = await getData("/"); // incomplete, no endpoint!
+    var feat = await getData("/get_allfeat"); // incomplete, no endpoint!
     var no_result = '{"error":"no_result"}';
 
     if (JSON.stringify(feat) != no_result )
@@ -417,7 +395,9 @@ async function loadFeatMenu() {
         for(var i = 0; i < feat.length; i++)
         {
             if(feat[i].status == 2){ //feat
-                var imageURL = await getData("/get_im_url/"+feat[i].id);
+                console.log(feat[i])
+                var imageURL = await getData("/get_im_feat/"+feat[i].id);
+                console.log(imageURL)
                 imageURL = imageURL[0].url + ".png";
 
                 document.getElementById("output_feat").innerHTML += `
