@@ -81,6 +81,28 @@ function send_data(p_title,p_date,p_descr,p_main_text,p_secondary_text) {
 	});
 
 }
+// feat
+async function placeinfo_feat() {
+
+	var info = await getData("/get_feat/"+id);
+
+	info = info[0];
+	var fecha = info.date.substring(0, info.date.lastIndexOf('T')); //fix date-time
+
+	document.getElementById("title").value = info.title;
+
+	if(info.status == 1){
+		document.getElementById("output_checkbox").innerHTML += '<input class="form-check-input" type="checkbox" id="destacado">';
+	}
+	else {
+		document.getElementById("output_checkbox").innerHTML += '<input class="form-check-input" type="checkbox" id="destacado" checked>';
+	}
+
+	document.getElementById("date").value = fecha;
+	document.getElementById("descr").value = info.descr;
+	document.getElementById("main_text").value = info.main_text;
+	document.getElementById("secondary_text").value = info.secondary_text;
+}
 
 // -------- COLUMNAS DE MODA --------
 // Set current info to inputs

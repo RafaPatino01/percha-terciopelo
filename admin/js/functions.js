@@ -13,6 +13,7 @@ async function loadPosts(p_page) {
 	var cols = await getData("/get_allcols");
 	var news = await getData("/get_allnews");
 	var interviews = await getData("/get_allinterviews");
+	var feat = await getData("/get_allfeat");
 
 	var no_result = '{"error":"no_result"}';
 
@@ -58,7 +59,44 @@ async function loadPosts(p_page) {
 			else {
 				document.getElementById("output_posts").innerHTML += "No hay posts";
 			}
-			
+			// feat
+			if (JSON.stringify(feat) != no_result){
+				for(var i = 0; i < feat.length; i++)
+				{
+					if(posts[i].status == 2){
+						var destacado = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+						<path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+						<path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+					  </svg>`;
+					}
+					else {
+						var destacado = "";
+					}
+					document.getElementById("output_feat").innerHTML += `
+					<div class="row border" id="FadeIn">
+						<div class="col-md-3 bg-orange p-3">
+						<h3>`+ feat[i].title +`</h3>
+						<p>`+ feat[i].date.substring(0, 7) +`</p>`+destacado+`
+						</div>
+						<div class="col-md-8 bg-lighter">
+							<div class="row p-3">
+							<p class="lead">`+ feat[i].descr +`</p>
+							</div>
+							
+							<div class="row border-top p-3">
+							<p>`+ feat[i].main_text.substring(0, 150) +`...</p>
+							</div>
+						</div>
+						<div class="col-md-1 bg-lighter border-left pt-5">
+							<h5><a href="/admin_edit_feat/`+feat[i].id+`"><i>EDIT</i></a></h5>
+						</div>
+					</div><br>
+					`;
+				}
+			}
+			else {
+				document.getElementById("output_feat").innerHTML += "No hay posts";
+			}
 			// cols
 			if (JSON.stringify(cols) != no_result){
 				for(var i = 0; i < cols.length; i++)

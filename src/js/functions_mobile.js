@@ -114,6 +114,41 @@ async function load(p_section) {
             }
             break;
 
+        case "feat":
+            var story = await getData("/get_feat/"+id);
+            if(story[0].status == 1){
+                document.location = "/feat";
+            }
+            if (JSON.stringify(story) != no_result )
+            {
+                var images = await getData("/get_im_feat/" + story[0].id);
+                document.getElementById("main").innerHTML = ``;
+                for(var i = 1; i < images.length; i++){
+                    document.getElementById("main").innerHTML+=`
+                    <div class="section bg-black">
+                        <div class="p fixed w-100 h-100">
+                            <img class="w-100" src="/feat_img/`+ images[i].url +`.png">
+                        </div>
+                    </div>
+                    `;
+                }
+                for(var i = 0; i <= images.length ; i++) {
+                    document.getElementById("mystyle").innerText +=`
+                        .section:nth-child(`+ (i+1) +`) {
+                            background-color: #fff;
+                            color: #000;
+                            top:`+ (i * 100) +`vh;
+                            z-index:`+ (i+1) +`;
+                        }       
+                        .section:nth-child(`+ (i+1) +`) .fixed {
+                            transform: translate(-50%, -50%);
+                        }
+                    `;
+                }
+
+            }
+            break;
+
         case "interview":
             var data = await getData("/get_interview/"+id);
 
@@ -316,6 +351,29 @@ async function loadStoriesMenu() {
                 document.getElementById("output_stories").innerHTML += `
                 <div class="story-post mr-5">
                     <a href="/stories_post/`+stories[i].id+`"><img src="/stories_img/`+imageURL+`" class="w-100 story-img"></a>
+                </div>
+                `;
+            }
+        }
+    }
+}
+
+// load stories
+async function loadFeatMenu() {
+    var stories = await getData("/get_allfeat");
+    var no_result = '{"error":"no_result"}';
+    if (JSON.stringify(stories) != no_result )
+    {
+        stories = stories.reverse();
+
+        for(var i = 0; i < stories.length; i++)
+        {
+            if(stories[i].status == 2){ //Stories
+                var imageURL = await getData("/get_im_feat/"+stories[i].id);
+                imageURL = imageURL[0].url + ".png";
+                document.getElementById("output_stories").innerHTML += `
+                <div class="story-post mr-5">
+                    <a href="/feat_post/`+stories[i].id+`"><img src="/feat_img/`+imageURL+`" class="w-100 story-img"></a>
                 </div>
                 `;
             }

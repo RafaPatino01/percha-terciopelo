@@ -1,0 +1,113 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PERCHA | Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/admin_css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/admin_js/uploadfile_feat.js"></script>
+
+
+</head>
+
+<body>
+<div class="container mt-5 p-5">
+    <h1 class="display-1">ADD Feat</h1>
+    <h5 class="mb-3">
+        <a class="mr-5" href="/admin_all"><i>all</i></a>
+        <a class="mr-5" href="/admin_new_what"><i>add</i></a>
+        <a class="mr-5" href="/admin_delete"><i>delete</i></a>
+
+    </h5>
+    <form>
+        <div class="row bg-lighter p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
+                <h3>TITLE</h3>
+            </div>
+            <div class="col-8 p-3">
+                <input class="form-control form-control-lg" type="text" id="title" placeholder="">
+            </div>
+        </div>
+
+        <div class="row bg-lighter p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
+            </div>
+            <div class="col-8 p-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="destacado" checked>
+                    <label class="form-check-label" for="flexCheckDefault">
+                        <p class="lead">Mobile</p>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-lighter p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
+                <h3>DATE</h3>
+            </div>
+            <div class="col-8 p-3">
+                <input class="form-control form-control-lg" type="date" id="date" placeholder="">
+            </div>
+        </div>
+
+        <div class="row bg-lighter p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
+                <h3>DESCRIPTION</h3>
+            </div>
+            <div class="col-8 p-3">
+                <input class="form-control form-control-lg" type="text" id="descr" placeholder="">
+            </div>
+        </div>
+
+        <div class="row bg-lighter p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
+                <h3>MAIN TEXT</h3>
+            </div>
+            <div class="col-8 p-3">
+                <textarea class="form-control form-control-lg" type="text" id="main_text" placeholder="" rows="8"></textarea>
+            </div>
+        </div>
+
+        <div class="row bg-lighter p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
+                <h3>SECONDARY TEXT</h3>
+            </div>
+            <div class="col-8 p-3">
+                <textarea class="form-control form-control-lg" type="text" id="secondary_text" placeholder="" rows="8"></textarea>
+            </div>
+        </div>
+
+        <div class="row bg-lighter p-3" id="FadeIn">
+            <div class="col-4 text-right pt-3">
+                <h3>IMAGES</h3>
+            </div>
+            <div class="col-8 p-3">
+                <section class="active">
+                    <div class="images">
+                        <div class="pic text-primary">
+                            <a><i><b>Add</b></i></a>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="wrapper">
+                    <footer>
+                        <ul>
+                            <li><span id="reset">reset</span></li>
+                            <li><span id="send">send</span></li>
+                        </ul>
+                    </footer>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+
+</body>
+</html>

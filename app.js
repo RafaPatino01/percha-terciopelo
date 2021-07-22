@@ -27,9 +27,9 @@ app.use(upload.array());
 //Secure SHA256
 let crypto;
 try {
-  crypto = require('crypto');
+	crypto = require('crypto');
 } catch (err) {
-  console.log('crypto support is disabled!');
+	console.log('crypto support is disabled!');
 }
 
 app.use(useragent.express()); // mobile detection
@@ -38,9 +38,9 @@ app.use(useragent.express()); // mobile detection
 var session = require('express-session')
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: 'secret_perchamagasin',
-  resave: false,
-  saveUninitialized: false
+	secret: 'secret_perchamagasin',
+	resave: false,
+	saveUninitialized: false
 }))
 
 app.get('/check_login/:pass', function(req, res) {
@@ -48,14 +48,14 @@ app.get('/check_login/:pass', function(req, res) {
 	const {pass } = req.params; //sin hash
 
 	var hashed_input = crypto.createHmac('sha256', pass)
-				   .digest('hex');
+		.digest('hex');
 
 	if(hashed_input=="614ede61f712224a8a7e3e1fb4a84ad0f65fc4bab1ccde94262ae6d136ee9118")
 	{
 		req.session.flag = 1;
 		res.send("1"); // OUI correcto paswordo
 	}
-	else 
+	else
 	{
 		req.session.flag = 0;
 		res.send("0"); // Not so correctou
@@ -81,27 +81,27 @@ var db_config = {
 var connection;
 
 function handleDisconnect() {
-  connection = mysql.createConnection(db_config); // Recreate the connection, since
-                                                  // the old one cannot be reused.
+	connection = mysql.createConnection(db_config); // Recreate the connection, since
+													// the old one cannot be reused.
 
-  connection.connect(function(err) {              // The server is either down
-    if(err) {                                     // or restarting (takes a while sometimes).
-      console.log('[ERR] error when connecting to db:', err);
-      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
-    }
-    else {
-    	console.log("[OK] Database server running...");
-    }                                     // to avoid a hot loop, and to allow our node script to
-  });                                     // process asynchronous requests in the meantime.
-                                          // If you're also serving http, display a 503 error.
-  connection.on('error', function(err) {
-    console.log('[ERR] DB disconected...');
-    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-      handleDisconnect();                         // lost due to either server restart, or a
-    } else {                                      // connnection idle timeout (the wait_timeout
-      throw err;                                  // server variable configures this)
-    }
-  });
+	connection.connect(function(err) {              // The server is either down
+		if(err) {                                     // or restarting (takes a while sometimes).
+			console.log('[ERR] error when connecting to db:', err);
+			setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+		}
+		else {
+			console.log("[OK] Database server running...");
+		}                                     // to avoid a hot loop, and to allow our node script to
+	});                                     // process asynchronous requests in the meantime.
+											// If you're also serving http, display a 503 error.
+	connection.on('error', function(err) {
+		console.log('[ERR] DB disconected...');
+		if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+			handleDisconnect();                         // lost due to either server restart, or a
+		} else {                                      // connnection idle timeout (the wait_timeout
+			throw err;                                  // server variable configures this)
+		}
+	});
 }
 
 handleDisconnect();
@@ -112,176 +112,212 @@ handleDisconnect();
 // All posts
 app.get('/get_allposts', function(req, res) {
 
-    const sql = 'SELECT * FROM posts WHERE status>0';
+	const sql = 'SELECT * FROM posts WHERE status>0';
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
+});
+// All feat
+app.get('/get_allfeat', function(req, res) {
+
+	const sql = 'SELECT * FROM feat WHERE status>0';
+
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
+			res.send('{"error":"no_result"}');
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 // All cols
 app.get('/get_allcols', function(req, res) {
 
-    const sql = 'SELECT * FROM cols WHERE status>0';
+	const sql = 'SELECT * FROM cols WHERE status>0';
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-			
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 // All news
 app.get('/get_allnews', function(req, res) {
 
-    const sql = 'SELECT * FROM news WHERE status>0';
+	const sql = 'SELECT * FROM news WHERE status>0';
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-			
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 // All interviews
 app.get('/get_allinterviews', function(req, res) {
 
-    const sql = 'SELECT * FROM interviews WHERE status>0';
+	const sql = 'SELECT * FROM interviews WHERE status>0';
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-			
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 // Destacados posts
 app.get('/get_destacados', function(req, res) {
 
-    const sql = 'SELECT * FROM posts WHERE status=2';
+	const sql = 'SELECT * FROM posts WHERE status=2';
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 
 // [ GET ] BY ID ----------------------------------------------
 // get post by ID
 app.get('/get_post/:id', function(req, res) {
-    
-    const {id } = req.params
-    const sql = `SELECT * FROM posts WHERE id=${id} AND status>0`;
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	const {id } = req.params
+	const sql = `SELECT * FROM posts WHERE id=${id} AND status>0`;
+
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
+// get feat by ID
+app.get('/get_feat/:id', function(req, res) {
 
+	const {id } = req.params
+	const sql = `SELECT * FROM feat WHERE id=${id} AND status>0`;
+
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
+			res.send('{"error":"no_result"}');
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
+});
 // get interview by ID
 app.get('/get_interview/:id', function(req, res) {
-    
-    const {id } = req.params
-    const sql = `SELECT * FROM interviews WHERE id=${id} AND status>0`;
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	const {id } = req.params
+	const sql = `SELECT * FROM interviews WHERE id=${id} AND status>0`;
+
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 
 // col by id
 app.get('/get_col/:id', function(req, res) {
-    
-    const {id } = req.params
-    const sql = `SELECT * FROM cols WHERE id=${id} AND status>0`;
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	const {id } = req.params
+	const sql = `SELECT * FROM cols WHERE id=${id} AND status>0`;
+
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 
 // news by id
 app.get('/get_news/:id', function(req, res) {
-    
-    const {id } = req.params
-    const sql = `SELECT * FROM news WHERE id=${id} AND status>0`;
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	const {id } = req.params
+	const sql = `SELECT * FROM news WHERE id=${id} AND status>0`;
+
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 
 
@@ -289,74 +325,92 @@ app.get('/get_news/:id', function(req, res) {
 // img posts
 app.get('/get_im_url/:id', function(req, res) {
 	const id = req.params["id"];
-    const sql = 'SELECT * FROM posts_images WHERE post_id='+id;
+	const sql = 'SELECT * FROM posts_images WHERE post_id='+id;
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
+});
+// img posts
+app.get('/get_im_feat/:id', function(req, res) {
+	const id = req.params["id"];
+	const sql = 'SELECT * FROM feat_images WHERE post_id='+id;
+
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
+			res.send('{"error":"no_result"}');
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 // img interviews
 app.get('/get_im_interview/:id', function(req, res) {
 	const id = req.params["id"];
-    const sql = 'SELECT * FROM interviews_images WHERE post_id='+id;
+	const sql = 'SELECT * FROM interviews_images WHERE post_id='+id;
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 // img cols
 app.get('/get_im_col/:id', function(req, res) {
 	const id = req.params["id"];
-    const sql = 'SELECT * FROM cols_images WHERE post_id='+id;
+	const sql = 'SELECT * FROM cols_images WHERE post_id='+id;
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 // img news
 app.get('/get_im_news/:id', function(req, res) {
 	const id = req.params["id"];
-    const sql = 'SELECT * FROM news_images WHERE post_id='+id;
+	const sql = 'SELECT * FROM news_images WHERE post_id='+id;
 
-    connection.query(sql,(err,result)=>{
-    	if(err){
-    		//throw err;
+	connection.query(sql,(err,result)=>{
+		if(err){
+			//throw err;
 			res.send('{"error":"no_result"}');
-    	}
-    	if(result.length > 0) {
-    		res.json(result);
-    	}
-    	else {
-    		res.send('{"error":"no_result"}');
-    	}
-    });
+		}
+		if(result.length > 0) {
+			res.json(result);
+		}
+		else {
+			res.send('{"error":"no_result"}');
+		}
+	});
 });
 
 
@@ -398,14 +452,14 @@ app.post('/add_post', function (req, res) {
 				}
 
 				connection.query(sql2, postObject2, (err, result)=> { // Write to database
-					if(err) { 
+					if(err) {
 						throw err;
 					}
 				});
 
 				// Write image to folder
 				require("fs").writeFile("src/uploads/stories/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
-		  			console.log(err);
+					console.log(err);
 				});
 
 				console.log("Added image: " + result.insertId+ i + ".png")
@@ -414,7 +468,59 @@ app.post('/add_post', function (req, res) {
 	});
 
 })
+// Add feat
+app.post('/add_feat', function (req, res) {
 
+	console.log('Recieved: ' + typeof(req.body.title)) //ACCESS DATA FROM FORM
+	console.log('Recieved: ' + typeof(req.body.im0))
+
+	const sql = 'INSERT INTO feat SET ?';
+
+	const postObject = {
+		title: req.body.title,
+		descr: req.body.descr,
+		date: req.body.date,
+		main_text: req.body.main_text,
+		secondary_text: req.body.secondary_text,
+		status: req.body.status
+	}
+
+	connection.query(sql, postObject, (err, result)=> {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Added feat");
+
+			console.log("LAST INSERTED ID: " + result.insertId);
+
+			const sql2 = 'INSERT INTO feat_images SET ?';
+			let base64Data = req.body.im;
+
+			for (var i = 0; i < req.body.n; i++) { // For each image
+
+				let postObject2 = {
+					url: result.insertId+i.toString(),
+					post_id: result.insertId
+				}
+
+				connection.query(sql2, postObject2, (err, result)=> { // Write to database
+					if(err) {
+						throw err;
+					}
+				});
+
+				// Write image to folder
+				require("fs").writeFile("src/uploads/feat/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
+					console.log(err);
+				});
+
+				console.log("Added image: " + result.insertId+ i + ".png")
+			}
+		}
+	});
+
+})
 // Add col
 app.post('/add_col', function (req, res) {
 
@@ -454,14 +560,14 @@ app.post('/add_col', function (req, res) {
 				}
 
 				connection.query(sql2, postObject2, (err, result)=> { // Write to database
-					if(err) { 
+					if(err) {
 						throw err;
 					}
 				});
 
 				// Write image to folder
 				require("fs").writeFile("src/uploads/cols/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
-		  		console.log(err);
+					console.log(err);
 				});
 
 				console.log("Added image: " + result.insertId + i + ".png")
@@ -507,15 +613,15 @@ app.post('/add_noticia', function (req, res) {
 				}
 
 				// Write to database
-				connection.query(sql2, postObject2, (err, result)=> { 
-					if(err) { 
+				connection.query(sql2, postObject2, (err, result)=> {
+					if(err) {
 						throw err;
 					}
 				});
 
 				// Write image to folder
 				require("fs").writeFile("src/uploads/news/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
-		  		console.log(err);
+					console.log(err);
 				});
 
 				console.log("Added image: " + result.insertId+ i + ".png")
@@ -566,15 +672,15 @@ app.post('/add_interview', function (req, res) {
 				}
 
 				// Write to database
-				connection.query(sql2, postObject2, (err, result)=> { 
-					if(err) { 
+				connection.query(sql2, postObject2, (err, result)=> {
+					if(err) {
 						throw err;
 					}
 				});
 
 				// Write image to folder
 				require("fs").writeFile("src/uploads/interviews/" + result.insertId + i + ".png", base64Data.split('|')[i], 'base64', function(err) {
-		  			console.log(err);
+					console.log(err);
 				});
 
 				console.log("Added image: " + result.insertId + i + ".png")
@@ -586,17 +692,17 @@ app.post('/add_interview', function (req, res) {
 // [ EDIT ] Stuff ----------------------------------------------
 // Edit post
 app.put('/edit_post/:id', function (req, res) {
-    const id = req.params["id"];
-    const title = req.body.title;
-    const descr = req.body.descr;
-    const date = req.body.date;
-    const main_text = req.body.main_text;
-    const secondary_text = req.body.secondary_text;
+	const id = req.params["id"];
+	const title = req.body.title;
+	const descr = req.body.descr;
+	const date = req.body.date;
+	const main_text = req.body.main_text;
+	const secondary_text = req.body.secondary_text;
 	const status = req.body.status;
 
-    const sql = 'UPDATE posts SET status='+'"'+status+'"'+', title='+"'"+title+"'"+', descr='+"'"+descr+"'"+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+', secondary_text='+"'"+secondary_text+"'"+' WHERE id='+id;
+	const sql = 'UPDATE posts SET status='+'"'+status+'"'+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+', secondary_text='+'"'+secondary_text+'"'+' WHERE id='+id;
 
-    connection.query(sql, err => {
+	connection.query(sql, err => {
 		if(err) {
 			throw err;
 		}
@@ -604,25 +710,45 @@ app.put('/edit_post/:id', function (req, res) {
 			res.send("Post updated");
 		}
 	});
+})// Edit feat
+app.put('/edit_feat/:id', function (req, res) {
+	const id = req.params["id"];
+	const title = req.body.title;
+	const descr = req.body.descr;
+	const date = req.body.date;
+	const main_text = req.body.main_text;
+	const secondary_text = req.body.secondary_text;
+	const status = req.body.status;
+
+	const sql = 'UPDATE feat SET status='+'"'+status+'"'+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+', secondary_text='+'"'+secondary_text+'"'+' WHERE id='+id;
+
+	connection.query(sql, err => {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Feat updated");
+		}
+	});
 })
 // Edit interview
 app.put('/edit_interview/:id', function (req, res) {
-    const id = req.params["id"];
+	const id = req.params["id"];
 
-    const title = req.body.title;
-    const descr = req.body.descr;
-    const date = req.body.date;
-    const main_text = req.body.main_text;
+	const title = req.body.title;
+	const descr = req.body.descr;
+	const date = req.body.date;
+	const main_text = req.body.main_text;
 	const secondary_text = req.body.secondary_text;
-    const author = req.body.author;
+	const author = req.body.author;
 	const location = req.body.location;
 	const spotify = req.body.spotify;
 
 	const status = 1;
 
-    const sql = 'UPDATE interviews SET status='+'"'+status+'"'+', spotify='+"'"+spotify+"'"+', secondary_text='+"'"+secondary_text+"'"+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+',location='+'"'+location+'"'+', author='+'"'+author+'"'+' WHERE id='+id;
+	const sql = 'UPDATE interviews SET status='+'"'+status+'"'+', spotify='+"'"+spotify+"'"+', secondary_text='+"'"+secondary_text+"'"+', title='+'"'+title+'"'+', descr='+'"'+descr+'"'+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+',location='+'"'+location+'"'+', author='+'"'+author+'"'+' WHERE id='+id;
 
-    connection.query(sql, err => {
+	connection.query(sql, err => {
 		if(err) {
 			throw err;
 		}
@@ -633,19 +759,19 @@ app.put('/edit_interview/:id', function (req, res) {
 })
 // Edit col
 app.put('/edit_col/:id', function (req, res) {
-    const id = req.params["id"];
-    const title = req.body.title;
-    const columnista = req.body.columnista;
-    const insta = req.body.insta;
-    const loc = req.body.loc;
-    const ocupacion = req.body.ocupacion;
+	const id = req.params["id"];
+	const title = req.body.title;
+	const columnista = req.body.columnista;
+	const insta = req.body.insta;
+	const loc = req.body.loc;
+	const ocupacion = req.body.ocupacion;
 
-    const date = req.body.date;
-    const main_text = req.body.main_text;
+	const date = req.body.date;
+	const main_text = req.body.main_text;
 
-    const sql = 'UPDATE cols SET title='+"'"+title+"'"+', ocupacion='+'"'+ocupacion+'"'+', columnista='+'"'+columnista+'"'+', insta='+'"'+insta+'"'+', loc='+'"'+loc+'"'+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+' WHERE id='+id;
+	const sql = 'UPDATE cols SET title='+'"'+title+'"'+', ocupacion='+'"'+ocupacion+'"'+', columnista='+'"'+columnista+'"'+', insta='+'"'+insta+'"'+', loc='+'"'+loc+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
 
-    connection.query(sql, err => {
+	connection.query(sql, err => {
 		if(err) {
 			throw err;
 		}
@@ -656,16 +782,16 @@ app.put('/edit_col/:id', function (req, res) {
 })
 // Edit news
 app.put('/edit_news/:id', function (req, res) {
-    const id = req.params["id"];
-    const title = req.body.title;
-    const subtitle = req.body.subtitle;
+	const id = req.params["id"];
+	const title = req.body.title;
+	const subtitle = req.body.subtitle;
 
-    const date = req.body.date;
-    const main_text = req.body.main_text;
+	const date = req.body.date;
+	const main_text = req.body.main_text;
 
-    const sql = 'UPDATE news SET title='+"'"+title+"'"+', subtitle='+"'"+subtitle+"'"+', date='+'"'+date+'"'+', main_text='+"'"+main_text+"'"+' WHERE id='+id;
+	const sql = 'UPDATE news SET title='+'"'+title+'"'+', subtitle='+'"'+subtitle+'"'+', date='+'"'+date+'"'+', main_text='+'"'+main_text+'"'+' WHERE id='+id;
 
-    connection.query(sql, err => {
+	connection.query(sql, err => {
 		if(err) {
 			throw err;
 		}
@@ -679,10 +805,10 @@ app.put('/edit_news/:id', function (req, res) {
 // [ DELETE ] Stuff ----------------------------------------------
 // Delete post
 app.put('/delete_post/:id', function (req, res) {
-    const id = req.params["id"];
-    const sql = 'UPDATE posts SET status=0 WHERE id='+id;
+	const id = req.params["id"];
+	const sql = 'UPDATE posts SET status=0 WHERE id='+id;
 
-    connection.query(sql, err => {
+	connection.query(sql, err => {
 		if(err) {
 			throw err;
 		}
@@ -691,12 +817,26 @@ app.put('/delete_post/:id', function (req, res) {
 		}
 	});
 })
+// Delete feat
+app.put('/delete_feat/:id', function (req, res) {
+	const id = req.params["id"];
+	const sql = 'UPDATE feat SET status=0 WHERE id='+id;
+
+	connection.query(sql, err => {
+		if(err) {
+			throw err;
+		}
+		else {
+			res.send("Feat status set to 0");
+		}
+	});
+})
 // Delete interview
 app.put('/delete_interview/:id', function (req, res) {
-    const id = req.params["id"];
-    const sql = 'UPDATE interviews SET status=0 WHERE id='+id;
+	const id = req.params["id"];
+	const sql = 'UPDATE interviews SET status=0 WHERE id='+id;
 
-    connection.query(sql, err => {
+	connection.query(sql, err => {
 		if(err) {
 			throw err;
 		}
@@ -707,10 +847,10 @@ app.put('/delete_interview/:id', function (req, res) {
 })
 // Delete col
 app.put('/delete_col/:id', function (req, res) {
-    const id = req.params["id"];
-    const sql = 'UPDATE cols SET status=0 WHERE id='+id;
+	const id = req.params["id"];
+	const sql = 'UPDATE cols SET status=0 WHERE id='+id;
 
-    connection.query(sql, err => {
+	connection.query(sql, err => {
 		if(err) {
 			throw err;
 		}
@@ -721,10 +861,10 @@ app.put('/delete_col/:id', function (req, res) {
 })
 // Delete news
 app.put('/delete_news/:id', function (req, res) {
-    const id = req.params["id"];
-    const sql = 'UPDATE news SET status=0 WHERE id='+id;
+	const id = req.params["id"];
+	const sql = 'UPDATE news SET status=0 WHERE id='+id;
 
-    connection.query(sql, err => {
+	connection.query(sql, err => {
 		if(err) {
 			throw err;
 		}
@@ -739,18 +879,18 @@ app.put('/delete_news/:id', function (req, res) {
 
 // login
 app.get('/admin', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/login.html'));
+	res.sendFile(path.join(__dirname + '/admin/login.html'));
 });
 app.get('/admin_css', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/css/login_admin.css'));
+	res.sendFile(path.join(__dirname + '/admin/css/login_admin.css'));
 });
 
 // js files
 app.get('/login_js', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/js/login.js'));
+	res.sendFile(path.join(__dirname + '/admin/js/login.js'));
 });
 app.get('/functions_js', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/js/functions.js'));
+	res.sendFile(path.join(__dirname + '/admin/js/functions.js'));
 });
 
 //admin menu
@@ -775,6 +915,14 @@ app.get('/admin_new_what', function(req, res) {
 app.get('/admin_new', function(req, res) {
 	if(req.session.flag == 1){ // Admin has logged in
 		res.sendFile(path.join(__dirname + '/admin/new.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
+app.get('/admin_new_feat', function(req, res) {
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/new_feat.html'));
 	}
 	else {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
@@ -811,6 +959,16 @@ app.get('/admin_edit/:id', function(req, res) {
 
 	if(req.session.flag == 1){ // Admin has logged in
 		res.sendFile(path.join(__dirname + '/admin/edit.html'));
+	}
+	else {
+		res.sendFile(path.join(__dirname + '/admin/login.html'));
+	}
+});
+app.get('/admin_edit_feat/:id', function(req, res) {
+	const id = req.params["id"];
+
+	if(req.session.flag == 1){ // Admin has logged in
+		res.sendFile(path.join(__dirname + '/admin/edit_feat.html'));
 	}
 	else {
 		res.sendFile(path.join(__dirname + '/admin/login.html'));
@@ -859,13 +1017,13 @@ app.get('/admin_delete', function(req, res) {
 
 // Send JS Admin
 app.get('/uploadfile_js', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
+	res.sendFile(path.join(__dirname + '/admin/js/uploadfile.js'));
 });
 app.get('/uploadfile_js2', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/js/uploadfile2.js'));
+	res.sendFile(path.join(__dirname + '/admin/js/uploadfile2.js'));
 });
 app.get('/edit_js', function(req, res) {
-    res.sendFile(path.join(__dirname + '/admin/js/edit.js'));
+	res.sendFile(path.join(__dirname + '/admin/js/edit.js'));
 });
 app.get('/admin_js/:filename', function(req, res) {
 	const filename = req.params["filename"];
@@ -879,6 +1037,11 @@ app.get('/admin_js/:filename', function(req, res) {
 app.get('/stories_img/:filename', function(req, res) {
 	const filename = req.params["filename"];
 	res.sendFile(path.join(__dirname + '/src/uploads/stories/'+filename));
+});
+// Send feat img
+app.get('/feat_img/:filename', function(req, res) {
+	const filename = req.params["filename"];
+	res.sendFile(path.join(__dirname + '/src/uploads/feat/'+filename));
 });
 // Send Interviews img
 app.get('/interviews_img/:filename', function(req, res) {
@@ -938,7 +1101,7 @@ app.get('/stories', function(req, res) {
 // Send feat
 app.get('/feat', function(req, res) {
 	var mobile = req.useragent.isMobile;
-	if(mobile){res.sendFile(path.join(__dirname + '/src/comingsoon.html'));} //mobile
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/feat.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/feat.html'));} //desktop
 });
 
@@ -994,7 +1157,13 @@ app.get('/stories_post/:id', function(req, res) {
 	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/stories_post.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/stories_post.html'));}//desktop
 });
-
+// Send Feat
+app.get('/feat_post/:id', function(req, res) {
+	var mobile = req.useragent.isMobile;
+	const id = req.params["id"];
+	if(mobile){res.sendFile(path.join(__dirname + '/src/mobile/feat_post.html'));} //mobile
+	if(!mobile){res.sendFile(path.join(__dirname + '/src/feat_post.html'));}//desktop
+});
 // Send contact
 app.get('/contact', function(req, res) {
 	var mobile = req.useragent.isMobile;
@@ -1021,5 +1190,5 @@ app.get('*', function(req, res) {
 
 // [ SERVER PORT ] --------------------------------------------------------------------------
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`)
+	console.log(`Listening at http://localhost:${port}`)
 })

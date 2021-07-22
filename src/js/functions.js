@@ -208,6 +208,35 @@ async function loadStoriesMenu(){
     }
 }
 
+async function loadFeatMenu(){
+    var feat_all = await getData("/get_allfeat");
+    var no_result = '{"error":"no_result"}';
+
+    var feat = [];
+
+    // Filtrar las que son para desktop
+    for(var i = 0; i<feat_all.length; i++) {
+        if(feat_all[i].status == 1) {
+            feat.push(feat_all[i]);
+        }
+    }
+    console.log(feat);
+    var l = feat.length;
+    if (JSON.stringify(feat) != no_result ){
+
+        for(var i = 0; i < l; i++){
+            var img = await getData("/get_im_feat/" + feat[i].id);
+            var l_arr = "/feat_img/"+img[0].url+".png";
+            document.getElementById("main").innerHTML += `
+                <a href="/feat_post/`+ feat[i].id +`" role="button" >
+                    <img src="`+ l_arr +`"`  +` class="cuadro-img mb-4 mr-5">
+                </a>
+            `;
+        }
+    }
+}
+
+
 async function loadStory(){
     const href = window.location.href.toString()
     var n = href.lastIndexOf('/');
@@ -248,7 +277,51 @@ async function loadStory(){
         }
     }
 }
+async function loadFeat(){
+    const href = window.location.href.toString()
+    var n = href.lastIndexOf('/');
+    var id = href.substring(n + 1); // get id
 
+
+    var story = await getData("/get_feat/" + id);
+    var no_result = '{"error":"no_result"}';
+    console.log(story)
+    if(story[0].status == 2){
+        document.location = "/feat";
+    }
+    if (JSON.stringify(story) != no_result ){
+
+
+        document.getElementById("main").innerHTML = ``;
+        var img = await getData("/get_im_feat/" + story[0].id);
+        console.log(
+            img
+        )
+        for(var i = 1; i < img.length; i++){
+            var l_arr = "/feat_img/"+img[i].url+".png";
+            document.getElementById("main").innerHTML+=`
+            <div class="section">
+                <div class="p fixed w-100 ">
+                    <img class="w-100" src="`+ l_arr +`" >
+                </div>
+            </div>
+            `;
+        }
+        for(var i = 0; i <= img.length ; i++) {
+            document.getElementById("mystyle2").innerText +=`
+                .section:nth-child(`+ (i+1) +`) {
+                    background-color: #fff;
+                    color: #000;
+                    top:`+ (i * 100) +`vh;
+                    z-index:`+ (i+1) +`;
+                }       
+                .section:nth-child(`+ (i+1) +`) .fixed {
+                    transform: translate(-50%, -50%);
+                }
+            `;
+        }
+    }
+}
 
 // load interviews
 async function loadInterviewsMenu() {
