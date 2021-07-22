@@ -290,8 +290,14 @@ async function loadFeat(){
         document.location = "/feat";
     }
     if (JSON.stringify(story) != no_result ){
-
-
+        var location = story[0].descr;
+        var date = story[0].date;
+        var location_date = location.toUpperCase() + " / " + formatDate_news(date);
+        var ilustrator = story[0].main_text;
+        document.getElementById("artist").innerHTML = `
+        <p class="mb-0" style="font-weight:600; font-size:small; letter-spacing:2px;">`+ location_date +`</p>
+        <p style="font-size:xx-large;font-weight:600;">`+ ilustrator.toUpperCase() +`</p>
+        `
         document.getElementById("main").innerHTML = ``;
         var img = await getData("/get_im_feat/" + story[0].id);
         console.log(
