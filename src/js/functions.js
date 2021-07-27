@@ -189,7 +189,7 @@ async function loadStoriesMenu(){
 
         var flag = 1;
         for(var i = l; i < 6; i++) {
-            if(flag > 1) {
+            if(flag > 0) {
             document.getElementById("carouselMain").innerHTML += `
             <div class="carousel-item col-12 col-sm-6 col-md-4">
                 <img src="/img/PERCHA.jpg" class="img-fluid mx-auto d-block w-100" alt="img8">
