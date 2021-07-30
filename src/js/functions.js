@@ -436,6 +436,8 @@ async function loadColsMenu(){
 
     if (JSON.stringify(cols) != no_result )
     {
+        cols = cols.reverse(); //show newest first
+
         for(var i = 0; i < cols.length; i++)
         {
             var img = await getData("/get_im_col/" + cols[i].id);
