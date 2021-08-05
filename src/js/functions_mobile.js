@@ -176,6 +176,10 @@ async function load(p_section) {
                 </div>
                 `;
                 document.getElementById("output_text").innerHTML = main_text;
+                if(spotify == "<! - - - - >"){
+                    document.getElementById("output_spotify").innerHTML = spotify;    
+                }
+                document.getElementById("output_spotify").innerHTML += spotify;
                 document.getElementById("output_spotify").innerHTML = spotify;
                 document.getElementById("output_text2").innerHTML = secondary_text;
             }
