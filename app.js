@@ -50,7 +50,7 @@ app.get('/check_login/:pass', function(req, res) {
 	var hashed_input = crypto.createHmac('sha256', pass)
 		.digest('hex');
 
-	if(hashed_input=="614ede61f712224a8a7e3e1fb4a84ad0f65fc4bab1ccde94262ae6d136ee9118")
+	if(hashed_input=="12fac022607484572f2c568235d62c69a7367b08a510222c05afb29988d6662e")
 	{
 		req.session.flag = 1;
 		res.send("1"); // OUI correcto paswordo
