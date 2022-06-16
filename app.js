@@ -1034,7 +1034,7 @@ app.get('/admin_js/:filename', function(req, res) {
 // [ PUBLIC Routing ] ----------------------------------------------------------------------
 
 // Send live 
-app.get('/dioraw22', function(req, res) {
+app.get('/diorlive', function(req, res) {
 	var mobile = req.useragent.isMobile;
 	if(mobile){res.sendFile(path.join(__dirname + '/src/tory.html'));} //mobile
 	if(!mobile){res.sendFile(path.join(__dirname + '/src/tory.html'));} //desktop
