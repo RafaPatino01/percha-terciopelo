@@ -176,7 +176,7 @@ async function loadStoriesMenu(){
         </div>
         `;
 
-        for(var i = l; i >= 0; i--){
+        for(var i = l-1; i >= 0; i--){
             images = await loadImages(stories[i].id) ;
             document.getElementById("carouselMain").innerHTML += `
             <div class="carousel-item col-12 col-sm-6 col-md-4 ">
