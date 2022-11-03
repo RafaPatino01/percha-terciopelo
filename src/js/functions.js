@@ -164,19 +164,19 @@ async function loadStoriesMenu(){
         }
     }
 
-    var l = stories.length;
+    var l = stories.length-1;
     if (JSON.stringify(stories) != no_result ){
 
-        var images = await loadImages(stories[0].id) ;
+        var images = await loadImages(stories[l].id) ;
         document.getElementById("carouselMain").innerHTML = `
         <div class="carousel-item col-12 col-sm-6 col-md-4 active">
-            <a href="/stories_post/`+ stories[0].id +`" role="button">
+            <a href="/stories_post/`+ stories[l].id +`" role="button">
                 <img src="`+  `/stories_img/`+ images[0] +`.png"`  +` class="img-fluid mx-auto d-block w-100" alt="img2">
             </a>
         </div>
         `;
 
-        for(var i = l-1; i >= 0; i--){
+        for(var i = l; i >= 0; i--){
             images = await loadImages(stories[i].id) ;
             document.getElementById("carouselMain").innerHTML += `
             <div class="carousel-item col-12 col-sm-6 col-md-4 ">
