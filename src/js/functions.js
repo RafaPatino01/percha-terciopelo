@@ -158,7 +158,15 @@ async function loadStoriesMenu(){
     var stories = [];
 
     // Filtrar las que son para desktop
+    /*
     for(var i = 0; i<stories_all.length; i++) {
+        if(stories_all[i].status == 1) {
+            stories.push(stories_all[i]);
+        }
+    }
+    */
+    
+    for(var i = stories_all.length; i>=0; i--) {
         if(stories_all[i].status == 1) {
             stories.push(stories_all[i]);
         }
